@@ -22,7 +22,11 @@
         </activity>
         <activity
             android:name=".LoginActivityStudent"
-            android:label="@string/title_activity_login_student"></activity>
+            android:label="@string/title_activity_login_student" />
+        <activity android:name=".StudentRegistration" />
+        <activity android:name=".TrainerRegistration" />
+        <activity android:name=".TrainerLogin" />
+        <activity android:name=".StudentLogin"></activity>
     </application>
 
 </manifest>
