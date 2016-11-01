@@ -17,8 +17,6 @@ public class MainActivity extends AppCompatActivity {
     //Take the student to log in screen
     public void studentLogin(View view)
     {
-        Intent intent = new Intent(MainActivity.this, LoginActivityStudent.class);
-        startActivity(intent);
     }
 
 }
