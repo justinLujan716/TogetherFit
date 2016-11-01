@@ -23,7 +23,7 @@
         android:layout_marginBottom="67dp"
         android:id="@+id/StudentButton"
         android:background="@drawable/buttonbackground"
-        android:onClick="studentLogin"
+        android:onClick=""
         />
 
     <Button
