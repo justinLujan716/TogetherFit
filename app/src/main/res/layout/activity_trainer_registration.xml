@@ -10,28 +10,156 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.heem.togetherfit.TrainerRegistration">
-
     <TextView
-        android:text="Email"
+        android:text="Trainer Registration ..."
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:id="@+id/welcomeStudent"
+        android:layout_marginTop="14dp"
+        android:textColor="#AFD3DF"
+        tools:textStyle="bold"
+        android:textAppearance="@style/TextAppearance.AppCompat.Title"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="35dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:textSize="22dp"/>
+
+    <TextView
+        android:text="Email/User Name:"
+        android:textColor="#ffffff"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="19dp"
         android:id="@+id/userEmailTrainerReg"
+        android:textSize="18dp"
+        android:textStyle="bold"
+        android:layout_below="@+id/welcomeStudent"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
+
+    <TextView
+        android:text="Last Name:"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/LastNameTrainer"
+        android:textColor="#ffffff"
+        android:textStyle="bold"
+        android:textSize="18dp"
+        android:layout_below="@+id/editText4"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="19dp" />
+
+    <TextView
+        android:text="Date of Birth:"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/LastNameTrainerReg"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="19dp"
+        android:id="@+id/DateOfBirthTrainer"
+        android:textColor="#ffffff"
+        android:textStyle="bold"
+        android:textSize="18dp"/>
+
+    <requestFocus />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_toEndOf="@+id/userEmailTrainerReg"
+        android:layout_alignParentBottom="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" />
+    </ScrollView>
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:textColorHint="#C9C9CA"
+        android:textColor="#ffffff"
+        android:ems="10"
+        android:id="@+id/editText4"
+        android:backgroundTint="#AFD3DF"
+        android:hint="First Name"
+        android:layout_below="@+id/FirstNameTrainer"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="10dp" />
 
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:inputType="textEmailAddress"
+        android:textColor="#ffffff"
+        android:textColorHint="#C9C9CA"
         android:ems="10"
         android:id="@+id/userEmailTrainer2"
+        android:backgroundTint="#AFD3DF"
+        android:hint="Email"
         android:layout_below="@+id/userEmailTrainerReg"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:lines="1"
-        />
+        android:layout_marginTop="13dp" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textEmailAddress"
+        android:textColor="#ffffff"
+        android:textColorHint="#C9C9CA"
+        android:ems="10"
+        android:id="@+id/userPassTrainer2"
+        android:backgroundTint="#AFD3DF"
+        android:hint="Password"
+        android:layout_below="@+id/UserPassReg"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="11dp" />
+
+    <TextView
+        android:text="First Name:"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/FirstNameTrainer"
+        android:textColor="#ffffff"
+        android:textStyle="bold"
+        android:textSize="18dp"
+        android:layout_below="@+id/userPassTrainer2"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="11dp" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:textColorHint="#C9C9CA"
+        android:textColor="#ffffff"
+        android:ems="10"
+        android:id="@+id/LastNameTrainerReg"
+        android:backgroundTint="#AFD3DF"
+        android:hint="Last Name"
+        android:layout_below="@+id/LastNameTrainer"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="15dp" />
+
+    <TextView
+        android:text="Password:"
+        android:textColor="#ffffff"
+        android:textStyle="bold"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/UserPassReg"
+        android:textSize="18dp"
+        android:layout_below="@+id/userEmailTrainer2"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="15dp" />
 </RelativeLayout>

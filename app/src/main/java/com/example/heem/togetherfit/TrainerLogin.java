@@ -5,6 +5,7 @@ import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -17,11 +18,9 @@ public class TrainerLogin extends AppCompatActivity {
 
         //To change the color only
         TextView welcome = (TextView) findViewById(R.id.welcomeTrainer);
-        welcome.setTextColor(Color.parseColor("lightGray"));
-        EditText trainerUserName = (EditText) findViewById(R.id.userNameTrainer);
-        trainerUserName.setBackgroundColor(Color.parseColor("#AFD3DF"));
-        EditText trainerPass = (EditText) findViewById(R.id.passTrainer);
-        trainerPass.setBackgroundColor(Color.parseColor("#AFD3DF"));
+        welcome.setTextColor(Color.parseColor("#ffffff"));
+        Button trainerLogin = (Button) findViewById(R.id.LoginTrainer);
+        trainerLogin.setBackgroundColor(Color.parseColor("#AFD3DF"));
         TextView registerLinkTrainer = (TextView) findViewById(R.id.registerLinkTrainer);
         registerLinkTrainer.setTextColor(Color.parseColor("#AFD3DF"));
         //Make the registration word clickable and redirect the user to registration page

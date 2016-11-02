@@ -12,7 +12,6 @@ public class StudentRegistration extends AppCompatActivity {
         // Variable Declaration should be in onCreate()
         private Button mSubmit;
         private Button mCancel;
-
         private EditText tFname;
         private EditText tLname;
         private EditText tUsername;
@@ -25,8 +24,7 @@ public class StudentRegistration extends AppCompatActivity {
         protected void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
             setContentView(R.layout.activity_trainer_registration);
-            EditText trainerUser = (EditText) findViewById(R.id.userEmailTrainer2);
-            trainerUser.setBackgroundColor(Color.parseColor("#AFD3DF"));
+
 
         }
     }

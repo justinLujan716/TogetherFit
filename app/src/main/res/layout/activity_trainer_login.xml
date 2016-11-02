@@ -15,15 +15,19 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:inputType="textPassword"
+        android:textColorHint="#C9C9CA"
+        android:textColor="#ffffff"
         android:ems="10"
         android:layout_marginTop="18dp"
         android:id="@+id/passTrainer"
-        android:hint=" Your password"
+        android:hint="Password"
         android:layout_below="@+id/userNameTrainer"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignParentEnd="true"
+        android:backgroundTint="#AFD3DF"
+        />
 
     <Button
         android:text="LOGIN"
@@ -35,12 +39,15 @@
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:textStyle="bold"/>
 
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:inputType="textEmailAddress"
+        android:textColorHint="#C9C9CA"
+        android:textColor="#ffffff"
         android:ems="10"
         android:id="@+id/userNameTrainer"
         android:layout_marginTop="23dp"
@@ -49,7 +56,9 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignParentEnd="true"
+        android:backgroundTint="#AFD3DF"
+        />
 
     <TextView
         android:text="Trainer Login ..."

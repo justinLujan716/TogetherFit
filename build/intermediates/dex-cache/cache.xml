@@ -16,7 +16,7 @@
         jumboMode="true"
         optimize="true"
         revision="25.0.0"
-        sha1="fd4cd29d3a5483359cc2fce6810a5812ec2e29ca">
+        sha1="870ba5510d22bf3f00c7d716da39a3122ea5751a">
         <dex dex="/Users/Heem/AndroidStudioProjects/TogetherFit/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run-bootstrap_48d6e5d6f59187327e2bab82f48a5455f8cf1b8f/classes.dex" />
     </item>
     <item
@@ -70,7 +70,7 @@
         jumboMode="true"
         optimize="true"
         revision="25.0.0"
-        sha1="9a47f4c0b2b83ef555a57453739af4c47346ae47">
+        sha1="d1fabf1d204f9350c77f50d7604fb4def0596a57">
         <dex dex="/Users/Heem/AndroidStudioProjects/TogetherFit/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run_437ea7c4a81ea443777933c53be059d5cb4711ef/classes.dex" />
     </item>
     <item

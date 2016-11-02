@@ -20,11 +20,9 @@ public class StudentLogin extends AppCompatActivity {
         setContentView(R.layout.activity_student_login);
         //Changes the color (Control the style)
         TextView welcome = (TextView) findViewById(R.id.welcomeStudent);
-        welcome.setTextColor(Color.parseColor("lightGray"));
-        EditText studentUserName = (EditText) findViewById(R.id.userNameStudent);
-        studentUserName.setBackgroundColor(Color.parseColor("#AFD3DF"));
-        EditText studentPass = (EditText) findViewById(R.id.passStudent);
-        studentPass.setBackgroundColor(Color.parseColor("#AFD3DF"));
+        welcome.setTextColor(Color.parseColor("#ffffff"));
+        Button studentLogin = (Button) findViewById(R.id.loginStudent);
+        studentLogin.setBackgroundColor(Color.parseColor("#AFD3DF"));
         TextView registerLinkStudent = (TextView) findViewById(R.id.registerLinkStudent);
         registerLinkStudent.setTextColor(Color.parseColor("#AFD3DF"));
         //Make the registration word clickable and redirect the user to registration page
