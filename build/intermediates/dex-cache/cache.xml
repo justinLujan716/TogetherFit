@@ -3,39 +3,75 @@
 
     <item
         is-multidex="true"
-        jar="/Users/Heem/AndroidStudioProjects/TogetherFit/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.4.0/jars/classes.jar"
+        jar="/Users/Heem/Desktop/TogetherFit/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.4.0/jars/classes.jar"
         jumboMode="true"
         optimize="true"
         revision="25.0.0"
-        sha1="67bd36ee9340ec7c254108936ad16b24bed160cc">
-        <dex dex="/Users/Heem/AndroidStudioProjects/TogetherFit/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-v4-23.4.0_61aba43eb6ca26c063bae04becbca9f043056725/classes.dex" />
+        sha1="548f06de403a9409f00554b3ee12a9fdea0e236c">
+        <dex dex="/Users/Heem/Desktop/TogetherFit/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-appcompat-v7-23.4.0_72bc9f9356b72ed31d4ae91cff52ac881b36c02d/classes.dex" />
     </item>
     <item
         is-multidex="true"
-        jar="/Users/Heem/AndroidStudioProjects/TogetherFit/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.0"
-        sha1="5f64dc8f58e3d4654fa5efb22c32025d1b33a6ed">
-        <dex dex="/Users/Heem/AndroidStudioProjects/TogetherFit/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run-bootstrap_48d6e5d6f59187327e2bab82f48a5455f8cf1b8f/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/Users/Heem/AndroidStudioProjects/TogetherFit/app/build/intermediates/exploded-aar/com.android.support/support-vector-drawable/23.4.0/jars/classes.jar"
+        jar="/Users/Heem/Desktop/TogetherFit/app/build/intermediates/exploded-aar/com.android.support/support-vector-drawable/23.4.0/jars/classes.jar"
         jumboMode="true"
         optimize="true"
         revision="25.0.0"
         sha1="c2c594cace5d83a3227b2b6e658ecbfd586d3ed9">
-        <dex dex="/Users/Heem/AndroidStudioProjects/TogetherFit/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-vector-drawable-23.4.0_f9231f6a3d3d5b089f6f1ebbbcc1fa775ecc6cb6/classes.dex" />
+        <dex dex="/Users/Heem/Desktop/TogetherFit/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-vector-drawable-23.4.0_aec759d738960ab9a83cc11a56b67b6d6c85bd61/classes.dex" />
     </item>
     <item
         is-multidex="true"
-        jar="/Users/Heem/AndroidStudioProjects/TogetherFit/app/build/intermediates/exploded-aar/com.android.support/recyclerview-v7/23.4.0/jars/classes.jar"
+        jar="/Users/Heem/Desktop/TogetherFit/app/build/intermediates/exploded-aar/com.android.support/animated-vector-drawable/23.4.0/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="de4db3785756bfb0915a9f59a9b3f2fea7407be4">
+        <dex dex="/Users/Heem/Desktop/TogetherFit/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-animated-vector-drawable-23.4.0_362fdde69bdd255a52923e483a9ccc70ec553ab2/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/Heem/Desktop/TogetherFit/app/build/intermediates/incremental-runtime-classes/debug/instant-run.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="92963fdbd22c0f32e9166090fc97b062ca31a3ec">
+        <dex dex="/Users/Heem/Desktop/TogetherFit/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run_37b95fcdebda618e003664f634cd5d060d673d02/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/Heem/Desktop/TogetherFit/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="98fc291761960b32d5fb0786cfb9c67a4dbf5fea">
+        <dex dex="/Users/Heem/Desktop/TogetherFit/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run-bootstrap_bce4e334af654651964877de092ef8165212cd27/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/Heem/Desktop/TogetherFit/app/build/intermediates/exploded-aar/com.android.support/recyclerview-v7/23.4.0/jars/classes.jar"
         jumboMode="true"
         optimize="true"
         revision="25.0.0"
         sha1="ec75036c3c52e451d0cde50a5aedaf5fd32354a0">
-        <dex dex="/Users/Heem/AndroidStudioProjects/TogetherFit/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-recyclerview-v7-23.4.0_27927291f23a7fb9d2c589db7631d09c5e2a0f14/classes.dex" />
+        <dex dex="/Users/Heem/Desktop/TogetherFit/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-recyclerview-v7-23.4.0_81550cc1ee93a3a1d6bff0b294f5244fbde957db/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/Heem/Desktop/TogetherFit/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.4.0/jars/libs/internal_impl-23.4.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="ea3c07504d2c8f4b13aa17c45c1b68ed9c1c3674">
+        <dex dex="/Users/Heem/Desktop/TogetherFit/app/build/intermediates/transforms/dex/debug/folders/1000/10/internal_impl-23.4.0_927156befcb5885857cd6c4ff321dba843b799de/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/Heem/Desktop/TogetherFit/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.4.0/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="67bd36ee9340ec7c254108936ad16b24bed160cc">
+        <dex dex="/Users/Heem/Desktop/TogetherFit/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-v4-23.4.0_4a307e4f0e80260ea03370472471e614dcb40218/classes.dex" />
     </item>
     <item
         is-multidex="true"
@@ -44,52 +80,16 @@
         optimize="true"
         revision="25.0.0"
         sha1="ffbe55fdb2bb456b1485831706a9eac3300bb6b8">
-        <dex dex="/Users/Heem/AndroidStudioProjects/TogetherFit/app/build/intermediates/transforms/dex/debug/folders/1000/10/support-annotations-23.4.0_9248799c4653722cf287a3ea353e95934e4e8591/classes.dex" />
+        <dex dex="/Users/Heem/Desktop/TogetherFit/app/build/intermediates/transforms/dex/debug/folders/1000/10/support-annotations-23.4.0_9248799c4653722cf287a3ea353e95934e4e8591/classes.dex" />
     </item>
     <item
         is-multidex="true"
-        jar="/Users/Heem/AndroidStudioProjects/TogetherFit/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.4.0/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.0"
-        sha1="548f06de403a9409f00554b3ee12a9fdea0e236c">
-        <dex dex="/Users/Heem/AndroidStudioProjects/TogetherFit/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-appcompat-v7-23.4.0_c6ff60beac81ff381ad1f454d56e7da4b6bb99c6/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/Users/Heem/AndroidStudioProjects/TogetherFit/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.4.0/jars/libs/internal_impl-23.4.0.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.0"
-        sha1="ea3c07504d2c8f4b13aa17c45c1b68ed9c1c3674">
-        <dex dex="/Users/Heem/AndroidStudioProjects/TogetherFit/app/build/intermediates/transforms/dex/debug/folders/1000/10/internal_impl-23.4.0_3c1c029f6ac178b9ccd5fe630a0481955de100c0/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/Users/Heem/AndroidStudioProjects/TogetherFit/app/build/intermediates/incremental-runtime-classes/debug/instant-run.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.0"
-        sha1="88d8def54e3bdb9c5aa8220bf65caece5553d569">
-        <dex dex="/Users/Heem/AndroidStudioProjects/TogetherFit/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run_437ea7c4a81ea443777933c53be059d5cb4711ef/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/Users/Heem/AndroidStudioProjects/TogetherFit/app/build/intermediates/exploded-aar/com.android.support/design/23.4.0/jars/classes.jar"
+        jar="/Users/Heem/Desktop/TogetherFit/app/build/intermediates/exploded-aar/com.android.support/design/23.4.0/jars/classes.jar"
         jumboMode="true"
         optimize="true"
         revision="25.0.0"
         sha1="5326d9a850d491714fef8cbfaa9ea3416f0bf0d2">
-        <dex dex="/Users/Heem/AndroidStudioProjects/TogetherFit/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-design-23.4.0_085ace0471a81829918125f841cdd566c3751563/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/Users/Heem/AndroidStudioProjects/TogetherFit/app/build/intermediates/exploded-aar/com.android.support/animated-vector-drawable/23.4.0/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.0"
-        sha1="de4db3785756bfb0915a9f59a9b3f2fea7407be4">
-        <dex dex="/Users/Heem/AndroidStudioProjects/TogetherFit/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-animated-vector-drawable-23.4.0_03b87070f891859ecb06c7dd48ae195928ee9c7c/classes.dex" />
+        <dex dex="/Users/Heem/Desktop/TogetherFit/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-design-23.4.0_4cb6e8e7788850db3472dbfb05f74d050af83f59/classes.dex" />
     </item>
 
 </items>

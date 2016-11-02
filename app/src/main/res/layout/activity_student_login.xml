@@ -23,7 +23,7 @@
         android:layout_alignParentEnd="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:hint=" Your password" />
+        android:hint="Password" />
 
     <Button
         android:text="LOGIN"
@@ -68,7 +68,7 @@
         android:ems="10"
         android:id="@+id/userNameStudent"
         android:layout_marginTop="30dp"
-        android:hint=" Your Email"
+        android:hint="Email"
         android:layout_below="@+id/welcomeStudent"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"

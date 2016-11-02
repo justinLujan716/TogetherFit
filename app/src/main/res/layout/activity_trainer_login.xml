@@ -44,7 +44,7 @@
         android:ems="10"
         android:id="@+id/userNameTrainer"
         android:layout_marginTop="23dp"
-        android:hint=" Your Email"
+        android:hint="Email"
         android:layout_below="@+id/welcomeTrainer"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
