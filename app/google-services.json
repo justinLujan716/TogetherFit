@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "978505929351",
+    "firebase_url": "https://togetherfit-48e37.firebaseio.com",
+    "project_id": "togetherfit-48e37",
+    "storage_bucket": "togetherfit-48e37.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:978505929351:android:7d946a058b9a633c",
+        "android_client_info": {
+          "package_name": "com.example.heem.togetherfit"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "978505929351-8stpo846ul2j7keffi4c1kf38jfu80bp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD9HrbgVk7-MmVpSO3DfHZcAY8zH3e3g_c"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

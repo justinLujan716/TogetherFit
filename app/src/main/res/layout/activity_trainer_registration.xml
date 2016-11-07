@@ -10,6 +10,7 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.heem.togetherfit.TrainerRegistration">
+
     <TextView
         android:text="Trainer Registration ..."
         android:layout_width="wrap_content"
@@ -38,30 +39,17 @@
         android:layout_alignParentStart="true" />
 
     <TextView
-        android:text="Last Name:"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/LastNameTrainer"
+        android:text="Password:"
         android:textColor="#ffffff"
         android:textStyle="bold"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/UserPassReg"
         android:textSize="18dp"
-        android:layout_below="@+id/editText4"
+        android:layout_below="@+id/userEmailTrainer2"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_marginTop="19dp" />
-
-    <TextView
-        android:text="Date of Birth:"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/LastNameTrainerReg"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="19dp"
-        android:id="@+id/DateOfBirthTrainer"
-        android:textColor="#ffffff"
-        android:textStyle="bold"
-        android:textSize="18dp"/>
+        android:layout_marginTop="15dp" />
 
     <requestFocus />
 
@@ -76,21 +64,6 @@
             android:layout_height="wrap_content"
             android:orientation="vertical" />
     </ScrollView>
-
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="textPersonName"
-        android:textColorHint="#C9C9CA"
-        android:textColor="#ffffff"
-        android:ems="10"
-        android:id="@+id/editText4"
-        android:backgroundTint="#AFD3DF"
-        android:hint="First Name"
-        android:layout_below="@+id/FirstNameTrainer"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="10dp" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -122,44 +95,14 @@
         android:layout_alignParentStart="true"
         android:layout_marginTop="11dp" />
 
-    <TextView
-        android:text="First Name:"
+    <Button
+        android:text="Submit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/FirstNameTrainer"
-        android:textColor="#ffffff"
-        android:textStyle="bold"
-        android:textSize="18dp"
+        android:layout_marginTop="29dp"
+        android:id="@+id/sign_up_button"
         android:layout_below="@+id/userPassTrainer2"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="11dp" />
+        android:layout_alignRight="@+id/userPassTrainer2"
+        android:layout_alignEnd="@+id/userPassTrainer2" />
 
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="textPersonName"
-        android:textColorHint="#C9C9CA"
-        android:textColor="#ffffff"
-        android:ems="10"
-        android:id="@+id/LastNameTrainerReg"
-        android:backgroundTint="#AFD3DF"
-        android:hint="Last Name"
-        android:layout_below="@+id/LastNameTrainer"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="15dp" />
-
-    <TextView
-        android:text="Password:"
-        android:textColor="#ffffff"
-        android:textStyle="bold"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/UserPassReg"
-        android:textSize="18dp"
-        android:layout_below="@+id/userEmailTrainer2"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="15dp" />
 </RelativeLayout>

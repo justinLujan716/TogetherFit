@@ -44,18 +44,6 @@
         />
 
     <TextView
-        android:text="click here to REGISTER"
-        tools:textStyle="bold|italic"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/loginStudent"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginLeft="10dp"
-        android:layout_marginStart="10dp"
-        android:id="@+id/registerLinkStudent" />
-
-    <TextView
         android:text="Student Login ..."
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -84,5 +72,15 @@
         android:layout_alignParentEnd="true"
         android:backgroundTint="#AFD3DF"
         />
+
+    <TextView
+        android:text="click here to REGISTER"
+        tools:textStyle="bold|italic"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/registerLinkStudent"
+        android:layout_below="@+id/loginStudent"
+        android:layout_alignRight="@+id/welcomeStudent"
+        android:layout_alignEnd="@+id/welcomeStudent" />
 
 </RelativeLayout>
