@@ -25,6 +25,7 @@ public class StudentLogin extends AppCompatActivity {
         studentLogin.setBackgroundColor(Color.parseColor("#AFD3DF"));
         TextView registerLinkStudent = (TextView) findViewById(R.id.registerLinkStudent);
         registerLinkStudent.setTextColor(Color.parseColor("#AFD3DF"));
+
         //Make the registration word clickable and redirect the user to registration page
         registerLinkStudent.setOnClickListener(new View.OnClickListener() {
             @Override
