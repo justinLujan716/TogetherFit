@@ -93,6 +93,10 @@ public class TrainerLogin extends AppCompatActivity {
                                 }
                             }
                         });
+
+
+                        startActivity(new Intent(TrainerLogin.this, TrainerDashboard.class));
+
             }
         });
     }

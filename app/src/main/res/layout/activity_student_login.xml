@@ -41,10 +41,12 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:textStyle="bold"
+        android:background="#AFD3DF"
         />
 
     <TextView
         android:text="Student Login ..."
+        android:textColor="#AFD3DF"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/welcomeStudent"
@@ -76,6 +78,7 @@
     <TextView
         android:text="click here to REGISTER"
         tools:textStyle="bold|italic"
+        android:textColor="#AFD3DF"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/registerLinkStudent"

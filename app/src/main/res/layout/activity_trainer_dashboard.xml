@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_trainer_dashboard"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.example.heem.togetherfit.TrainerDashboard"
+    android:background="@drawable/backgroundsec">
+
+ <RelativeLayout
+     android:layout_width="match_parent"
+     android:layout_height="match_parent">
+    <FrameLayout android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/locationtrainer"
+        android:layout_marginTop="105dp">
+        <Button
+            android:id="@+id/locationtrainerbutton"
+            android:layout_width="75dp"
+            android:layout_height="75dp"
+            android:background="@null"/>
+        <ImageView
+            android:layout_width="75dp"
+            android:layout_height="75dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/locationtrainer"
+            android:layout_gravity="center"/>
+    </FrameLayout>
+
+    <TextView
+        android:text="Find a Place"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/findPlaceText"
+        android:textColor="#AFD3DF"
+        android:textStyle="bold"
+        android:layout_below="@+id/locationtrainer" />
+ </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    <FrameLayout android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/createclass"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="105dp">
+        <Button
+            android:id="@+id/creatclassbutton"
+            android:layout_width="75dp"
+            android:layout_height="75dp"
+            android:background="@null"/>
+        <ImageView
+            android:layout_width="75dp"
+            android:layout_height="75dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/createclass"
+            android:layout_gravity="center"/>
+    </FrameLayout>
+    <TextView
+        android:text="Create a Class"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/creatclassText"
+        android:textColor="#AFD3DF"
+        android:textStyle="bold"
+        android:layout_below="@+id/createclass"
+        android:layout_centerInParent="true"/>
+    </RelativeLayout>
+
+   <RelativeLayout
+       android:layout_width="match_parent"
+       android:layout_height="match_parent">
+    <FrameLayout android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/creategroup"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="105dp">
+        <Button
+            android:id="@+id/creategroupbutton"
+            android:layout_width="75dp"
+            android:layout_height="75dp"
+            android:background="@null"/>
+        <ImageView
+            android:layout_width="75dp"
+            android:layout_height="75dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/creategroup"
+            android:layout_gravity="center"/>
+    </FrameLayout>
+
+    <TextView
+        android:text="Create a Group"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/creategroupclass"
+        android:textColor="#AFD3DF"
+        android:textStyle="bold"
+        android:layout_below="@+id/creategroup"
+        android:layout_alignParentRight="true"/>
+   </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    <FrameLayout android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/editprofile"
+        android:layout_marginBottom="105dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="105dp">
+        <Button
+            android:id="@+id/editprofilebutton"
+            android:layout_width="75dp"
+            android:layout_height="75dp"
+            android:background="@null"/>
+        <ImageView
+            android:layout_width="75dp"
+            android:layout_height="75dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/profiel"
+            android:layout_gravity="center"/>
+    </FrameLayout>
+    <TextView
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/editprofileText"
+        android:layout_alignBottom="@+id/editprofile"
+        android:layout_alignParentRight="true"
+        android:text="Edit Profile"
+        android:textColor="#AFD3DF"
+        android:textStyle="bold"
+     />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    <FrameLayout android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/livechat"
+        android:layout_marginBottom="105dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="105dp">
+        <Button
+            android:id="@+id/livechatbutton"
+            android:layout_width="75dp"
+            android:layout_height="75dp"
+            android:background="@null"/>
+        <ImageView
+            android:layout_width="75dp"
+            android:layout_height="75dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/livechat"
+            android:layout_gravity="center"/>
+    </FrameLayout>
+
+    <TextView
+        android:text="Live Chat"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/livechatText"
+        android:textColor="#AFD3DF"
+        android:textStyle="bold"
+        android:layout_alignBottom="@+id/livechat"
+        android:layout_alignParentLeft="true"
+    />
+
+        <android.support.v7.widget.Toolbar
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/buttonbackground"
+            android:theme="?attr/actionBarTheme"
+            android:minHeight="?attr/actionBarSize"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:id="@+id/toolbar"
+            />
+
+    </RelativeLayout>
+
+
+
+</RelativeLayout>

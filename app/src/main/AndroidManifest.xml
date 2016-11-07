@@ -26,7 +26,8 @@
         <activity android:name=".StudentRegistration" />
         <activity android:name=".TrainerRegistration" />
         <activity android:name=".TrainerLogin" />
-        <activity android:name=".StudentLogin"></activity>
+        <activity android:name=".StudentLogin" />
+        <activity android:name=".TrainerDashboard"></activity>
     </application>
 
 </manifest>
