@@ -29,7 +29,7 @@ public class TrainerRegistration extends AppCompatActivity {
 
 
     private EditText inputEmail, inputPassword;
-    private Button btnSignUp;
+    private Button btnSSignUp;
     private FirebaseAuth auth;
 
     @Override
@@ -40,12 +40,12 @@ public class TrainerRegistration extends AppCompatActivity {
         //Get Firebase auth instance
         auth = FirebaseAuth.getInstance();
 //load data
-        btnSignUp = (Button) findViewById(R.id.sign_up_button);
+        btnSSignUp = (Button) findViewById(R.id.sign_up_button);
         inputEmail = (EditText) findViewById(R.id.userEmailTrainer2);
         inputPassword = (EditText) findViewById(R.id.userPassTrainer2);
 //---------------------------------------------
 
-        btnSignUp.setOnClickListener(new View.OnClickListener() {
+        btnSSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
