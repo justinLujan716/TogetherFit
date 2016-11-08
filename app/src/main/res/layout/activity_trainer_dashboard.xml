@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/activity_trainer_dashboard"
     android:layout_width="match_parent"
@@ -8,21 +9,12 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:background="@drawable/backgroundsec">
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="horizontal"
-        android:gravity="top">
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:background="#AFD3DF"
-            android:textColor="#444345"
-            android:text="Welcome ..."
-            android:textStyle="bold"
-            android:textSize="16dp"
-            />
-    </LinearLayout>
+    <!-- Header aligned to top -->
+    <include layout="@layout/header"/>
+    <!-- Footer aligned to bottom -->
+    <include layout="@layout/footer" />
+
+    <!-- Buttons -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
