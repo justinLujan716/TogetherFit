@@ -45,12 +45,7 @@ public class TrainerRegistration extends AppCompatActivity {
         inputPassword = (EditText) findViewById(R.id.userPassTrainer2);
 //---------------------------------------------
 
-<<<<<<< HEAD
-
-        btnSignUp.setOnClickListener(new View.OnClickListener() {
-=======
         btnSSignUp.setOnClickListener(new View.OnClickListener() {
->>>>>>> d74e82cc798ad3a6d0fd42621603efc7432416ce
             @Override
             public void onClick(View v) {
 

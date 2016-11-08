@@ -103,6 +103,7 @@
         android:id="@+id/sign_up_button"
         android:layout_below="@+id/userPassTrainer2"
         android:layout_alignRight="@+id/userPassTrainer2"
-        android:layout_alignEnd="@+id/userPassTrainer2" />
+        android:layout_alignEnd="@+id/userPassTrainer2"
+        android:background="#AFD3DF"/>
 
 </RelativeLayout>

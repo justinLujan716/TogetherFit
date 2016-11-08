@@ -90,10 +90,10 @@ public class TrainerLogin extends AppCompatActivity {
                                 }
                             }
                         });
-
-
-                        startActivity(new Intent(TrainerLogin.this, TrainerDashboard.class));
-
+                // the name of the receiving activity is declared in the Intent Constructor
+                Intent intent = new Intent(TrainerLogin.this, TrainerDashboard.class);
+                //start the activity
+                startActivity(intent);
             }
         });
 

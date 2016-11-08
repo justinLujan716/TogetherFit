@@ -16,7 +16,7 @@
         jumboMode="true"
         optimize="true"
         revision="25.0.0"
-        sha1="eee3b92a39db22927334721019b946d6ded0c526">
+        sha1="4275b769bed43677468f31bf1d6f3caa454e187b">
         <dex dex="/Users/Heem/AndroidStudioProjects/TogetherFit/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run-bootstrap_48d6e5d6f59187327e2bab82f48a5455f8cf1b8f/classes.dex" />
     </item>
     <item
@@ -34,13 +34,8 @@
         jumboMode="true"
         optimize="true"
         revision="25.0.0"
-<<<<<<< HEAD
         sha1="9919563cffd8e3732e944d3c437d4b9575a08448">
         <dex dex="/Users/Heem/AndroidStudioProjects/TogetherFit/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.firebase-firebase-common-9.0.2_d8dc5a698caaae7154f858c20c9734a1c6024c7f/classes.dex" />
-=======
-        sha1="97745d105709061d347d1f4b100a85a5dcf13d52">
-        <dex dex="E:\Android\teamb\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run-bootstrap_8b1a3652ab82b3f7cef2f0176a6389eeb23229c5\classes.dex" />
->>>>>>> d74e82cc798ad3a6d0fd42621603efc7432416ce
     </item>
     <item
         is-multidex="true"
@@ -147,13 +142,8 @@
         jumboMode="true"
         optimize="true"
         revision="25.0.0"
-<<<<<<< HEAD
         sha1="ffbe55fdb2bb456b1485831706a9eac3300bb6b8">
         <dex dex="/Users/Heem/AndroidStudioProjects/TogetherFit/app/build/intermediates/transforms/dex/debug/folders/1000/10/support-annotations-23.4.0_9248799c4653722cf287a3ea353e95934e4e8591/classes.dex" />
-=======
-        sha1="a100edcce156957904554ffdb580cd7b0fa826d0">
-        <dex dex="E:\Android\teamb\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run_65af7b899c588496788ce738506d60729f93a95e\classes.dex" />
->>>>>>> d74e82cc798ad3a6d0fd42621603efc7432416ce
     </item>
     <item
         is-multidex="true"
@@ -179,7 +169,7 @@
         jumboMode="true"
         optimize="true"
         revision="25.0.0"
-        sha1="f1092491fb508a087ba699633f44ce113bcec74d">
+        sha1="7d062938336ff9ecc59b4c69dda14e02335455f5">
         <dex dex="/Users/Heem/AndroidStudioProjects/TogetherFit/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run_437ea7c4a81ea443777933c53be059d5cb4711ef/classes.dex" />
     </item>
     <item
