@@ -74,16 +74,20 @@
         android:layout_alignParentEnd="true"
         android:backgroundTint="#AFD3DF"
         />
-
-    <TextView
-        android:text="click here to REGISTER"
-        tools:textStyle="bold|italic"
-        android:textColor="#AFD3DF"
+    <Button
+        android:text="Register"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/registerLinkStudent"
+        android:id="@+id/registerStudent"
+        android:textStyle="bold"
         android:layout_below="@+id/loginStudent"
-        android:layout_alignRight="@+id/welcomeStudent"
-        android:layout_alignEnd="@+id/welcomeStudent" />
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="23dp"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:background="#AFD3DF"/>
+
+
 
 </RelativeLayout>

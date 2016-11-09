@@ -22,7 +22,6 @@ import com.google.firebase.auth.FirebaseAuth;
 public class TrainerLogin extends AppCompatActivity {
     private EditText inputEmail, inputPassword;
     private FirebaseAuth auth;
-    private ProgressBar progressBar;
     private Button btnSignup, btnLogin;
 
     @Override

@@ -11,4 +11,100 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.heem.togetherfit.StudentRegistration">
 
+    <TextView
+        android:text="Student Registration ..."
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/welcomeSStudent"
+        android:layout_marginTop="14dp"
+        android:textColor="#AFD3DF"
+        tools:textStyle="bold"
+        android:textAppearance="@style/TextAppearance.AppCompat.Title"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:textSize="22dp"/>
+
+    <TextView
+        android:text="Email/User Name:"
+        android:textColor="#ffffff"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="19dp"
+        android:id="@+id/userEmailStudentReg"
+        android:textSize="18dp"
+        android:textStyle="bold"
+        android:layout_below="@+id/welcomeSStudent"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:text="Password:"
+        android:textColor="#ffffff"
+        android:textStyle="bold"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/UserPassReg"
+        android:textSize="18dp"
+        android:layout_below="@+id/userEmailStudent"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="15dp" />
+
+    <requestFocus />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_toEndOf="@+id/userEmailStudentReg"
+        android:layout_alignParentBottom="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" />
+    </ScrollView>
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textEmailAddress"
+        android:textColor="#ffffff"
+        android:textColorHint="#C9C9CA"
+        android:ems="10"
+        android:id="@+id/userEmailStudent"
+        android:backgroundTint="#AFD3DF"
+        android:hint="Email"
+        android:layout_below="@+id/userEmailStudentReg"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="13dp" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textEmailAddress"
+        android:textColor="#ffffff"
+        android:textColorHint="#C9C9CA"
+        android:ems="10"
+        android:id="@+id/userPassStudent"
+        android:backgroundTint="#AFD3DF"
+        android:hint="Password"
+        android:layout_below="@+id/UserPassReg"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="11dp" />
+
+    <Button
+        android:text="Submit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="29dp"
+        android:id="@+id/sign_up_button_Student"
+        android:layout_below="@+id/userPassStudent"
+        android:layout_alignRight="@+id/userPassStudent"
+        android:layout_alignEnd="@+id/userPassStudent"
+        android:textStyle="bold"
+        android:background="#AFD3DF"/>
+
 </RelativeLayout>

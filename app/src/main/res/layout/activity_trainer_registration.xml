@@ -46,7 +46,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/UserPassReg"
         android:textSize="18dp"
-        android:layout_below="@+id/userEmailTrainer2"
+        android:layout_below="@+id/userEmailTrainer"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_marginTop="15dp" />
@@ -72,7 +72,7 @@
         android:textColor="#ffffff"
         android:textColorHint="#C9C9CA"
         android:ems="10"
-        android:id="@+id/userEmailTrainer2"
+        android:id="@+id/userEmailTrainer"
         android:backgroundTint="#AFD3DF"
         android:hint="Email"
         android:layout_below="@+id/userEmailTrainerReg"
@@ -87,7 +87,7 @@
         android:textColor="#ffffff"
         android:textColorHint="#C9C9CA"
         android:ems="10"
-        android:id="@+id/userPassTrainer2"
+        android:id="@+id/userPassTrainer"
         android:backgroundTint="#AFD3DF"
         android:hint="Password"
         android:layout_below="@+id/UserPassReg"
@@ -100,10 +100,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="29dp"
-        android:id="@+id/sign_up_button"
-        android:layout_below="@+id/userPassTrainer2"
-        android:layout_alignRight="@+id/userPassTrainer2"
-        android:layout_alignEnd="@+id/userPassTrainer2"
+        android:id="@+id/sign_up_button_Trainer"
+        android:layout_below="@+id/userPassTrainer"
+        android:layout_alignRight="@+id/userPassTrainer"
+        android:layout_alignEnd="@+id/userPassTrainer"
+        android:textStyle="bold"
         android:background="#AFD3DF"/>
 
 </RelativeLayout>
