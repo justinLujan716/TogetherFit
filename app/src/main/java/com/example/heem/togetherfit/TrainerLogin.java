@@ -84,16 +84,12 @@ public class TrainerLogin extends AppCompatActivity {
                                         Toast.makeText(TrainerLogin.this, "log in filed", Toast.LENGTH_LONG).show();
                                     }
                                 } else {
-                                    Intent intent = new Intent(TrainerLogin.this, MainActivity.class);
+                                    Intent intent = new Intent(TrainerLogin.this, TrainerDashboard.class);
                                     startActivity(intent);
                                     finish();
                                 }
                             }
                         });
-                // the name of the receiving activity is declared in the Intent Constructor
-                Intent intent = new Intent(TrainerLogin.this, TrainerDashboard.class);
-                //start the activity
-                startActivity(intent);
             }
         });
 
