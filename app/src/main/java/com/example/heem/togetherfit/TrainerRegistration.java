@@ -15,6 +15,8 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 //-----------------------
 
 public class TrainerRegistration extends AppCompatActivity {
@@ -23,6 +25,7 @@ public class TrainerRegistration extends AppCompatActivity {
     private EditText inputEmail, inputPassword;
     private Button btnSSignUp;
     private FirebaseAuth auth;
+    private DatabaseReference mRef;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,7 +45,7 @@ public class TrainerRegistration extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                String email = inputEmail.getText().toString().trim();
+                final String email = inputEmail.getText().toString().trim();
                 String password = inputPassword.getText().toString().trim();
 
                 if (TextUtils.isEmpty(email)) {
@@ -66,7 +69,6 @@ public class TrainerRegistration extends AppCompatActivity {
                             @Override
                             public void onComplete(@NonNull Task<AuthResult> task) {
                                 Toast.makeText(TrainerRegistration.this, "createUserWithEmail:onComplete:" + task.isSuccessful(), Toast.LENGTH_SHORT).show();
-
                                 // If sign in fails, display a message to the user. If sign in succeeds
                                 // the auth state listener will be notified and logic to handle the
                                 // signed in user can be handled in the listener.
@@ -74,7 +76,18 @@ public class TrainerRegistration extends AppCompatActivity {
                                     Toast.makeText(TrainerRegistration.this, "Authentication failed." + task.getException(),
                                             Toast.LENGTH_SHORT).show();
                                 } else {
-                                    startActivity(new Intent(TrainerRegistration.this, MainActivity.class));
+                                    //create another database table into User, a personal file table
+                                    String uid = auth.getCurrentUser().getUid();
+                                    String uemail = auth.getCurrentUser().getEmail();
+                                    mRef = FirebaseDatabase.getInstance()
+                                            .getReferenceFromUrl("https://togetherfit-148901.firebaseio.com/User");
+                                    DatabaseReference mRefChild = mRef.child(uid);
+                                    DatabaseReference mRefChildEmail = mRefChild.child("Type");
+                                    mRefChildEmail.setValue("trainer");
+                                    DatabaseReference mRefChildEmail1 = mRefChild.child("Email");
+                                    mRefChildEmail1.setValue(uemail);
+                                    //link to Dashboard with authentication
+                                    startActivity(new Intent(TrainerRegistration.this, TrainerDashboard.class));
                                     finish();
                                 }
                             }
