@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="type">
+        <item>Yoga</item>
+        <item>Flexibility</item>
+        <item>Strength</item>
+        <item>Balance</item>
+    </string-array>
+</resources>

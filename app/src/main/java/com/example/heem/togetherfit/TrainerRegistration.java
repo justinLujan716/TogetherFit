@@ -87,7 +87,7 @@ public class TrainerRegistration extends AppCompatActivity {
                                     DatabaseReference mRefChildEmail1 = mRefChild.child("Email");
                                     mRefChildEmail1.setValue(uemail);
                                     //link to Dashboard with authentication
-                                    startActivity(new Intent(TrainerRegistration.this, TrainerDashboard.class));
+                                    startActivity(new Intent(TrainerRegistration.this, TrainerRegistrationAdd.class));
                                     finish();
                                 }
                             }
