@@ -1,19 +1,30 @@
 package com.example.heem.togetherfit;
 
+import android.content.Context;
+import android.graphics.Color;
+import android.graphics.Typeface;
+import android.graphics.drawable.GradientDrawable;
 import android.location.Geocoder;
+import android.os.Build;
+import android.support.annotation.IntegerRes;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -52,6 +63,7 @@ public class FindPlaceTrainer extends FragmentActivity implements OnMapReadyCall
     Button searchbtn;
     Button updateLoc;
     EditText txtUpdate;
+    Context mContext = FindPlaceTrainer.this;
 
 
     @Override
@@ -83,7 +95,18 @@ public class FindPlaceTrainer extends FragmentActivity implements OnMapReadyCall
                             //get value from the database. If it is equal to the postalcode from current location add the location to the user
                             String zipCode = (String) chunk.child("zip").getValue();
                             String name = (String) chunk.child("name").getValue();
-                            if (zipCode.equals(postalCode))
+                            //For the new location from the Database
+                            //Find the lat and lon for the new location
+                            /*
+                            LatLng nearLoc = getLocationFromAddress(name);
+                            double lat = nearLoc.latitude;
+                            double lon = nearLoc.longitude;
+                            double distanceBetween = distance(lat,lon, latitude,longitude);
+                            if (distanceBetween <= 2)*/
+                            //To find the differ and show the cloests places
+                            Integer digit1 = Integer.parseInt(zipCode);
+                            Integer digit2 = Integer.parseInt(postalCode);
+                            if (zipCode.equals(postalCode)|| (digit1 - digit2) <= 5 || (digit1 - digit2) <= -5)
                                 toPrint.add(name);
                         }
 
@@ -214,11 +237,10 @@ public class FindPlaceTrainer extends FragmentActivity implements OnMapReadyCall
     /*
      * Method to update complete address from lng and lat to string address and also add a marker
      */
-    public void address(double lat, double lng, String name)
-    {
+    public void address(double lat, double lng, String name) {
 
         //These variables to get the complete address
-        location = new LatLng(lat,lng);
+        location = new LatLng(lat, lng);
         cameraUpdate = CameraUpdateFactory.newLatLngZoom(location, 15);
         mMap.animateCamera(cameraUpdate);
         //This part to retrive the actual address
@@ -234,11 +256,54 @@ public class FindPlaceTrainer extends FragmentActivity implements OnMapReadyCall
                 postalCode = addresses.get(0).getPostalCode();
                 knownName = addresses.get(0).getFeatureName(); //We might use it in future just keep it
                 //This will appare when the user click on the marker
-                mMap.addMarker(new MarkerOptions().position(location).title(name + " , " + address + " " + city + " " + state + " , " + country + " " + postalCode));
+                mMap.addMarker(new MarkerOptions().position(location).title(name).snippet("Street: " + address +"\n"+"City: " + city + "\n" + "State: " + state  +"\n" + "Country: " + country + "\n" + "Postal Code: " + postalCode).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED)));
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+
+        /*
+           Multi line marker, this method just to design the marker when the user click on
+         */
+        mMap.setInfoWindowAdapter(new GoogleMap.InfoWindowAdapter() {
+
+            @Override
+            public View getInfoWindow(Marker arg0) {
+                return null;
+            }
+
+            @Override
+            public View getInfoContents(Marker marker) {
+
+                LinearLayout info = new LinearLayout(mContext);
+                info.setOrientation(LinearLayout.VERTICAL);
+                TextView title = new TextView(mContext);
+                title.setTextColor(Color.BLACK);
+                title.setGravity(Gravity.CENTER);
+                title.setTypeface(null, Typeface.BOLD);
+                title.setText(marker.getTitle());
+
+                TextView snippet = new TextView(mContext);
+                snippet.setTextColor(Color.BLACK);
+                snippet.setText(marker.getSnippet());
+
+                info.addView(title);
+                info.addView(snippet);
+
+                return info;
+            }
+        });
     }
+
+    /*
+     * Find a distance between 2 points by using Distance helper class in our project
+     */
+      public double distance (double lat1, double lon1, double lat2, double lon2)
+      {
+          Distance dis = new Distance(); //Use Distance class
+          double mile = dis.distFrom(lat1,lat2,lon1,lon2); //calcluate the differ betwee 2 points
+          return mile;
+      }
 
 }
