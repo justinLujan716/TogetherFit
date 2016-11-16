@@ -51,6 +51,9 @@
         <activity
             android:name=".FindPlaceTrainer"
             android:label="@string/title_activity_find_place_trainer" />
+        <activity
+            android:name=".FindPlaceStudent"
+            android:label="Map" />
         <activity android:name=".StudentDashboard"></activity>
     </application>
 
