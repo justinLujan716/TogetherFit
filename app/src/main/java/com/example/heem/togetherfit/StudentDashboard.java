@@ -10,6 +10,7 @@ public class StudentDashboard extends AppCompatActivity {
 
     //Variables
     Button findplacebtn;
+    Button findtrainerbtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,6 +23,17 @@ public class StudentDashboard extends AppCompatActivity {
             public void onClick(View v) {
                 // the name of the receiving activity is declared in the Intent Constructor
                 Intent intent = new Intent(StudentDashboard.this, FindPlaceStudent.class);
+                //start the activity
+                startActivity(intent);
+            }
+        });
+
+        //Find Trainer button takes you to the find a trainer page
+        findtrainerbtn = (Button) findViewById(R.id.findtrainerbutton);
+        findtrainerbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v){
+                Intent intent = new Intent(StudentDashboard.this, FindTrainer.class);
                 //start the activity
                 startActivity(intent);
             }
