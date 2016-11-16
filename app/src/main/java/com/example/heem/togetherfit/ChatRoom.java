@@ -72,7 +72,7 @@ public class ChatRoom extends AppCompatActivity {
                 //String name = ((DataSnapshot)i.next()).getKey();
                 while (i.hasNext()){
                     String name = ((DataSnapshot)i.next()).getKey();
-                    if(!name.equals("StudentPlaces") || !name.equals("TrainerPlaces") || !name.equals("User")){
+                    if(!name.equals("StudentPlaces") && !name.equals("TrainerPlaces") && !name.equals("User")){
                         set.add(name);
                     }
                     //set.add(((DataSnapshot)i.next()).getKey());
