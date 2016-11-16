@@ -10,6 +10,7 @@ public class TrainerDashboard extends AppCompatActivity {
 
     //Variables
     Button findplacebtn;
+     private Button launchChat;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,5 +49,30 @@ public class TrainerDashboard extends AppCompatActivity {
                 finish();
             }
         });
+
+        //Chat part
+        launchChat = (Button) findViewById(R.id.livechatbutton);
+
+        findplacebtn = (Button) findViewById(R.id.locationtrainerbutton);
+        findplacebtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // the name of the receiving activity is declared in the Intent Constructor
+                Intent intent = new Intent(TrainerDashboard.this, FindPlaceTrainer.class);
+                //start the activity
+                startActivity(intent);
+            }
+        });
+
+        launchChat.setOnClickListener(new View.OnClickListener() {
+           @Override
+            public void onClick(View v){
+               Intent intent = new Intent(TrainerDashboard.this, ChatRoom.class);
+               startActivity(intent);
+               finish();
+           }
+        });
+
+
     }
 }
