@@ -16,7 +16,7 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.List;
 
-//Search v1 - Nick Boyd
+//Search v1.2 - Nick Boyd
 
 public class FindTrainer extends AppCompatActivity {
 
@@ -104,6 +104,36 @@ public class FindTrainer extends AppCompatActivity {
                 findViewById(R.id.wtSearchBtn).setVisibility(View.VISIBLE);
             }
         });
+
+        //***************************************************************
+        //              Buttons on the imported header
+        //***************************************************************
+        //Back button takes back to sign in activity
+        //This is the way to refer to outside button from another laytout back button is in header.xml
+        View myLayout = findViewById(R.id.backbtnlayout); // root View id from that link
+        Button backbutton = (Button) myLayout.findViewById(R.id.backbtn); // id of a view contained in the included file
+        backbutton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // the name of the receiving activity is declared in the Intent Constructor, go back to log in page
+                Intent back = new Intent(FindTrainer.this, StudentDashboard.class);
+                //start the activity
+                startActivity(back);
+            }
+        });
+        //Log out button at the tool bar to take the user to main page
+        View myLayout2 = findViewById(R.id.signOut); // root View id from that link
+        Button signOut = (Button) myLayout2.findViewById(R.id.signOutbtn); // id of a view contained in the included file
+        signOut.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent logout = new Intent(FindTrainer.this, StudentLogin.class);
+                finish();
+                startActivity(logout);
+            }
+        });
+
+
     }
 }
 
