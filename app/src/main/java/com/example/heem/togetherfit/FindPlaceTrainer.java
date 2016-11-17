@@ -5,6 +5,7 @@ import android.graphics.Color;
 import android.graphics.Typeface;
 import android.graphics.drawable.GradientDrawable;
 import android.location.Geocoder;
+import android.location.LocationManager;
 import android.os.Build;
 import android.support.annotation.IntegerRes;
 import android.support.v4.app.FragmentActivity;
@@ -31,6 +32,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 import android.location.Address;
+import android.location.Location;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -64,6 +66,9 @@ public class FindPlaceTrainer extends FragmentActivity implements OnMapReadyCall
     Button updateLoc;
     EditText txtUpdate;
     Context mContext = FindPlaceTrainer.this;
+    //To find distance
+    Location start;
+    Location dis;
 
 
     @Override
@@ -92,23 +97,19 @@ public class FindPlaceTrainer extends FragmentActivity implements OnMapReadyCall
                     public void onDataChange(DataSnapshot snapshot) {
                         toPrint = new ArrayList<String>(); //To update array list
                         for (DataSnapshot chunk : snapshot.getChildren()) {
-                            //get value from the database. If it is equal to the postalcode from current location add the location to the user
-                            String zipCode = (String) chunk.child("zip").getValue();
+                            //get value from the database. You the name to find closets locations.
                             String name = (String) chunk.child("name").getValue();
                             //For the new location from the Database
                             //Find the lat and lon for the new location
-                            /*
                             LatLng nearLoc = getLocationFromAddress(name);
                             double lat = nearLoc.latitude;
                             double lon = nearLoc.longitude;
-                            double distanceBetween = distance(lat,lon, latitude,longitude);
-                            if (distanceBetween <= 2)*/
-                            //To find the differ and show the cloests places
-                            Integer digit1 = Integer.parseInt(zipCode);
-                            Integer digit2 = Integer.parseInt(postalCode);
-                            if (zipCode.equals(postalCode)|| (digit1 - digit2) <= 5 || (digit1 - digit2) <= -5)
-                                toPrint.add(name);
-                        }
+                            dis = latlngToloc(lat,lon); //Update the distention
+                            float distance = start.distanceTo(dis)/1000;; //To find a distance in KM
+                            if (distance <= 5) //Find places near the current location, at most 5 KM almost 2.5 Miles
+                                toPrint.add(name); //Add them to the toPrint list
+
+                       }
 
                         //To print out each location close to the current location
                         for (String s : toPrint) {
@@ -154,6 +155,7 @@ public class FindPlaceTrainer extends FragmentActivity implements OnMapReadyCall
                     mMap.animateCamera(cameraUpdate);
                     latitude = location.latitude;
                     longitude = location.longitude;
+                    start = latlngToloc(latitude,longitude);
                     address(latitude,longitude,newLocation);
                 }
 
@@ -194,7 +196,7 @@ public class FindPlaceTrainer extends FragmentActivity implements OnMapReadyCall
             // Ask user to enable GPS/network in settings
             gps.showSettingsAlert();
         }
-
+        start = latlngToloc(latitude,longitude);
         address(latitude,longitude,"");
 
     }
@@ -215,15 +217,12 @@ public class FindPlaceTrainer extends FragmentActivity implements OnMapReadyCall
         LatLng p1 = null;
 
         try {
-            address = geocoder.getFromLocationName(strAddress, 5);
+            address = geocoder.getFromLocationName(strAddress, 50);
             if (address == null) {
                 return null;
             }
-            Address location = address.get(0);
-            location.getLatitude();
-            location.getLongitude();
-
-            p1 = new LatLng(location.getLatitude(), location.getLongitude() );
+            Address locationGet = address.get(0);
+            p1 = new LatLng(locationGet.getLatitude(), locationGet.getLongitude() );
 
         } catch (Exception ex) {
 
@@ -241,7 +240,7 @@ public class FindPlaceTrainer extends FragmentActivity implements OnMapReadyCall
 
         //These variables to get the complete address
         location = new LatLng(lat, lng);
-        cameraUpdate = CameraUpdateFactory.newLatLngZoom(location, 15);
+        cameraUpdate = CameraUpdateFactory.newLatLngZoom(location, 10);
         mMap.animateCamera(cameraUpdate);
         //This part to retrive the actual address
         try {
@@ -297,13 +296,14 @@ public class FindPlaceTrainer extends FragmentActivity implements OnMapReadyCall
     }
 
     /*
-     * Find a distance between 2 points by using Distance helper class in our project
+     * Mehtod to convert --> Latlng to Location
      */
-      public double distance (double lat1, double lon1, double lat2, double lon2)
-      {
-          Distance dis = new Distance(); //Use Distance class
-          double mile = dis.distFrom(lat1,lat2,lon1,lon2); //calcluate the differ betwee 2 points
-          return mile;
-      }
+     public Location latlngToloc (double lat, double lng)
+     {
+         Location temp = new Location(LocationManager.GPS_PROVIDER);
+         temp.setLatitude(lat);
+         temp.setLongitude(lng);
+         return temp;
+     }
 
 }
