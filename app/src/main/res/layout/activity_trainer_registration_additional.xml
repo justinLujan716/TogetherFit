@@ -67,18 +67,6 @@
         android:layout_alignLeft="@+id/Trainer_Name"
         android:layout_alignStart="@+id/Trainer_Name" />
 
-    <Button
-        android:text="Submit"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/add_button_Trainer"
-        android:textStyle="bold"
-        android:background="#AFD3DF"
-        android:layout_below="@+id/Trainer_Zipcode"
-        android:layout_alignLeft="@+id/Trainer_Zipcode"
-        android:layout_alignStart="@+id/Trainer_Zipcode"
-        android:layout_marginTop="14dp" />
-
     <TextView
         android:text="Fitness Type:"
         android:layout_width="wrap_content"
@@ -145,6 +133,70 @@
         android:layout_alignBottom="@+id/ZipeCode"
         android:layout_alignLeft="@+id/Trainer_Age"
         android:layout_alignStart="@+id/Trainer_Age" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textEmailAddress"
+        android:textColor="#ffffff"
+        android:textColorHint="#C9C9CA"
+        android:ems="10"
+        android:id="@+id/OrganName"
+        android:backgroundTint="#AFD3DF"
+        android:hint="Organization name"
+        android:layout_below="@+id/textView2"
+        android:layout_alignLeft="@+id/Trainer_Zipcode"
+        android:layout_alignStart="@+id/Trainer_Zipcode" />
+
+    <TextView
+        android:text="Certification ID:"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#ffffff"
+        android:textSize="18dp"
+        android:textStyle="bold"
+        android:id="@+id/textView3"
+        android:layout_below="@+id/OrganName"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="11dp" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textEmailAddress"
+        android:textColor="#ffffff"
+        android:textColorHint="#C9C9CA"
+        android:ems="10"
+        android:id="@+id/CerID"
+        android:backgroundTint="#AFD3DF"
+        android:hint="ID number"
+        android:layout_below="@+id/textView3"
+        android:layout_alignLeft="@+id/OrganName"
+        android:layout_alignStart="@+id/OrganName" />
+
+    <Button
+        android:text="Submit"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/add_button_Trainer"
+        android:textStyle="bold"
+        android:background="#AFD3DF"
+        android:layout_below="@+id/CerID"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:text="Certification Type:"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#ffffff"
+        android:textSize="18dp"
+        android:textStyle="bold"
+        android:id="@+id/textView2"
+        android:layout_marginTop="23dp"
+        android:layout_below="@+id/Trainer_Zipcode"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
 
 </RelativeLayout>

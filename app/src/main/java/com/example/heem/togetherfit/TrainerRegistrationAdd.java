@@ -23,7 +23,7 @@ import com.google.firebase.database.FirebaseDatabase;
 
 public class TrainerRegistrationAdd extends AppCompatActivity {
 
-    private EditText name, age, zipcode;
+    private EditText name, age, zipcode, CerName, CertifiID;
     private Spinner FitnessType;
     private Button btnSSignUp;
     private FirebaseAuth auth;
@@ -44,6 +44,8 @@ public class TrainerRegistrationAdd extends AppCompatActivity {
         age = (EditText) findViewById(R.id.Trainer_Age);
         zipcode = (EditText) findViewById(R.id.Trainer_Zipcode);
         FitnessType = (Spinner) findViewById(R.id.Type_spinner);
+        CerName = (EditText) findViewById(R.id.OrganName);
+        CertifiID = (EditText) findViewById(R.id.CerID);
 
         //---------------------------------------------
         //for the spinner part
@@ -94,6 +96,8 @@ public class TrainerRegistrationAdd extends AppCompatActivity {
                 DatabaseReference mRefChildEmail3 = mRefChild.child("Age");mRefChildEmail3.setValue(age.getText().toString().trim());
                 DatabaseReference mRefChildEmail4 = mRefChild.child("ZipCode");mRefChildEmail4.setValue(zipcode.getText().toString().trim());
                 DatabaseReference mRefChildEmail5 = mRefChild.child("FitnessType");mRefChildEmail5.setValue(sType);
+                DatabaseReference mRefChildEmail6 = mRefChild.child("OrganName");mRefChildEmail6.setValue(CerName.getText().toString().trim());
+                DatabaseReference mRefChildEmail7 = mRefChild.child("CerID");mRefChildEmail7.setValue(CertifiID.getText().toString().trim());
                 startActivity(new Intent(TrainerRegistrationAdd.this, TrainerDashboard.class));
             }
         });
