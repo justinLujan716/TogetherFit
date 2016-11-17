@@ -156,7 +156,7 @@ public class FindPlaceTrainer extends FragmentActivity implements OnMapReadyCall
                     latitude = location.latitude;
                     longitude = location.longitude;
                     start = latlngToloc(latitude,longitude);
-                    address(latitude,longitude,newLocation);
+                    address(latitude,longitude,("Your location: " + newLocation));
                 }
 
             }
@@ -197,7 +197,7 @@ public class FindPlaceTrainer extends FragmentActivity implements OnMapReadyCall
             gps.showSettingsAlert();
         }
         start = latlngToloc(latitude,longitude);
-        address(latitude,longitude,"");
+        address(latitude,longitude,"Your location");
 
     }
 
