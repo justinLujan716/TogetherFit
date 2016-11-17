@@ -24,8 +24,8 @@ public class TrainerRegistration extends AppCompatActivity {
 
     private EditText inputEmail, inputPassword;
     private Button btnSSignUp;
-    private FirebaseAuth auth;
-    private DatabaseReference mRef;
+    private FirebaseAuth auth;private DatabaseReference mRef;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

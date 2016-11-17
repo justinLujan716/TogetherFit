@@ -33,6 +33,7 @@
             android:label="@string/title_activity_login_student" />
         <activity android:name=".StudentRegistration" />
         <activity android:name=".TrainerRegistration" />
+        <activity android:name=".StudentRegistrationAdd" />
         <activity android:name=".TrainerLogin" />
         <activity android:name=".TrainerDashboard" />
         <activity android:name=".TrainerRegistrationAdd" />

@@ -14,11 +14,14 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class StudentRegistration extends AppCompatActivity {
         private EditText inputEmail, inputPassword;
         private Button btnSSignUp;
         private FirebaseAuth auth;
+        private DatabaseReference mRef;
 
         @Override
         protected void onCreate(Bundle savedInstanceState) {
@@ -69,7 +72,16 @@ public class StudentRegistration extends AppCompatActivity {
                                         Toast.makeText(StudentRegistration.this, "Authentication failed." + task.getException(),
                                                 Toast.LENGTH_SHORT).show();
                                     } else {
-                                        startActivity(new Intent(StudentRegistration.this, MainActivity.class));
+                                        String uid = auth.getCurrentUser().getUid();
+                                        String uemail = auth.getCurrentUser().getEmail();
+                                        mRef = FirebaseDatabase.getInstance()
+                                                .getReferenceFromUrl("https://togetherfit-148901.firebaseio.com/User");
+                                        DatabaseReference mRefChild = mRef.child(uid);
+                                        DatabaseReference mRefChildEmail = mRefChild.child("Type");
+                                        mRefChildEmail.setValue("student");
+                                        DatabaseReference mRefChildEmail1 = mRefChild.child("Email");
+                                        mRefChildEmail1.setValue(uemail);
+                                        startActivity(new Intent(StudentRegistration.this, StudentRegistrationAdd.class));
                                         finish();
                                     }
                                 }

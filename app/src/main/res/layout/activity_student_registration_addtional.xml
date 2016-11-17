@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_trainer_student_additional"
+    android:background="@drawable/backgroundsec"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin">
+
+
+    <TextView
+        android:text="We need to know you better"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/welcomeStudent"
+        android:layout_marginTop="14dp"
+        android:textColor="#AFD3DF"
+        tools:textStyle="bold"
+        android:textAppearance="@style/TextAppearance.AppCompat.Title"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:textSize="22dp"/>
+
+    <requestFocus />
+
+    <Spinner
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:backgroundTint="#AFD3DF"
+        android:textColorHint="#C9C9CA"
+        android:id="@+id/Type_spinner"
+        android:layout_alignTop="@+id/Fitness_Type"
+        android:layout_toRightOf="@+id/Fitness_Type"
+        android:layout_toEndOf="@+id/Fitness_Type"
+        android:entries="@array/type" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textEmailAddress"
+        android:textColor="#ffffff"
+        android:textColorHint="#C9C9CA"
+        android:ems="10"
+        android:id="@+id/Trainer_Name"
+        android:backgroundTint="#AFD3DF"
+        android:hint="Your name"
+        android:layout_alignBaseline="@+id/Name"
+        android:layout_alignBottom="@+id/Name"
+        android:layout_alignLeft="@+id/Type_spinner"
+        android:layout_alignStart="@+id/Type_spinner" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textEmailAddress"
+        android:textColor="#ffffff"
+        android:textColorHint="#C9C9CA"
+        android:ems="10"
+        android:id="@+id/Trainer_Age"
+        android:backgroundTint="#AFD3DF"
+        android:hint="Your Age"
+        android:layout_alignBaseline="@+id/Age"
+        android:layout_alignBottom="@+id/Age"
+        android:layout_alignLeft="@+id/Trainer_Name"
+        android:layout_alignStart="@+id/Trainer_Name" />
+
+    <TextView
+        android:text="Interest Type:"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#ffffff"
+        android:textSize="18dp"
+        android:textStyle="bold"
+        android:id="@+id/Fitness_Type"
+        android:layout_below="@+id/welcomeStudent"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="19dp" />
+
+    <TextView
+        android:text="Your Name:"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#ffffff"
+        android:textSize="18dp"
+        android:textStyle="bold"
+        android:id="@+id/Name"
+        android:layout_marginTop="17dp"
+        android:layout_below="@+id/Type_spinner"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:text="Your Age:"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#ffffff"
+        android:textSize="18dp"
+        android:textStyle="bold"
+        android:id="@+id/Age"
+        android:layout_marginTop="18dp"
+        android:layout_below="@+id/Trainer_Name"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:text="Zip Code:"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#ffffff"
+        android:textSize="18dp"
+        android:textStyle="bold"
+        android:id="@+id/ZipeCode"
+        android:layout_marginTop="18dp"
+        android:layout_below="@+id/Trainer_Age"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textEmailAddress"
+        android:textColor="#ffffff"
+        android:textColorHint="#C9C9CA"
+        android:ems="10"
+        android:id="@+id/Trainer_Zipcode"
+        android:backgroundTint="#AFD3DF"
+        android:hint="Zipcode"
+        android:layout_alignBaseline="@+id/ZipeCode"
+        android:layout_alignBottom="@+id/ZipeCode"
+        android:layout_alignLeft="@+id/Trainer_Age"
+        android:layout_alignStart="@+id/Trainer_Age" />
+
+    <Button
+        android:text="Submit"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/add_button_Trainer"
+        android:textStyle="bold"
+        android:background="#AFD3DF"
+        android:layout_marginTop="15dp"
+        android:layout_below="@+id/Trainer_Zipcode"
+        android:layout_centerHorizontal="true" />
+</RelativeLayout>
