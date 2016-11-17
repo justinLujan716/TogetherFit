@@ -19,11 +19,18 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class StudentLogin extends AppCompatActivity {
     private EditText inputEmail, inputPassword;
     private FirebaseAuth auth;
     private Button btnSignup, btnLogin;
+    private DatabaseReference data;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -82,17 +89,35 @@ public class StudentLogin extends AppCompatActivity {
                                         Toast.makeText(StudentLogin.this, "log in filed", Toast.LENGTH_LONG).show();
                                     }
                                 } else {
-                                    Intent intent = new Intent(StudentLogin.this, StudentDashboard.class);
-                                    startActivity(intent);
-                                    finish();
+                                    String Tuid = auth.getCurrentUser().getUid().trim();
+                                    checkType(Tuid);//Check the login use's type
                                 }
                             }
                         });
             }
         });
+    }
+    public void checkType(final String Tuid){
+        DatabaseReference database = FirebaseDatabase.getInstance().getReferenceFromUrl("https://togetherfit-148901.firebaseio.com/User");
+        DatabaseReference databaseRef = database.child(Tuid).child("Type");
 
-
-
-
+        // Attach a listener to read the data at our posts reference
+        databaseRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot snapshot) {
+                String CurrentType = (String)snapshot.getValue();
+                if (CurrentType.equals("student")){
+                    startActivity(new Intent(StudentLogin.this, StudentDashboard.class));
+                }
+                else{
+                    Toast.makeText(StudentLogin.this, "You are not a trainer, take you to trainer dashboard", Toast.LENGTH_SHORT).show();
+                    startActivity(new Intent(StudentLogin.this, TrainerDashboard.class));
+                }
+            }
+            @Override
+            public void onCancelled(DatabaseError databaseErr) {
+                System.out.println("The read failed: " + databaseErr.getCode());
+            }
+        });
     }
 }
