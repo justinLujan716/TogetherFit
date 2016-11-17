@@ -52,7 +52,7 @@
             android:layout_centerInParent="true"
             android:layout_marginTop="105dp">
             <Button
-                android:id="@+id/creatclassbutton"
+                android:id="@+id/createclassbutton"
                 android:layout_width="75dp"
                 android:layout_height="75dp"
                 android:background="@null"/>
@@ -63,6 +63,8 @@
                 android:src="@drawable/createclass"
                 android:layout_gravity="center"/>
         </FrameLayout>
+
+
         <TextView
             android:text="Create a Class"
             android:layout_width="wrap_content"
