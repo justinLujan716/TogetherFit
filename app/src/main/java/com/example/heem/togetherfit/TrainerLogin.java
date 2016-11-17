@@ -112,9 +112,10 @@ public class TrainerLogin extends AppCompatActivity {
                 String CurrentType = (String)snapshot.getValue();
                 if (CurrentType.equals("trainer")){
                     startActivity(new Intent(TrainerLogin.this, TrainerDashboard.class));}
-                else
+                else {
                     Toast.makeText(TrainerLogin.this, "You are not a trainer, take you to student dashboard", Toast.LENGTH_SHORT).show();
                     startActivity(new Intent(TrainerLogin.this, StudentDashboard.class));
+                }
             }
             @Override
             public void onCancelled(DatabaseError databaseErr) {
