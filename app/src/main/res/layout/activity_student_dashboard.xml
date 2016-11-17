@@ -193,7 +193,7 @@
         </FrameLayout>
 
         <TextView
-            android:text="Show List"
+            android:text="Add a Class"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/showlistText"

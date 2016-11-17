@@ -3,11 +3,9 @@ package com.example.heem.togetherfit;
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.Typeface;
-import android.graphics.drawable.GradientDrawable;
 import android.location.Geocoder;
 import android.location.LocationManager;
-import android.os.Build;
-import android.support.annotation.IntegerRes;
+import android.os.AsyncTask;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -15,6 +13,7 @@ import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -33,11 +32,20 @@ import java.util.List;
 import java.util.Locale;
 import android.location.Address;
 import android.location.Location;
+
+import com.google.android.gms.maps.model.Polyline;
+import com.google.android.gms.maps.model.PolylineOptions;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 public class FindPlaceTrainer extends FragmentActivity implements OnMapReadyCallback {
     //Map
@@ -69,6 +77,9 @@ public class FindPlaceTrainer extends FragmentActivity implements OnMapReadyCall
     //To find distance
     Location start;
     Location dis;
+    LatLng holdCurrent;
+    //To get pictures of the locaiton from the firebase storage
+    //FirebaseStorage storage = FirebaseStorage.getInstance();
 
 
     @Override
@@ -80,6 +91,8 @@ public class FindPlaceTrainer extends FragmentActivity implements OnMapReadyCall
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
+        // Create a storage reference from our app
+        //StorageReference storageRef = storage.getReferenceFromUrl("gs://<your-bucket-name>");
 
         /*
          * Show cloests locations
@@ -119,6 +132,12 @@ public class FindPlaceTrainer extends FragmentActivity implements OnMapReadyCall
                             longitude = closeLoc.longitude;
                             address(latitude,longitude,s);
                         }
+                        //To draw a path
+                        /*for (String p: toPrint)
+                        {
+                            LatLng closeLoc = getLocationFromAddress(p);
+                            Direction(location,closeLoc); //To draw a path
+                        }*/
                     }
 
                     @Override
@@ -149,6 +168,7 @@ public class FindPlaceTrainer extends FragmentActivity implements OnMapReadyCall
                 {
                     //get the string entered by user
                     location = getLocationFromAddress(newLocation);
+                    holdCurrent = getLocationFromAddress(newLocation); //To hold
                     mMap.clear();//clear all the map
                     //update the current location
                     cameraUpdate = CameraUpdateFactory.newLatLngZoom(location, 15);
@@ -197,6 +217,7 @@ public class FindPlaceTrainer extends FragmentActivity implements OnMapReadyCall
             gps.showSettingsAlert();
         }
         start = latlngToloc(latitude,longitude);
+        holdCurrent = new LatLng(latitude,longitude); //To hold
         address(latitude,longitude,"Your location");
 
     }
@@ -217,7 +238,7 @@ public class FindPlaceTrainer extends FragmentActivity implements OnMapReadyCall
         LatLng p1 = null;
 
         try {
-            address = geocoder.getFromLocationName(strAddress, 50);
+            address = geocoder.getFromLocationName(strAddress, 5);
             if (address == null) {
                 return null;
             }
@@ -255,7 +276,8 @@ public class FindPlaceTrainer extends FragmentActivity implements OnMapReadyCall
                 postalCode = addresses.get(0).getPostalCode();
                 knownName = addresses.get(0).getFeatureName(); //We might use it in future just keep it
                 //This will appare when the user click on the marker
-                mMap.addMarker(new MarkerOptions().position(location).title(name).snippet("Street: " + address +"\n"+"City: " + city + "\n" + "State: " + state  +"\n" + "Country: " + country + "\n" + "Postal Code: " + postalCode).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED)));
+                mMap.addMarker(new MarkerOptions().position(location).title(name).snippet("Street: " + address +"\n"+"City: " + city + "\n" + "State: " + state  +"\n" + "Country: " + country + "\n" + "Postal Code: " + postalCode).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE)));
+
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -282,18 +304,22 @@ public class FindPlaceTrainer extends FragmentActivity implements OnMapReadyCall
                 title.setGravity(Gravity.CENTER);
                 title.setTypeface(null, Typeface.BOLD);
                 title.setText(marker.getTitle());
-
                 TextView snippet = new TextView(mContext);
                 snippet.setTextColor(Color.BLACK);
                 snippet.setText(marker.getSnippet());
 
                 info.addView(title);
                 info.addView(snippet);
-
+                LatLng position = marker.getPosition();
+                Direction(holdCurrent,position);
                 return info;
             }
         });
+
+
     }
+
+
 
     /*
      * Mehtod to convert --> Latlng to Location
@@ -305,5 +331,117 @@ public class FindPlaceTrainer extends FragmentActivity implements OnMapReadyCall
          temp.setLongitude(lng);
          return temp;
      }
+
+
+    /*
+     * To draw a path
+     */
+    //To get the source and destenation address
+    //Calling routePathTask
+    public void Direction(LatLng from, LatLng to){
+        String url = makeURL(from, to);
+        RoutePathTask routePathTask = new RoutePathTask(url);
+        routePathTask.execute();
+    }
+
+    //Route path task to help to draw the path between 2 points
+    private class RoutePathTask extends AsyncTask<Void, Void, String> {
+
+        private String url;
+
+        public RoutePathTask(String urlPass){
+            url = urlPass;
+        }
+
+        @Override
+        protected String doInBackground(Void... params) {
+            DirectionsJSONParser jParser = new DirectionsJSONParser();
+            String json = jParser.downloadUrl(url);
+            return json;
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+            super.onPostExecute(result);
+            if(result!=null){
+                drawPath(result);
+            }
+        }
+    }
+    //Method to draw the path between 2 points
+    public void drawPath(String  result) {
+        try {
+            //Transform the string into a json object
+            final JSONObject json = new JSONObject(result);
+            JSONArray routeArray = json.getJSONArray("routes");
+            JSONObject routes = routeArray.getJSONObject(0);
+            JSONObject overviewPolylines = routes.getJSONObject("overview_polyline");
+            String encodedString = overviewPolylines.getString("points");
+            List<LatLng> list = decodePoly(encodedString);
+
+            for(int z = 0; z<list.size()-1;z++){
+                LatLng src= list.get(z);
+                LatLng dest= list.get(z+1);
+                Polyline line = mMap.addPolyline(new PolylineOptions()
+                        .add(new LatLng(src.latitude, src.longitude), new LatLng(dest.latitude, dest.longitude))
+                        .width(6)
+                        .color(Color.parseColor("#696969")).geodesic(true));
+            }
+
+        }
+        catch (JSONException e) {
+
+        }
+    }
+    //Configure the path line
+    private List<LatLng> decodePoly(String encoded) {
+
+        List<LatLng> poly = new ArrayList<LatLng>();
+        int index = 0, len = encoded.length();
+        int lat = 0, lng = 0;
+
+        while (index < len) {
+            int b, shift = 0, result = 0;
+            do {
+                b = encoded.charAt(index++) - 63;
+                result |= (b & 0x1f) << shift;
+                shift += 5;
+            } while (b >= 0x20);
+            int dlat = ((result & 1) != 0 ? ~(result >> 1) : (result >> 1));
+            lat += dlat;
+
+            shift = 0;
+            result = 0;
+            do {
+                b = encoded.charAt(index++) - 63;
+                result |= (b & 0x1f) << shift;
+                shift += 5;
+            } while (b >= 0x20);
+            int dlng = ((result & 1) != 0 ? ~(result >> 1) : (result >> 1));
+            lng += dlng;
+
+            LatLng p = new LatLng( (((double) lat / 1E5)),
+                    (((double) lng / 1E5) ));
+            poly.add(p);
+        }
+
+        return poly;
+    }
+
+    //Method to get the URL for the roting address
+    public String makeURL (LatLng sourceLoc, LatLng destLoc ){
+        StringBuilder urlString = new StringBuilder();
+        urlString.append("http://maps.googleapis.com/maps/api/directions/json");
+        urlString.append("?origin=");// from
+        urlString.append(sourceLoc.latitude);
+        urlString.append(",");
+        urlString.append(sourceLoc.longitude);
+        urlString.append("&destination=");// to
+        urlString.append(destLoc.latitude);
+        urlString.append(",");
+        urlString.append(destLoc.longitude);
+        urlString.append("&sensor=false&mode=driving&alternatives=true");
+        return urlString.toString();
+    }
 
 }
