@@ -95,7 +95,7 @@ public class FindPlaceTrainer extends FragmentActivity implements OnMapReadyCall
         //StorageReference storageRef = storage.getReferenceFromUrl("gs://<your-bucket-name>");
 
         /*
-         * Show cloests locations
+         * Show closets locations
          * Search button, once the user click on this button. To Show the user all closest places to train students at
          */
 
@@ -130,7 +130,7 @@ public class FindPlaceTrainer extends FragmentActivity implements OnMapReadyCall
                             LatLng closeLoc = getLocationFromAddress(s);
                             latitude = closeLoc.latitude;
                             longitude = closeLoc.longitude;
-                            address(latitude,longitude,s);
+                            address(latitude,longitude,s,BitmapDescriptorFactory.HUE_AZURE);
                         }
                         //To draw a path
                         /*for (String p: toPrint)
@@ -145,6 +145,9 @@ public class FindPlaceTrainer extends FragmentActivity implements OnMapReadyCall
                         System.out.println("The read failed: " + databaseErr.getCode());
                     }
                 });
+
+                Toast.makeText(getApplicationContext(), "Rose marker -- displays your current location \nBlue markers -- display places", Toast.LENGTH_LONG).show();
+
             }
         });
 
@@ -176,7 +179,8 @@ public class FindPlaceTrainer extends FragmentActivity implements OnMapReadyCall
                     latitude = location.latitude;
                     longitude = location.longitude;
                     start = latlngToloc(latitude,longitude);
-                    address(latitude,longitude,("Your location: " + newLocation));
+                    //Rose to distinguish the current location marker
+                    address(latitude,longitude,("Your location: " + newLocation),BitmapDescriptorFactory.HUE_ROSE);
                 }
 
             }
@@ -218,7 +222,8 @@ public class FindPlaceTrainer extends FragmentActivity implements OnMapReadyCall
         }
         start = latlngToloc(latitude,longitude);
         holdCurrent = new LatLng(latitude,longitude); //To hold
-        address(latitude,longitude,"Your location");
+        //Rose to distinguish the current location marker
+        address(latitude,longitude,"Your location",BitmapDescriptorFactory.HUE_ROSE);
 
     }
 
@@ -257,7 +262,7 @@ public class FindPlaceTrainer extends FragmentActivity implements OnMapReadyCall
     /*
      * Method to update complete address from lng and lat to string address and also add a marker
      */
-    public void address(double lat, double lng, String name) {
+    public void address(double lat, double lng, String name, float f) {
 
         //These variables to get the complete address
         location = new LatLng(lat, lng);
@@ -275,8 +280,8 @@ public class FindPlaceTrainer extends FragmentActivity implements OnMapReadyCall
                 country = addresses.get(0).getCountryName();
                 postalCode = addresses.get(0).getPostalCode();
                 knownName = addresses.get(0).getFeatureName(); //We might use it in future just keep it
-                //This will appare when the user click on the marker
-                mMap.addMarker(new MarkerOptions().position(location).title(name).snippet("Street: " + address +"\n"+"City: " + city + "\n" + "State: " + state  +"\n" + "Country: " + country + "\n" + "Postal Code: " + postalCode).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE)));
+                //This will appare when the user click on the marker (marker color passonh when the method is called)
+                mMap.addMarker(new MarkerOptions().position(location).title(name).snippet("Street: " + address +"\n"+"City: " + city + "\n" + "State: " + state  +"\n" + "Country: " + country + "\n" + "Postal Code: " + postalCode).icon(BitmapDescriptorFactory.defaultMarker(f)));
 
             }
         } catch (IOException e) {
@@ -335,9 +340,9 @@ public class FindPlaceTrainer extends FragmentActivity implements OnMapReadyCall
 
     /*
      * To draw a path
+     * To get the source and destenation address
+     * Calling routePathTask
      */
-    //To get the source and destenation address
-    //Calling routePathTask
     public void Direction(LatLng from, LatLng to){
         String url = makeURL(from, to);
         RoutePathTask routePathTask = new RoutePathTask(url);
@@ -368,7 +373,9 @@ public class FindPlaceTrainer extends FragmentActivity implements OnMapReadyCall
             }
         }
     }
-    //Method to draw the path between 2 points
+    /*
+     *Method to draw the path between 2 points
+     */
     public void drawPath(String  result) {
         try {
             //Transform the string into a json object
@@ -393,7 +400,9 @@ public class FindPlaceTrainer extends FragmentActivity implements OnMapReadyCall
 
         }
     }
-    //Configure the path line
+    /*
+     *Configure the path line
+     */
     private List<LatLng> decodePoly(String encoded) {
 
         List<LatLng> poly = new ArrayList<LatLng>();
@@ -428,7 +437,9 @@ public class FindPlaceTrainer extends FragmentActivity implements OnMapReadyCall
         return poly;
     }
 
-    //Method to get the URL for the roting address
+    /*
+     * Method to get the URL for the roting address
+     */
     public String makeURL (LatLng sourceLoc, LatLng destLoc ){
         StringBuilder urlString = new StringBuilder();
         urlString.append("http://maps.googleapis.com/maps/api/directions/json");
