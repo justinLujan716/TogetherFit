@@ -128,5 +128,7 @@ public class ChatRoom extends AppCompatActivity {
         builder.show();
     }
 
+    //Add list of user names
+
 
 }

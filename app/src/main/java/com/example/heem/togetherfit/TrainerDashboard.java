@@ -10,6 +10,7 @@ public class TrainerDashboard extends AppCompatActivity {
 
     //Variables
     Button findplacebtn;
+    Button createclass;
      private Button launchChat;
 
     @Override
@@ -23,6 +24,17 @@ public class TrainerDashboard extends AppCompatActivity {
             public void onClick(View v) {
                 // the name of the receiving activity is declared in the Intent Constructor
                 Intent intent = new Intent(TrainerDashboard.this, FindPlaceTrainer.class);
+                //start the activity
+                startActivity(intent);
+            }
+        });
+        //Create class button
+        createclass = (Button) findViewById(R.id.createclassbutton);
+        createclass.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // the name of the receiving activity is declared in the Intent Constructor
+                Intent intent = new Intent(TrainerDashboard.this, TrainerCreateClass.class);
                 //start the activity
                 startActivity(intent);
             }
