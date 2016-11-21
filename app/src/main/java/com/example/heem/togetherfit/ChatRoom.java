@@ -36,6 +36,7 @@ public class ChatRoom extends AppCompatActivity {
     private ArrayList<String> list_of_rooms = new ArrayList<>();
     private String name;
     private DatabaseReference root = FirebaseDatabase.getInstance().getReference().getRoot();
+    private DatabaseReference nameRef = FirebaseDatabase.getInstance().getReference("Chat");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,12 +59,12 @@ public class ChatRoom extends AppCompatActivity {
 
                 Map<String,Object> map = new HashMap<String, Object>();
                 map.put(room_name.getText().toString(),"");
-                root.updateChildren(map);
+                nameRef.updateChildren(map);
 
             }
         });
 
-        root.addValueEventListener(new ValueEventListener() {
+        nameRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
 
@@ -71,10 +72,11 @@ public class ChatRoom extends AppCompatActivity {
                 Iterator i = dataSnapshot.getChildren().iterator();
                 //String name = ((DataSnapshot)i.next()).getKey();
                 while (i.hasNext()){
+
                     String name = ((DataSnapshot)i.next()).getKey();
-                    if(!name.equals("StudentPlaces") && !name.equals("TrainerPlaces") && !name.equals("User")){
+
                         set.add(name);
-                    }
+
                     //set.add(((DataSnapshot)i.next()).getKey());
                 }
 
@@ -128,7 +130,6 @@ public class ChatRoom extends AppCompatActivity {
         builder.show();
     }
 
-    //Private chat rooms
 
 
 }

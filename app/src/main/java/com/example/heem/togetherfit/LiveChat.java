@@ -28,7 +28,7 @@ public class LiveChat extends AppCompatActivity {
     private TextView chat_conversation;
 
     private String user_name,room_name;
-    private DatabaseReference root ;
+    private DatabaseReference nameRef ;
     private String temp_key;
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,17 +43,17 @@ public class LiveChat extends AppCompatActivity {
         room_name = getIntent().getExtras().get("room_name").toString();
         setTitle(" Room - "+room_name);
 
-        root = FirebaseDatabase.getInstance().getReference().child(room_name);
+        nameRef = FirebaseDatabase.getInstance().getReference("Chat").child(room_name);
 
         btn_send_msg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
                 Map<String,Object> map = new HashMap<String, Object>();
-                temp_key = root.push().getKey();
-                root.updateChildren(map);
+                temp_key = nameRef.push().getKey();
+                nameRef.updateChildren(map);
 
-                DatabaseReference message_root = root.child(temp_key);
+                DatabaseReference message_root = nameRef.child(temp_key);
                 Map<String,Object> map2 = new HashMap<String, Object>();
                 map2.put("name",user_name);
                 map2.put("msg",input_msg.getText().toString());
@@ -62,7 +62,7 @@ public class LiveChat extends AppCompatActivity {
             }
         });
 
-        root.addChildEventListener(new ChildEventListener() {
+        nameRef.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
 
