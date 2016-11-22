@@ -63,6 +63,7 @@
             android:name=".FindPlaceStudent"
             android:label="Map" />
         <activity android:name=".StudentDashboard"></activity>
+        <activity android:name=".AddClass"></activity>
     </application>
 
 </manifest>

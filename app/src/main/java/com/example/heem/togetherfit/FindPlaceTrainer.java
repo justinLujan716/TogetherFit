@@ -115,29 +115,30 @@ public class FindPlaceTrainer extends FragmentActivity implements OnMapReadyCall
                             //For the new location from the Database
                             //Find the lat and lon for the new location
                             LatLng nearLoc = getLocationFromAddress(name);
-                            double lat = nearLoc.latitude;
-                            double lon = nearLoc.longitude;
-                            dis = latlngToloc(lat,lon); //Update the distention
-                            float distance = start.distanceTo(dis)/1000;; //To find a distance in KM
-                            if (distance <= 5) //Find places near the current location, at most 5 KM almost 2.5 Miles
-                                toPrint.add(name); //Add them to the toPrint list
+                            if (nearLoc != null) {  //To make sure that nearLoc is not null first
+                                double lat = nearLoc.latitude;
+                                double lon = nearLoc.longitude;
+                                dis = latlngToloc(lat, lon); //Update the distention
+                                float distance = start.distanceTo(dis) / 1000;
+                                //To find a distance in KM
+                                if (distance <= 5) //Find places near the current location, at most 5 KM almost 2.5 Miles
+                                    toPrint.add(name); //Add them to the toPrint list
+                            }
 
                        }
 
                         //To print out each location close to the current location
-                        for (String s : toPrint) {
-                            //Find closets place to the trainer
-                            LatLng closeLoc = getLocationFromAddress(s);
-                            latitude = closeLoc.latitude;
-                            longitude = closeLoc.longitude;
-                            address(latitude,longitude,s,BitmapDescriptorFactory.HUE_AZURE);
+                        if (toPrint.size() > 0) {
+                            for (String s : toPrint) {
+                                //Find closets place to the trainer
+                                LatLng closeLoc = getLocationFromAddress(s);
+                                latitude = closeLoc.latitude;
+                                longitude = closeLoc.longitude;
+                                address(latitude, longitude, s, BitmapDescriptorFactory.HUE_AZURE);
+                            }
                         }
-                        //To draw a path
-                        /*for (String p: toPrint)
-                        {
-                            LatLng closeLoc = getLocationFromAddress(p);
-                            Direction(location,closeLoc); //To draw a path
-                        }*/
+                        else
+                        Toast.makeText(getApplicationContext(),"Can not find a close places",Toast.LENGTH_SHORT).show();
                     }
 
                     @Override
@@ -373,6 +374,7 @@ public class FindPlaceTrainer extends FragmentActivity implements OnMapReadyCall
             }
         }
     }
+
     /*
      *Method to draw the path between 2 points
      */
@@ -397,9 +399,10 @@ public class FindPlaceTrainer extends FragmentActivity implements OnMapReadyCall
 
         }
         catch (JSONException e) {
-
+            e.printStackTrace();
         }
     }
+
     /*
      *Configure the path line
      */

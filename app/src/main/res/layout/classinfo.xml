@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/info">
+
+        <ImageView
+            android:id="@+id/listImage"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_margin="10dp"
+            android:background="#ffcccccc" />
+
+        <TextView
+            android:id="@+id/listTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/listImage"
+            android:layout_toRightOf="@+id/listImage"
+            android:text="A List item title"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:textColor="@color/bright_text_dark_focused"/>
+
+        <TextView
+            android:id="@+id/type"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/listTitle"
+            android:layout_marginTop="5dp"
+            android:maxLines="5"
+            android:layout_toRightOf="@+id/listImage"
+            android:text="Fitness Type"
+            android:textSize="14sp"
+            android:textColor="@color/bright_text_dark_focused"/>
+
+        <TextView
+            android:id="@+id/location"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/type"
+            android:layout_marginTop="5dp"
+            android:maxLines="5"
+            android:layout_toRightOf="@+id/listImage"
+            android:text="Class Location"
+            android:textSize="14sp"
+            android:textColor="@color/bright_text_dark_focused"/>
+
+    </RelativeLayout>
+</LinearLayout>

@@ -11,7 +11,9 @@ public class StudentDashboard extends AppCompatActivity {
     //Variables
     Button findplacebtn;
     Button findtrainerbtn;
-    private Button launchChat;
+    Button launchChat;
+    Button classreg;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,7 +65,7 @@ public class StudentDashboard extends AppCompatActivity {
             }
         });
 
-
+        //Live chat
         launchChat = (Button) findViewById(R.id.livechatbutton);
         launchChat.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -73,6 +75,17 @@ public class StudentDashboard extends AppCompatActivity {
                 finish();
             }
         });
+
+        //Find a class and Register
+        classreg = (Button) findViewById(R.id.classregbtn);
+        classreg.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v){
+                Intent intent = new Intent(StudentDashboard.this, AddClass.class);
+                startActivity(intent);
+            }
+        });
+
 
     }
 }

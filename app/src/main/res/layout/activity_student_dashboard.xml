@@ -175,12 +175,12 @@
             />
         <FrameLayout android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/showlist"
+            android:id="@+id/classreg"
             android:layout_alignParentBottom="true"
             android:layout_alignParentRight="true"
             android:layout_marginTop="105dp">
             <Button
-                android:id="@+id/showlistbutton"
+                android:id="@+id/classregbtn"
                 android:layout_width="75dp"
                 android:layout_height="75dp"
                 android:background="@null"/>
@@ -196,10 +196,10 @@
             android:text="Add a Class"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/showlistText"
+            android:id="@+id/classregText"
             android:textColor="#AFD3DF"
             android:textStyle="bold"
-            android:layout_alignBottom="@+id/showlist"
+            android:layout_alignBottom="@+id/classreg"
             android:layout_alignParentLeft="true"
             android:layout_marginRight="5dp"
             />
