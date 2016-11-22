@@ -16,7 +16,7 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.List;
 
-//Search v1.2 - Nick Boyd
+//Search v1.3 - Nick Boyd
 
 public class FindTrainer extends AppCompatActivity {
 
@@ -67,9 +67,9 @@ public class FindTrainer extends AppCompatActivity {
                     return;
                 }
                 else{
-                    Toast.makeText(getApplicationContext(), "Page coming soon!!!", Toast.LENGTH_SHORT).show();
-                    return;
-                    //ACTION TO GO TO NEXT PAGE GOES HERE
+                    Intent intent = new Intent(FindTrainer.this, ShowTrainer.class);
+                    intent.putExtra("Zip", Zip); //sends Zip to next page
+                    startActivity(intent);
                 }
             }
         });
@@ -80,9 +80,9 @@ public class FindTrainer extends AppCompatActivity {
             public void onClick(View v) {
 
                 String dropdownValue = String.valueOf(WorkoutDropdown.getSelectedItem());
-                Toast.makeText(getApplicationContext(), "You have Selected: " + dropdownValue, Toast.LENGTH_SHORT).show();
-
-                // TODO: what to do with this data?
+                Intent intent = new Intent(FindTrainer.this, ShowTrainer.class);
+                intent.putExtra("WorkoutType", dropdownValue); //sends WorkoutTpye to next page
+                startActivity(intent);
             }
         });
 
