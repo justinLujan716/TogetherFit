@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
+    android:background="@drawable/backgroundsec"
     android:layout_height="match_parent"
     android:weightSum="1">
 
-    <TextView
-        android:text="Trainers"
+    <ListView
+        android:id="@+id/list"
+        android:layout_width="match_parent"
+        android:layout_height="388dp"
+        android:layout_weight="0.96" />
+
+    <Button
+        android:text="Search Again"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/Header"
-        android:layout_weight="0.09" />
-
-    <TextView
-        android:text="OUTPUT"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/output" />
+        android:id="@+id/SearchBTN" />
 
 </LinearLayout>
