@@ -16,7 +16,7 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.List;
 
-//Search v1.3 - Nick Boyd
+//Search v1.4 - Nick Boyd - Complete
 
 public class FindTrainer extends AppCompatActivity {
 
@@ -116,7 +116,7 @@ public class FindTrainer extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // the name of the receiving activity is declared in the Intent Constructor, go back to log in page
-                Intent back = new Intent(FindTrainer.this, StudentDashboard.class);
+                Intent back = new Intent(FindTrainer.this, FindTrainer.class);
                 //start the activity
                 startActivity(back);
             }
