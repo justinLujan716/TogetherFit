@@ -111,6 +111,15 @@
     </item>
     <item
         is-multidex="true"
+        jar="/Users/Heem/.gradle/caches/modules-2/files-2.1/com.squareup.picasso/picasso/2.5.2/7446d06ec8d4f7ffcc53f1da37c95f200dcb9387/picasso-2.5.2.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="7446d06ec8d4f7ffcc53f1da37c95f200dcb9387">
+        <dex dex="/Users/Heem/Desktop/TogetherFit/teamb/app/build/intermediates/transforms/dex/debug/folders/1000/10/picasso-2.5.2_fc1f93ca91a307e93a5ec62630db0eaf2b1d2c98/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
         jar="/Users/Heem/Desktop/TogetherFit/teamb/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-awareness/9.8.0/jars/classes.jar"
         jumboMode="true"
         optimize="true"
@@ -403,7 +412,7 @@
         jumboMode="true"
         optimize="true"
         revision="25.0.0"
-        sha1="d5860e8faee7f8aa547ed99d291ac74785c9ee1e">
+        sha1="19113f6d6fac2756b4bc88e06d9b761c51f6fb96">
         <dex dex="/Users/Heem/Desktop/TogetherFit/teamb/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run_5c8941cb61ea8d9821da7f5b25b04dd807a69cb5/classes.dex" />
     </item>
     <item
@@ -529,7 +538,7 @@
         jumboMode="true"
         optimize="true"
         revision="25.0.0"
-        sha1="e757c237769af4469b93b9eae7af4ee061064510">
+        sha1="970bc68eccad1667e3ddf6d37fbb42241d65495c">
         <dex dex="/Users/Heem/Desktop/TogetherFit/teamb/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run-bootstrap_f2fff24776117a0f06fc66fa860a69eb55e65755/classes.dex" />
     </item>
     <item
