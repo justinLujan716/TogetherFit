@@ -129,6 +129,8 @@ public class TrainerCreateClass extends AppCompatActivity {
                     mRefChildEmail7.setValue(imageURL);
                     DatabaseReference mRefChildEmail8 = mRefChild.child("Type");
                     mRefChildEmail8.setValue(trainType);
+                    DatabaseReference mRefChildEmail9 = mRefChild.child("RegisterNum");
+                    mRefChildEmail9.setValue(0);
                 }catch (Exception e)
                 {
                     Toast.makeText(TrainerCreateClass.this, "Failed to create a class", Toast.LENGTH_SHORT).show();
