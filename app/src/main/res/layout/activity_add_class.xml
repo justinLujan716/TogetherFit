@@ -9,13 +9,13 @@
     android:orientation="vertical">
         <!-- Header aligned to top -->
         <include layout="@layout/header"/>
-                <ListView
-                    android:id="@+id/listAll"
-                    android:fadingEdge="vertical"
-                    android:fadingEdgeLength="10dp"
-                    android:longClickable="true"
-                    android:listSelector="#AFD3DF"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-                </ListView>
+        <ListView
+            android:id="@+id/listAll"
+            android:fadingEdge="vertical"
+            android:fadingEdgeLength="10dp"
+            android:longClickable="true"
+            android:listSelector="#AFD3DF"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+        </ListView>
 </LinearLayout>

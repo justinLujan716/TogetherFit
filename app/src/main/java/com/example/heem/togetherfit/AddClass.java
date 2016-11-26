@@ -43,8 +43,6 @@ public class AddClass extends AppCompatActivity {
         setContentView(R.layout.activity_add_class);
         // Connect to the Firebase database and access CreatedClass database
         database = FirebaseDatabase.getInstance().getReference().child("CreatedClass");
-        mylayout = findViewById(R.id.details);
-        ClassName = (TextView) findViewById(R.id.ClassName);
         // Attach a listener to read the data at our posts reference
         database.addChildEventListener(new ChildEventListener() {
 

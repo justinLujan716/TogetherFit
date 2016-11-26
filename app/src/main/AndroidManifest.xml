@@ -75,7 +75,9 @@
             android:label="@string/title_activity_classdetails"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".ClassDetail" />
-        <activity android:name=".ConfirmRegistration"></activity>
+        <activity android:name=".ConfirmRegistration" />
+        <activity android:name=".ClassDetails" />
+        <activity android:name=".CustomList"></activity>
     </application>
 
 </manifest>
