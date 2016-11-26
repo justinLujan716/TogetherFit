@@ -10,6 +10,8 @@ import android.widget.CompoundButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -38,9 +40,10 @@ public class ClassDetail extends AppCompatActivity {
     Button RegBtn;
     String ClassId;
     String trainerId;
-    //To manage the registeration
+    //To manage the registration
     String NumReg;
     String cap;
+    String cname; //Class name
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -140,8 +143,11 @@ public class ClassDetail extends AppCompatActivity {
                 int max = Integer.parseInt(cap);
                 if (reg < max)
                 {
+                    sendEmail(); //Send confirm email
                     Intent intent = new Intent(ClassDetail.this, ConfirmRegistration.class);
                     startActivity(intent);
+                    //reg++; //Increase the registeration number
+                             //Add the new User under this class
                 }
                 else
                 {
@@ -162,7 +168,7 @@ public class ClassDetail extends AppCompatActivity {
 
         //Values to set
         NumReg = ds.child("RegisterNum").getValue().toString();
-        String name = ds.child("ClassName").getValue().toString();
+        cname = ds.child("ClassName").getValue().toString();
         trainerId = ds.child("Trainer").getValue().toString(); //Just to get the name and email
         String location = ds.child("TrainPlace").getValue().toString();
         //String date = ds.child("").getValue().toString();
@@ -173,7 +179,7 @@ public class ClassDetail extends AppCompatActivity {
         String age = ds.child("AgeRange").getValue().toString();
         String price = ds.child("Price").getValue().toString();
         //Send values to text views
-        ClassName.setText(" " + name);
+        ClassName.setText(" " + cname);
         ClassLocation.setText(" " + location);
         ClassDate.setText(" " + "");
         ClassDay.setText(" " + day);
@@ -182,6 +188,29 @@ public class ClassDetail extends AppCompatActivity {
         Capacity.setText(" " + cap);
         AgeRange.setText(" " + age);
         Price.setText(" " + price + "$");
+    }
+
+    /*
+     * This method to send confirmation email to the user
+     */
+    private void sendEmail() {
+
+        /* get user email to send him an email */
+        String email = "";
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        if (user != null) {
+            //email address
+            email = user.getEmail();
+        }
+        //Getting content for email
+        String subject = "Don't Reply - Confirmation Email - Registration in a class";
+        String message = ("Hello" + "..!\n\n\n\tThank you for using TogetherFit App.\n\t" +
+                "This email has been sent automatically through the application to confirm your registration in " +
+                 cname + "\n-----------------------------------------------------------------------------------"+ "\n\nSee you again,\n TogetherFit team. " );
+        //Creating SendEmail object
+        SendEmail sm = new SendEmail(this, email, subject, message);
+        //Executing SendEmail to send email
+        sm.execute();
     }
 
 
