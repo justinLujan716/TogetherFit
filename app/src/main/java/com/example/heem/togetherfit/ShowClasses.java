@@ -40,6 +40,9 @@ public class ShowClasses extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_show_classes);
+        //listview
+        list = (ListView) findViewById(R.id.listAllForTrainer);
+        list.setAdapter(null); //to make sure the list view is empty
         //get teh current user id
          UserId = FirebaseAuth.getInstance().getCurrentUser().getUid();
         // Connect to the Firebase database and access CreatedClass database
@@ -129,7 +132,6 @@ public class ShowClasses extends AppCompatActivity {
 
                 CustomListForShowClasses adapter = new
                         CustomListForShowClasses(ShowClasses.this, classTitle, image, classID, location,cap,regNum);
-                list = (ListView) findViewById(R.id.listAllForTrainer);
                 list.setAdapter(adapter);
                 //perform a specific action when the user click on a class redirect the user to class's detiales
                 list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -145,10 +147,11 @@ public class ShowClasses extends AppCompatActivity {
                 });
 
             }
-        }
-        else {
-            Toast.makeText(ShowClasses.this, "No data to view", Toast.LENGTH_SHORT).show();
+            else {
+                Toast.makeText(ShowClasses.this, "No data to view", Toast.LENGTH_SHORT).show();
 
+            }
         }
+
     }
 }

@@ -29,7 +29,9 @@ public class UserRegInAClass extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_reg_in_aclass);
-        /*
+        //List View
+        listUsers = (ListView) findViewById(R.id.userList);
+        listUsers.setAdapter(null); //To make sure is null at the beginning
         //To receive a value from Show Classes Class
         Intent intent = getIntent();
         ClassId = (String) intent.getSerializableExtra("Value");
@@ -37,26 +39,28 @@ public class UserRegInAClass extends AppCompatActivity {
         // Attach a listener to read the data at Created Class , List of Users
         getUsers.addValueEventListener(new ValueEventListener() {
             @Override
-            public void onDataChange(DataSnapshot ds) {
+            public void onDataChange(DataSnapshot dataSnapshot) {
 
-                userid = ds.getChildren().toString();
-                getInfo = FirebaseDatabase.getInstance().getReference().child("User").child(userid);
-                // Attach a listener to read the data at User , to get user email and name by passing the id
-                getInfo.addValueEventListener(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(DataSnapshot ds) {
+                for (DataSnapshot ds: dataSnapshot.getChildren()){
+                    userid = ds.getValue().toString();
+                    getInfo = FirebaseDatabase.getInstance().getReference().child("User").child(userid);
+                    // Attach a listener to read the data at User , to get user email and name by passing the id
+                    getInfo.addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(DataSnapshot ds) {
 
-                        String name = ds.child("Name").getValue().toString();
-                        String email = ds.child("Email").getValue().toString();
-                        userInfo.add(name + "\t" + email);
+                            String name = ds.child("Name").getValue().toString();
+                            String email = ds.child("Email").getValue().toString();
+                            userInfo.add(name + "\t" + email);
 
-                    }
+                        }
 
-                    @Override
-                    public void onCancelled(DatabaseError databaseError) {
-                        System.out.println("The read failed: " + databaseError.getCode());
-                    }
-                });
+                        @Override
+                        public void onCancelled(DatabaseError databaseError) {
+                            System.out.println("The read failed: " + databaseError.getCode());
+                        }
+                    });
+                }
 
             }
 
@@ -65,8 +69,7 @@ public class UserRegInAClass extends AppCompatActivity {
                 System.out.println("The read failed: " + databaseError.getCode());
             }
         });
-        listUsers = (ListView) findViewById(R.id.userList);
         adapter = (new ArrayAdapter<String>(UserRegInAClass.this, android.R.layout.simple_list_item_1, userInfo));
-        listUsers.setAdapter(adapter);*/
+        listUsers.setAdapter(adapter);
     }
 }

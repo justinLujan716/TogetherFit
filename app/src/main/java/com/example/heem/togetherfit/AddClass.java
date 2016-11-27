@@ -17,6 +17,8 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -39,10 +41,14 @@ public class AddClass extends AppCompatActivity {
     ArrayList<String> ClassId = new ArrayList<>();
 
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_class);
+        //listview
+        list=(ListView)findViewById(R.id.listAll);
+        list.setAdapter(null);//To make sure the list view is empty
         // Connect to the Firebase database and access CreatedClass database
         database = FirebaseDatabase.getInstance().getReference().child("CreatedClass");
         // Attach a listener to read the data at our posts reference
@@ -51,7 +57,8 @@ public class AddClass extends AppCompatActivity {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
 
-                ClassId.add(dataSnapshot.getRef().getKey());
+                String id = dataSnapshot.getRef().getKey();
+                ClassId.add(id);
                 getUpdate(dataSnapshot);
             }
 
@@ -123,7 +130,6 @@ public class AddClass extends AppCompatActivity {
 
             CustomList adapter = new
                     CustomList(AddClass.this, title, image, type,location);
-            list=(ListView)findViewById(R.id.listAll);
             list.setAdapter(adapter);
             //perform a specific action when the user click on a class redirect the user to class's detiales
             list.setOnItemClickListener(new AdapterView.OnItemClickListener() {

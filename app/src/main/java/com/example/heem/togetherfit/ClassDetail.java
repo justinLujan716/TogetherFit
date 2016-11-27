@@ -19,11 +19,14 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
+
 public class ClassDetail extends AppCompatActivity {
 
     //Firebase variable
     DatabaseReference database;
     DatabaseReference databaseTrainer;
+    DatabaseReference toSetUserId;
     //Variables
     TextView ClassName;
     TextView TrainerName;
@@ -46,6 +49,9 @@ public class ClassDetail extends AppCompatActivity {
     String cname; //Class name
     String TrainerE;
     String TrainerN;
+    //To get User Id
+    ArrayList<String> userId = new ArrayList<>();
+    String currentUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,6 +60,8 @@ public class ClassDetail extends AppCompatActivity {
         //To receive a value from Add Class
         Intent intent = getIntent();
         ClassId = (String) intent.getSerializableExtra("Value");
+        //Get current user id
+        currentUser = FirebaseAuth.getInstance().getCurrentUser().getUid();
         //Variables
         ClassName = (TextView) findViewById(R.id.ClassName);
         TrainerName = (TextView) findViewById(R.id.TrainerName);
@@ -138,26 +146,63 @@ public class ClassDetail extends AppCompatActivity {
             }
         });
 
+        // To Add the new User under this class
+        toSetUserId = FirebaseDatabase.getInstance().getReference().child("CreatedClass").child(ClassId).child("List");
+        toSetUserId.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for (DataSnapshot ds: dataSnapshot.getChildren())
+                {
+                    String user = (String) ds.getValue().toString();
+                    userId.add(user);//To make sure we keep the previous ids
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
         //Click on the reigster button
         RegBtn.setOnClickListener(new View.OnClickListener () {
 
             @Override
             public void onClick(View v) {
 
+                //Convert String to Number first
                 int reg = Integer.parseInt(NumReg);
                 int max = Integer.parseInt(cap);
-                if (reg < max)
+                //flag to make sure the user is not there
+                boolean isThere = false;
+                //Check if the user already registered in this class
+                for (String s:userId)
+                {
+                    if (currentUser.equals(s))
+                        isThere=true;
+                }
+                if ((reg < max) && !isThere)
                 {
                     sendEmail(); //Send confirm email to the user
                     sendEmailToTrainer(); //Notify the trainer about the new registration
+                    reg++; //Increase the registration number
+                    DatabaseReference num = FirebaseDatabase.getInstance().getReference().child("CreatedClass").child(ClassId).child("RegisterNum");
+                    //Re-Convert the number to String to be set to the register number in the database
+                    String toUpdate = Integer.toString(reg);
+                    num.setValue(toUpdate);
+                    userId.add(currentUser);
+                    toSetUserId.setValue(userId); //Set the value (All list)
                     Intent intent = new Intent(ClassDetail.this, ConfirmRegistration.class);
                     startActivity(intent);
-                    //reg++; //Increase the registeration number
-                             //Add the new User under this class
+
+                }
+                else if (reg >= max)
+                {
+                    Toast.makeText(getApplicationContext(), "Class is Full, Try later !", Toast.LENGTH_SHORT).show();
                 }
                 else
                 {
-                    Toast.makeText(getApplicationContext(), "Class is Full, Try later !", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "You have already registered in this class, you can not register twice !", Toast.LENGTH_SHORT).show();
                 }
             }
         });
