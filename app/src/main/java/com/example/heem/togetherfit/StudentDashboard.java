@@ -50,7 +50,7 @@ public class StudentDashboard extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // the name of the receiving activity is declared in the Intent Constructor, go back to log in page
-                Intent back = new Intent(StudentDashboard.this, StudentLogin.class);
+                Intent back = new Intent(StudentDashboard.this, MainActivity.class);
                 //start the activity
                 startActivity(back);
             }

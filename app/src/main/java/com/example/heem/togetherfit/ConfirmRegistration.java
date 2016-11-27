@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import com.google.firebase.auth.FirebaseAuth;
+
 public class ConfirmRegistration extends AppCompatActivity {
 
     @Override
@@ -32,7 +34,10 @@ public class ConfirmRegistration extends AppCompatActivity {
         signOut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                finish();
+                FirebaseAuth.getInstance().signOut();
+                Intent back = new Intent(ConfirmRegistration.this, MainActivity.class);
+                //start the activity
+                startActivity(back);
             }
         });
     }

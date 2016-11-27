@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/info">
+
+        <ImageView
+            android:id="@+id/listImage"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_margin="10dp"
+            android:background="#ffcccccc" />
+
+        <TextView
+            android:id="@+id/classtitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/listImage"
+            android:layout_marginTop="15dp"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:text="empty"
+            android:textColor="@color/bright_text_dark_focused"/>
+
+        <TextView
+            android:id="@+id/id"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/classtitle"
+            android:layout_marginTop="5dp"
+            android:maxLines="5"
+            android:layout_toRightOf="@+id/listImage"
+            android:textSize="14sp"
+            android:text="empty"
+            android:textColor="@color/bright_text_dark_focused"/>
+
+        <TextView
+            android:id="@+id/location"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/id"
+            android:layout_marginTop="5dp"
+            android:maxLines="5"
+            android:layout_toRightOf="@+id/listImage"
+            android:textSize="14sp"
+            android:text="empty"
+            android:textColor="@color/bright_text_dark_focused"/>
+        <TextView
+            android:id="@+id/capacity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/location"
+            android:layout_marginTop="5dp"
+            android:maxLines="5"
+            android:layout_toRightOf="@+id/listImage"
+            android:textSize="14sp"
+            android:text="empty"
+            android:textColor="@color/bright_text_dark_focused"/>
+        <TextView
+            android:id="@+id/numOfReg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/capacity"
+            android:layout_marginTop="5dp"
+            android:maxLines="5"
+            android:text="empty"
+            android:layout_toRightOf="@+id/listImage"
+            android:textSize="14sp"
+            android:textColor="@color/bright_text_dark_focused"/>
+
+    </RelativeLayout>
+</LinearLayout>

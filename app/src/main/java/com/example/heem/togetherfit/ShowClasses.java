@@ -4,12 +4,11 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.ArrayAdapter;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.widget.AdapterView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.ChildEventListener;
@@ -17,32 +16,32 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 
-import android.app.ListActivity;
-
-public class AddClass extends AppCompatActivity {
+public class ShowClasses extends AppCompatActivity {
 
     //Variables
     ListView list;
-    ArrayList<String> title = new ArrayList<String>();
-    ArrayList<String> type = new ArrayList<String>();
+    ArrayList<String> classTitle = new ArrayList<String>();
+    ArrayList<String> classID = new ArrayList<String>();
     ArrayList<String> location = new ArrayList<String>();
     ArrayList<String> image = new ArrayList<>();
+    ArrayList<String> cap = new ArrayList<>();
+    ArrayList<String> regNum = new ArrayList<>();
     View mylayout;
     TextView ClassName;
     //Firebase variable
     DatabaseReference database;
-    //Class Id
-    ArrayList<String> ClassId = new ArrayList<>();
-
+    //To get cureent User Id
+    String UserId = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_class);
+        setContentView(R.layout.activity_show_classes);
+        //get teh current user id
+         UserId = FirebaseAuth.getInstance().getCurrentUser().getUid();
         // Connect to the Firebase database and access CreatedClass database
         database = FirebaseDatabase.getInstance().getReference().child("CreatedClass");
         // Attach a listener to read the data at our posts reference
@@ -51,7 +50,6 @@ public class AddClass extends AppCompatActivity {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
 
-                ClassId.add(dataSnapshot.getRef().getKey());
                 getUpdate(dataSnapshot);
             }
 
@@ -84,7 +82,7 @@ public class AddClass extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // the name of the receiving activity is declared in the Intent Constructor, go back to log in page
-                Intent back = new Intent(AddClass.this, StudentDashboard.class);
+                Intent back = new Intent(ShowClasses.this, TrainerDashboard.class);
                 //start the activity
                 startActivity(back);
             }
@@ -96,7 +94,7 @@ public class AddClass extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 FirebaseAuth.getInstance().signOut();
-                Intent back = new Intent(AddClass.this, MainActivity.class);
+                Intent back = new Intent(ShowClasses.this, MainActivity.class);
                 //start the activity
                 startActivity(back);
             }
@@ -106,42 +104,50 @@ public class AddClass extends AppCompatActivity {
 
     private void getUpdate(DataSnapshot ds)
     {
-        //Get the class name and send that to the adapter
-        String titleValue = (ds.child("ClassName").getValue()).toString();
-        title.add(titleValue);
-        //Get teh class type and send that to the adapter
-        String typeValue = (ds.child("Type").getValue()).toString();
-        type.add(typeValue);
-        //Get teh class location and send that to the adapter
-        String locationValue = (ds.child("TrainPlace").getValue()).toString();
-        //Get the image URL
-        String imageURL = (ds.child("ImageURL").getValue()).toString();
-        image.add(imageURL);
-        location.add(locationValue);
-        if (title.size() >0)
-        {
+        String dsId = (ds.child("Trainer").getValue()).toString();
+        if (UserId.equalsIgnoreCase(dsId)) {
+            //Get the class name and send that to the adapter
+            String titleValue = (ds.child("ClassName").getValue()).toString();
+            classTitle.add(titleValue);
+            //Get teh class ID and send that to the adapter
+            String classId = ds.getRef().getKey();
+            classID.add(classId);
+            //Get the class location and send that to the adapter
+            String locationValue = (ds.child("TrainPlace").getValue()).toString();
+            location.add(locationValue);
+            //Get the image URL
+            String imageURL = (ds.child("ImageURL").getValue()).toString();
+            image.add(imageURL);
+            //Get the Capacity
+            String capacity = (ds.child("Capacity").getValue()).toString();
+            cap.add(capacity);
+            //Get the Number of Registration
+            String num = (ds.child("RegisterNum").getValue()).toString();
+            regNum.add(num);
 
-            CustomList adapter = new
-                    CustomList(AddClass.this, title, image, type,location);
-            list=(ListView)findViewById(R.id.listAll);
-            list.setAdapter(adapter);
-            //perform a specific action when the user click on a class redirect the user to class's detiales
-            list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            if (classTitle.size() > 0) {
 
-                //When they click on an Item
-                @Override
-                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                    Toast.makeText(AddClass.this, "You Clicked at " + title.get(+position) + "\nI took you to class's details", Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(AddClass.this,ClassDetail.class);
-                    intent.putExtra("Value", ClassId.get(+position));
-                    startActivity(intent);
+                CustomListForShowClasses adapter = new
+                        CustomListForShowClasses(ShowClasses.this, classTitle, image, classID, location,cap,regNum);
+                list = (ListView) findViewById(R.id.listAllForTrainer);
+                list.setAdapter(adapter);
+                //perform a specific action when the user click on a class redirect the user to class's detiales
+                list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
-                }
-            });
+                    //When they click on an Item
+                    @Override
+                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                        Toast.makeText(ShowClasses.this, "You Clicked at " + classTitle.get(+position) + "\nI took you to View Users", Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(ShowClasses.this,UserRegInAClass.class);
+                        intent.putExtra("Value", classID.get(+position)); //Send the Class Id to the second activity to show the users who are registering in this class
+                        startActivity(intent);
+                    }
+                });
+
+            }
         }
-        else
-        {
-            Toast.makeText(AddClass.this, "No data to view", Toast.LENGTH_SHORT).show();
+        else {
+            Toast.makeText(ShowClasses.this, "No data to view", Toast.LENGTH_SHORT).show();
 
         }
     }

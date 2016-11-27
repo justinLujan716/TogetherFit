@@ -44,6 +44,8 @@ public class ClassDetail extends AppCompatActivity {
     String NumReg;
     String cap;
     String cname; //Class name
+    String TrainerE;
+    String TrainerN;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -99,8 +101,8 @@ public class ClassDetail extends AppCompatActivity {
         databaseTrainer.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                String TrainerN = dataSnapshot.child(trainerId).child("Name").getValue().toString();
-                String TrainerE = dataSnapshot.child(trainerId).child("Email").getValue().toString();
+                 TrainerN = dataSnapshot.child(trainerId).child("Name").getValue().toString();
+                 TrainerE = dataSnapshot.child(trainerId).child("Email").getValue().toString();
                 TrainerName.setText(" " + TrainerN);
                 TrainerEmail.setText(" " + TrainerE);
             }
@@ -129,7 +131,10 @@ public class ClassDetail extends AppCompatActivity {
         signOut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                finish();
+                FirebaseAuth.getInstance().signOut();
+                Intent back = new Intent(ClassDetail.this, MainActivity.class);
+                //start the activity
+                startActivity(back);
             }
         });
 
@@ -143,7 +148,8 @@ public class ClassDetail extends AppCompatActivity {
                 int max = Integer.parseInt(cap);
                 if (reg < max)
                 {
-                    sendEmail(); //Send confirm email
+                    sendEmail(); //Send confirm email to the user
+                    sendEmailToTrainer(); //Notify the trainer about the new registration
                     Intent intent = new Intent(ClassDetail.this, ConfirmRegistration.class);
                     startActivity(intent);
                     //reg++; //Increase the registeration number
@@ -209,6 +215,29 @@ public class ClassDetail extends AppCompatActivity {
                  cname + "\n-----------------------------------------------------------------------------------"+ "\n\nSee you again,\n TogetherFit team. " );
         //Creating SendEmail object
         SendEmail sm = new SendEmail(this, email, subject, message);
+        //Executing SendEmail to send email
+        sm.execute();
+    }
+
+
+    /*
+     * This method to notify the trainer that new user has registered in his class
+     */
+    private void sendEmailToTrainer() {
+
+         /* get user email to use in email content */
+        String email = "";
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        if (user != null) {
+            //email address
+            email = user.getEmail();
+        }
+        //Getting content for email
+        String subject = "Don't Reply - New User Registered In Your Class";
+        String message = ("Hello" + "..!\n\n\n\tNew user with Email: " + email + " has registered in your class.\n\tClass Name:" + cname + " .\n\tClass ID: " + ClassId + " ." +
+               "\n -----------------------------------------------------------------------------------"+ "\n\nThank you,\n TogetherFit team. " );
+        //Creating SendEmail object
+        SendEmail sm = new SendEmail(this, TrainerE, subject, message);
         //Executing SendEmail to send email
         sm.execute();
     }
