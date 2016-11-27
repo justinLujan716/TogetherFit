@@ -1,19 +1,24 @@
 package com.example.heem.togetherfit;
 
+import android.app.DatePickerDialog;
+import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.view.View;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
@@ -22,8 +27,11 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.squareup.picasso.Picasso;
-
+import  java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.List;
 
 /**
@@ -31,10 +39,10 @@ import java.util.List;
  */
 
 
-public class TrainerCreateClass extends AppCompatActivity {
+public class TrainerCreateClass extends AppCompatActivity{
 
     private EditText className, weekDate, timeFrom, timeTo, ageRange, price, capacity;
-    private Button btn,btn2, uploadImage;
+    private Button btn,btn2, uploadImage,btnDateFrom,btnDateTo;
     private FirebaseAuth auth;
     private DatabaseReference mRef;
     private String placeNameBack = "";
@@ -45,6 +53,15 @@ public class TrainerCreateClass extends AppCompatActivity {
     private ImageView imageView;
     private String imageURL = "";
     private String trainType = "";
+    //for date
+    DateFormat formatDateTime = new SimpleDateFormat("MM/dd/yyyy");
+    Calendar dateTime = Calendar.getInstance();
+    Calendar dateTime2 = Calendar.getInstance();
+    private String dateFrom = "";
+    private String dateTo = "";
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,6 +73,8 @@ public class TrainerCreateClass extends AppCompatActivity {
         btn = (Button) findViewById(R.id.button2);
         btn2 = (Button) findViewById(R.id.add_Place);
         uploadImage = (Button) findViewById(R.id.button3);
+        btnDateFrom = (Button) findViewById(R.id.dateFrom);
+        btnDateTo = (Button) findViewById(R.id.dateTo);
         className = (EditText) findViewById(R.id.creatClassContent);
         weekDate = (EditText) findViewById(R.id.editTextDate);
         timeFrom = (EditText) findViewById(R.id.editTextFromTime);
@@ -87,16 +106,13 @@ public class TrainerCreateClass extends AppCompatActivity {
                 trainType = adapter.getItemAtPosition(position).toString();
                 // Showing selected spinner item
                 Toast.makeText(getApplicationContext(),
-                        "Selected Country : " + trainType, Toast.LENGTH_SHORT).show();
+                        "Selected workout type is: " + trainType, Toast.LENGTH_SHORT).show();
             }
             @Override
             public void onNothingSelected(AdapterView<?> arg0) {
                 // TODO Auto-generated method stub
             }
         });
-
-
-
 
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -131,6 +147,14 @@ public class TrainerCreateClass extends AppCompatActivity {
                     mRefChildEmail8.setValue(trainType);
                     DatabaseReference mRefChildEmail9 = mRefChild.child("RegisterNum");
                     mRefChildEmail9.setValue(0);
+                    DatabaseReference mRefChildEmail10 = mRefChild.child("List");
+                    mRefChildEmail10.setValue("null for now");
+
+                    DatabaseReference mRefChildEmail11 = mRefChild.child("From Date");
+                    mRefChildEmail11.setValue(dateFrom);
+                    DatabaseReference mRefChildEmail12 = mRefChild.child("To Date");
+                    mRefChildEmail12.setValue(dateTo);
+
                 }catch (Exception e)
                 {
                     Toast.makeText(TrainerCreateClass.this, "Failed to create a class", Toast.LENGTH_SHORT).show();
@@ -138,7 +162,6 @@ public class TrainerCreateClass extends AppCompatActivity {
                 startActivity(new Intent(TrainerCreateClass.this, TrainerDashboard.class));
             }
         });
-
         //This method, Add place to class
         btn2.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -158,8 +181,53 @@ public class TrainerCreateClass extends AppCompatActivity {
 
         });
 
+        btnDateFrom.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                updateDateFrom();
+            }
+        });
+        btnDateTo.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                updateDateTo();
+            }
+        });
+
+
+    }
+    //******************************************* data button parts
+    private void updateDateFrom(){
+        new DatePickerDialog(this, d, dateTime.get(Calendar.YEAR),dateTime.get(Calendar.MONTH),dateTime.get(Calendar.DAY_OF_MONTH)).show();
+        //dateFrom
+    }
+    private void updateDateTo(){
+        new DatePickerDialog(this, d2, dateTime2.get(Calendar.YEAR),dateTime2.get(Calendar.MONTH),dateTime2.get(Calendar.DAY_OF_MONTH)).show();
     }
 
+    DatePickerDialog.OnDateSetListener d = new DatePickerDialog.OnDateSetListener() {
+        @Override
+        public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+            dateTime.set(Calendar.YEAR, year);
+            dateTime.set(Calendar.MONTH, monthOfYear);
+            dateTime.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+            btnDateFrom.setText(formatDateTime.format(dateTime.getTime()));
+            dateFrom = formatDateTime.format(dateTime.getTime());
+            Toast.makeText(TrainerCreateClass.this, "From date is: " + dateFrom, Toast.LENGTH_LONG).show();
+        }
+    };
+    DatePickerDialog.OnDateSetListener d2 = new DatePickerDialog.OnDateSetListener() {
+        @Override
+        public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+            dateTime2.set(Calendar.YEAR, year);
+            dateTime2.set(Calendar.MONTH, monthOfYear);
+            dateTime2.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+            btnDateTo.setText(formatDateTime.format(dateTime2.getTime()));
+            dateTo = formatDateTime.format(dateTime2.getTime());
+            Toast.makeText(TrainerCreateClass.this, "End date is: " + dateTo, Toast.LENGTH_LONG).show();
+        }
+    };
+    //**************************data return back controller
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         // Check which request we're responding to
@@ -190,6 +258,7 @@ public class TrainerCreateClass extends AppCompatActivity {
             });
 
         }
-        //Toast.makeText(TrainerCreateClass.this, "message comes back", Toast.LENGTH_LONG).show();
+
     }
+
 }

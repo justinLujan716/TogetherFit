@@ -2,7 +2,8 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/gray">
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         android:orientation="vertical"
@@ -13,7 +14,7 @@
         android:paddingRight="@dimen/activity_horizontal_margin"
         android:paddingTop="@dimen/activity_vertical_margin"
         android:weightSum="1"
-        android:background="@drawable/backgroundsec">
+        android:background="@color/gray">
 
         <TextView
             android:text="Week Date:"
@@ -43,37 +44,6 @@
             android:layout_alignParentStart="true"
             android:layout_toStartOf="@+id/editTextFromTime"
             android:layout_toLeftOf="@+id/editTextFromTime" />
-
-        <TextView
-            android:text="Time(From):"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="#ffffff"
-            android:textSize="18dp"
-            android:textStyle="bold"
-            android:id="@+id/textView4"
-            android:layout_alignBaseline="@+id/editTextFromTime"
-            android:layout_alignBottom="@+id/editTextFromTime"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true" />
-
-        <EditText
-            android:layout_width="150dp"
-            android:layout_height="wrap_content"
-            android:inputType="time"
-            android:textColor="#ffffff"
-            android:textColorHint="#C9C9CA"
-            android:ems="10"
-            android:id="@+id/editTextFromTime"
-            android:backgroundTint="#AFD3DF"
-            android:hint="e.g. 1:00 PM"
-            android:layout_marginTop="14dp"
-            android:layout_below="@+id/editTextDate"
-            android:layout_alignLeft="@+id/editTextDate"
-            android:layout_alignStart="@+id/editTextDate"
-            android:selectAllOnFocus="false"
-            android:layout_alignRight="@+id/editTextDate"
-            android:layout_alignEnd="@+id/editTextDate" />
 
         <EditText
             android:layout_width="wrap_content"
@@ -294,15 +264,92 @@
 
         <Button
             android:text="Add to list"
-            android:layout_width="350dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/button2"
             android:textStyle="bold"
             android:background="#AFD3DF"
             android:layout_below="@+id/button3"
+            android:layout_marginTop="11dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+
+        <EditText
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:inputType="time"
+            android:textColor="#ffffff"
+            android:textColorHint="#C9C9CA"
+            android:ems="10"
+            android:id="@+id/editTextFromTime"
+            android:backgroundTint="#AFD3DF"
+            android:hint="e.g. 1:00 PM"
+            android:selectAllOnFocus="false"
+            android:layout_alignTop="@+id/textView4"
+            android:layout_alignLeft="@+id/Type_Spinner_2"
+            android:layout_alignStart="@+id/Type_Spinner_2" />
+
+        <TextView
+            android:text="Date(From):"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#ffffff"
+            android:textSize="18dp"
+            android:textStyle="bold"
+            android:id="@+id/textView10"
+            android:layout_below="@+id/editTextDate"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
-            android:layout_marginTop="11dp" />
+            android:layout_marginTop="12dp" />
+
+        <TextView
+            android:text="Time(From):"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#ffffff"
+            android:textSize="18dp"
+            android:textStyle="bold"
+            android:id="@+id/textView4"
+            android:layout_marginTop="13dp"
+            android:layout_below="@+id/textView10"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+        <Button
+            android:text="Set Date"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/dateFrom"
+            android:textStyle="bold"
+            android:background="#AFD3DF"
+            android:layout_alignBottom="@+id/textView10"
+            android:layout_alignTop="@+id/textView10"
+            android:layout_alignLeft="@+id/editTextFromTime"
+
+            />
+
+        <Button
+            android:text="Set Date"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/dateTo"
+            android:textStyle="bold"
+            android:background="#AFD3DF"
+            android:layout_toRightOf="@+id/textView11"
+            android:layout_alignBottom="@+id/textView11"
+            android:layout_alignTop="@+id/textView11"/>
+
+        <TextView
+            android:text="To:"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#ffffff"
+            android:textSize="18dp"
+            android:textStyle="bold"
+            android:id="@+id/textView11"
+            android:layout_marginLeft="19dp"
+            android:layout_marginStart="19dp"
+            android:layout_alignTop="@+id/dateFrom"
+            android:layout_toRightOf="@+id/dateFrom" />
 
     </RelativeLayout>
 </ScrollView>
