@@ -64,6 +64,27 @@ public class ChatRoom extends AppCompatActivity {
             }
         });
 
+        /*root.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                Set<String> set = new HashSet<String>();
+                userEmail = new ArrayList<String>();
+                for (DataSnapshot chunk : dataSnapshot.getChildren()){
+                    String email = (String) chunk.child("Email").getValue();
+                    set.add(email);
+                }
+
+                list_of_rooms.addAll(set);
+                arrayAdapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });*/
+
+
         nameRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
