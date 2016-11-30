@@ -34,8 +34,9 @@ public class ChatRoom extends AppCompatActivity {
     private ListView listView;
     private ArrayAdapter<String> arrayAdapter;
     private ArrayList<String> list_of_rooms = new ArrayList<>();
+    private ArrayList<String> userEmail = new ArrayList<>();
     private String name;
-    private DatabaseReference root = FirebaseDatabase.getInstance().getReference().getRoot();
+    private DatabaseReference root = FirebaseDatabase.getInstance().getReference().child("User");
     private DatabaseReference nameRef = FirebaseDatabase.getInstance().getReference("Chat");
 
     @Override
@@ -64,14 +65,17 @@ public class ChatRoom extends AppCompatActivity {
             }
         });
 
-        /*root.addValueEventListener(new ValueEventListener() {
+        root.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 Set<String> set = new HashSet<String>();
                 userEmail = new ArrayList<String>();
                 for (DataSnapshot chunk : dataSnapshot.getChildren()){
                     String email = (String) chunk.child("Email").getValue();
+                    int index = email.indexOf(".");
+                    email = email.substring(0, index);
                     set.add(email);
+
                 }
 
                 list_of_rooms.addAll(set);
@@ -82,7 +86,7 @@ public class ChatRoom extends AppCompatActivity {
             public void onCancelled(DatabaseError databaseError) {
 
             }
-        });*/
+        });
 
 
         nameRef.addValueEventListener(new ValueEventListener() {
@@ -101,7 +105,7 @@ public class ChatRoom extends AppCompatActivity {
                     //set.add(((DataSnapshot)i.next()).getKey());
                 }
 
-                list_of_rooms.clear();
+                //list_of_rooms.clear();
                 list_of_rooms.addAll(set);
 
                 arrayAdapter.notifyDataSetChanged();
@@ -140,7 +144,7 @@ public class ChatRoom extends AppCompatActivity {
             }
         });
 
-        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+       builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 dialogInterface.cancel();
