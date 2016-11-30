@@ -217,12 +217,13 @@ public class ClassDetail extends AppCompatActivity {
     private void getValues(DataSnapshot ds)
     {
 
-        //Values to set
+        //Values to set get them from the refrence
         NumReg = ds.child("RegisterNum").getValue().toString();
         cname = ds.child("ClassName").getValue().toString();
         trainerId = ds.child("Trainer").getValue().toString(); //Just to get the name and email
         String location = ds.child("TrainPlace").getValue().toString();
-        //String date = ds.child("").getValue().toString();
+        String fromDate = ds.child("From Date").getValue().toString();
+        String toDate = ds.child("To Date").getValue().toString();
         String day = ds.child("WeekDate").getValue().toString();
         String time = ds.child("Time").getValue().toString();
         String fitnessType = ds.child("Type").getValue().toString();
@@ -232,7 +233,7 @@ public class ClassDetail extends AppCompatActivity {
         //Send values to text views
         ClassName.setText(" " + cname);
         ClassLocation.setText(" " + location);
-        ClassDate.setText(" " + "");
+        ClassDate.setText(" " + "From: " + fromDate + " -- " + "To: " + toDate);
         ClassDay.setText(" " + day);
         ClassTime.setText(" " + time);
         ClassType.setText(" " + fitnessType);

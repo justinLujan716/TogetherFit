@@ -20,7 +20,7 @@ public class StudentDashboard extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_student_dashboard);
         //Find location button takes to another acitivity
-        findplacebtn = (Button) findViewById(R.id.locationtrainerbutton);
+        findplacebtn = (Button) findViewById(R.id.locationtrainerbuttons);
         findplacebtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -32,7 +32,7 @@ public class StudentDashboard extends AppCompatActivity {
         });
 
         //Find Trainer button takes you to the find a trainer page
-        findtrainerbtn = (Button) findViewById(R.id.findtrainerbutton);
+        findtrainerbtn = (Button) findViewById(R.id.findtrainerbuttons);
         findtrainerbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v){
@@ -66,7 +66,7 @@ public class StudentDashboard extends AppCompatActivity {
         });
 
         //Live chat
-        launchChat = (Button) findViewById(R.id.livechatbutton);
+        launchChat = (Button) findViewById(R.id.livechatbuttons);
         launchChat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v){
@@ -77,7 +77,7 @@ public class StudentDashboard extends AppCompatActivity {
         });
 
         //Find a class and Register
-        classreg = (Button) findViewById(R.id.classregbtn);
+        classreg = (Button) findViewById(R.id.classregbtns);
         classreg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v){
