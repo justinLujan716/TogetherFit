@@ -13,6 +13,7 @@ public class StudentDashboard extends AppCompatActivity {
     Button findtrainerbtn;
     Button launchChat;
     Button classreg;
+    Button edit_student;
 
 
     @Override
@@ -82,6 +83,17 @@ public class StudentDashboard extends AppCompatActivity {
             @Override
             public void onClick(View v){
                 Intent intent = new Intent(StudentDashboard.this, AddClass.class);
+                startActivity(intent);
+            }
+        });
+
+        //Edit Profile
+        edit_student = (Button) findViewById(R.id.editprofilebtns);
+        edit_student.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //Take the trainer to the show classes activity
+                Intent intent = new Intent(StudentDashboard.this, EditProfileStudent.class);
                 startActivity(intent);
             }
         });

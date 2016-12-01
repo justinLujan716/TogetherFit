@@ -15,6 +15,7 @@ public class TrainerDashboard extends AppCompatActivity {
     Button createclass;
     Button launchChat;
     Button showClass;
+    Button editProfile;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -98,6 +99,17 @@ public class TrainerDashboard extends AppCompatActivity {
             public void onClick(View view) {
                 //Take the trainer to the show classes activity
                 Intent intent = new Intent(TrainerDashboard.this, ShowClasses.class);
+                startActivity(intent);
+            }
+        });
+
+        //Edit Profile
+        editProfile = (Button) findViewById(R.id.editprofilebtn);
+        editProfile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //Take the trainer to the show classes activity
+                Intent intent = new Intent(TrainerDashboard.this, EditProfileTrainer.class);
                 startActivity(intent);
             }
         });
