@@ -47,6 +47,9 @@
         <activity android:name=".FindTrainer" />
         <activity android:name=".ShowTrainer" />
         <activity android:name=".TrainerCreateClassAdd" />
+        <activity android:name=".EditProfileTrainer" />
+        <activity android:name=".EditProfileStudent" />
+
         <!-- create class -->
 
 

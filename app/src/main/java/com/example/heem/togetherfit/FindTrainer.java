@@ -16,7 +16,7 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.List;
 
-//Search v1.4 - Nick Boyd - Complete
+//Search v1.5 - Nick Boyd - Complete
 
 public class FindTrainer extends AppCompatActivity {
 
@@ -26,6 +26,8 @@ public class FindTrainer extends AppCompatActivity {
     private RadioButton zipBtn;
     private RadioButton workoutTypeBtn;
     private Spinner WorkoutDropdown;
+    private Button searchAgain;
+    private Button back;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,14 +43,16 @@ public class FindTrainer extends AppCompatActivity {
         wtSearch = (Button) findViewById(R.id.wtSearchBtn); //search button for workouttype
         zipBtn = (RadioButton) findViewById(R.id.ZipRadio);
         workoutTypeBtn = (RadioButton) findViewById(R.id.WorkoutTypeRadio);
+        searchAgain = (Button) findViewById(R.id.redo);
+        back = (Button) findViewById(R.id.back);
 
         //all code in indented section is related to Spinner
         WorkoutDropdown = (Spinner) findViewById(R.id.workoutDropdownBtn);
         List<String> list = new ArrayList<String>();
-        list.add("Weight Loss");
-        list.add("Weightlifting");
-        list.add("Cardio");
-        list.add("Other");
+        list.add("Yoga");
+        list.add("Flexibility");
+        list.add("Strength");
+        list.add("Balance");
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, list);// Create an ArrayAdapter using the string array and a default spinner layout
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);// Specify the layout to use when the list of choices appears
         WorkoutDropdown.setAdapter(adapter);// Applying the adapter to the spinner
@@ -92,6 +96,8 @@ public class FindTrainer extends AppCompatActivity {
                 findViewById(R.id.ZipInput).setVisibility(View.VISIBLE);
                 findViewById(R.id.WorkoutTypeRadio).setVisibility(View.INVISIBLE);
                 findViewById(R.id.zSearchBtn).setVisibility(View.VISIBLE);
+                findViewById(R.id.redo).setVisibility(View.VISIBLE);
+                findViewById(R.id.back).setVisibility(View.INVISIBLE);
                 return;
             }
         });
@@ -102,6 +108,24 @@ public class FindTrainer extends AppCompatActivity {
                 findViewById(R.id.ZipRadio).setVisibility(View.INVISIBLE);
                 findViewById(R.id.workoutDropdownBtn).setVisibility(View.VISIBLE);
                 findViewById(R.id.wtSearchBtn).setVisibility(View.VISIBLE);
+                findViewById(R.id.redo).setVisibility(View.VISIBLE);
+                findViewById(R.id.back).setVisibility(View.INVISIBLE);
+            }
+        });
+
+        searchAgain.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent again = new Intent(FindTrainer.this, FindTrainer.class);
+                startActivity(again);
+            }
+        });
+
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent back = new Intent(FindTrainer.this, StudentDashboard.class);
+                startActivity(back);
             }
         });
 
@@ -110,6 +134,7 @@ public class FindTrainer extends AppCompatActivity {
         //***************************************************************
         //Back button takes back to sign in activity
         //This is the way to refer to outside button from another laytout back button is in header.xml
+        /*
         View myLayout = findViewById(R.id.backbtnlayout); // root View id from that link
         Button backbutton = (Button) myLayout.findViewById(R.id.backbtn); // id of a view contained in the included file
         backbutton.setOnClickListener(new View.OnClickListener() {
@@ -133,7 +158,7 @@ public class FindTrainer extends AppCompatActivity {
             }
         });
 
-
+*/
     }
 }
 
