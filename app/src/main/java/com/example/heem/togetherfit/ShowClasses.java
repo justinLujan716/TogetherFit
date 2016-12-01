@@ -139,10 +139,16 @@ public class ShowClasses extends AppCompatActivity {
                     //When they click on an Item
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                        Toast.makeText(ShowClasses.this, "You Clicked at " + classTitle.get(+position) + "\nI took you to View Users", Toast.LENGTH_SHORT).show();
-                        Intent intent = new Intent(ShowClasses.this,UserRegInAClass.class);
-                        intent.putExtra("Value", classID.get(+position)); //Send the Class Id to the second activity to show the users who are registering in this class
-                        startActivity(intent);
+                        int number = Integer.parseInt(regNum.get(+position));
+                        if ( number == 0) {
+                            Toast.makeText(getApplicationContext(), "No user is registered in your class", Toast.LENGTH_SHORT).show();
+                        }
+                        else {
+                            Toast.makeText(ShowClasses.this, "You Clicked at " + classTitle.get(+position) + "\nI took you to View Users", Toast.LENGTH_SHORT).show();
+                            Intent intent = new Intent(ShowClasses.this, UserRegInAClass.class);
+                            intent.putExtra("Value", classID.get(+position)); //Send the Class Id to the second activity to show the users who are registering in this class
+                            startActivity(intent);
+                        }
                     }
                 });
 

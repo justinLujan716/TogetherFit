@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import com.google.firebase.auth.FirebaseAuth;
+
 public class StudentDashboard extends AppCompatActivity {
 
     //Variables
@@ -62,7 +64,10 @@ public class StudentDashboard extends AppCompatActivity {
         signOut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                finish();
+                FirebaseAuth.getInstance().signOut();
+                Intent back = new Intent(StudentDashboard.this, MainActivity.class);
+                //start the activity
+                startActivity(back);
             }
         });
 
