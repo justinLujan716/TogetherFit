@@ -2,9 +2,7 @@ package com.example.heem.togetherfit;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
-import android.text.TextUtils;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -13,9 +11,6 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -23,7 +18,7 @@ import com.google.firebase.database.FirebaseDatabase;
 
 public class TrainerRegistrationAdd extends AppCompatActivity {
 
-    private EditText name, age, zipcode, CerName, CertifiID;
+    private EditText name, age, zipcode, CerName, CertifiID,address,city, state;
     private Spinner FitnessType;
     private Button btnSSignUp;
     private FirebaseAuth auth;
@@ -46,6 +41,10 @@ public class TrainerRegistrationAdd extends AppCompatActivity {
         FitnessType = (Spinner) findViewById(R.id.Type_spinner);
         CerName = (EditText) findViewById(R.id.OrganName);
         CertifiID = (EditText) findViewById(R.id.CerID);
+        address = (EditText) findViewById(R.id.editText3);
+        city = (EditText) findViewById(R.id.editText4);
+        state = (EditText) findViewById(R.id.editText2);
+
 
         //---------------------------------------------
         //for the spinner part
@@ -98,6 +97,9 @@ public class TrainerRegistrationAdd extends AppCompatActivity {
                 DatabaseReference mRefChildEmail5 = mRefChild.child("FitnessType");mRefChildEmail5.setValue(sType);
                 DatabaseReference mRefChildEmail6 = mRefChild.child("OrganName");mRefChildEmail6.setValue(CerName.getText().toString().trim());
                 DatabaseReference mRefChildEmail7 = mRefChild.child("CerID");mRefChildEmail7.setValue(CertifiID.getText().toString().trim());
+                DatabaseReference mRefChildEmail8 = mRefChild.child("Address");mRefChildEmail8.setValue(address.getText().toString().trim());
+                DatabaseReference mRefChildEmail9 = mRefChild.child("City");mRefChildEmail9.setValue(city.getText().toString().trim());
+                DatabaseReference mRefChildEmail10 = mRefChild.child("State");mRefChildEmail10.setValue(state.getText().toString().trim());
                 startActivity(new Intent(TrainerRegistrationAdd.this, TrainerDashboard.class));
             }
         });

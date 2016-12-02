@@ -1,4 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/gray">
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_trainer_registration_additional"
@@ -55,7 +60,6 @@
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:inputType="textEmailAddress"
         android:textColor="#ffffff"
         android:textColorHint="#C9C9CA"
         android:ems="10"
@@ -65,7 +69,8 @@
         android:layout_alignBaseline="@+id/Age"
         android:layout_alignBottom="@+id/Age"
         android:layout_alignLeft="@+id/Trainer_Name"
-        android:layout_alignStart="@+id/Trainer_Name" />
+        android:layout_alignStart="@+id/Trainer_Name"
+        android:inputType="text" />
 
     <TextView
         android:text="Fitness Type:"
@@ -106,23 +111,9 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
-    <TextView
-        android:text="Zip Code:"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="#ffffff"
-        android:textSize="18dp"
-        android:textStyle="bold"
-        android:id="@+id/ZipeCode"
-        android:layout_marginTop="18dp"
-        android:layout_below="@+id/Trainer_Age"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
-
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:inputType="textEmailAddress"
         android:textColor="#ffffff"
         android:textColorHint="#C9C9CA"
         android:ems="10"
@@ -132,7 +123,8 @@
         android:layout_alignBaseline="@+id/ZipeCode"
         android:layout_alignBottom="@+id/ZipeCode"
         android:layout_alignLeft="@+id/Trainer_Age"
-        android:layout_alignStart="@+id/Trainer_Age" />
+        android:layout_alignStart="@+id/Trainer_Age"
+        android:inputType="number" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -198,5 +190,101 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textEmailAddress"
+        android:textColor="#ffffff"
+        android:textColorHint="#C9C9CA"
+        android:ems="10"
+        android:id="@+id/editText2"
+        android:backgroundTint="#AFD3DF"
+        android:hint="Your State"
+        android:layout_alignTop="@+id/textView12"
+        android:layout_alignLeft="@+id/Trainer_Zipcode"
+        android:layout_alignStart="@+id/Trainer_Zipcode" />
+
+    <TextView
+        android:text="Zip Code:"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#ffffff"
+        android:textSize="18dp"
+        android:textStyle="bold"
+        android:id="@+id/ZipeCode"
+        android:layout_marginTop="19dp"
+        android:layout_below="@+id/editText2"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:text="Address:"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#ffffff"
+        android:textSize="18dp"
+        android:textStyle="bold"
+        android:id="@+id/textView14"
+        android:layout_marginTop="15dp"
+        android:layout_below="@+id/Trainer_Age"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="text"
+        android:textColor="#ffffff"
+        android:textColorHint="#C9C9CA"
+        android:ems="10"
+        android:id="@+id/editText4"
+        android:backgroundTint="#AFD3DF"
+        android:hint="Your City"
+        android:layout_below="@+id/editText3"
+        android:layout_alignLeft="@+id/editText3"
+        android:layout_alignStart="@+id/editText3" />
+
+    <TextView
+        android:text="State:"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#ffffff"
+        android:textSize="18dp"
+        android:textStyle="bold"
+        android:id="@+id/textView12"
+        android:layout_below="@+id/editText4"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="13dp" />
+
+    <TextView
+        android:text="City:"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#ffffff"
+        android:textSize="18dp"
+        android:textStyle="bold"
+        android:id="@+id/textView15"
+        android:layout_alignBaseline="@+id/editText4"
+        android:layout_alignBottom="@+id/editText4"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="text"
+        android:textColor="#ffffff"
+        android:textColorHint="#C9C9CA"
+        android:ems="10"
+        android:id="@+id/editText3"
+        android:backgroundTint="#AFD3DF"
+        android:hint="Your Address"
+        android:layout_alignBaseline="@+id/textView14"
+        android:layout_alignBottom="@+id/textView14"
+        android:layout_alignLeft="@+id/Trainer_Age"
+        android:layout_alignStart="@+id/Trainer_Age" />
+
 
 </RelativeLayout>
+</ScrollView>
