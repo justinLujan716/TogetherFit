@@ -21,7 +21,7 @@ import com.google.firebase.database.FirebaseDatabase;
 
 public class StudentRegistrationAdd extends AppCompatActivity {
 
-    private EditText name, age, zipcode;
+    private EditText name, age, zipcode,address,city, state;
     private Spinner FitnessType;
     private Button btnSSignUp;
     private FirebaseAuth auth;
@@ -42,6 +42,9 @@ public class StudentRegistrationAdd extends AppCompatActivity {
         age = (EditText) findViewById(R.id.Trainer_Age);
         zipcode = (EditText) findViewById(R.id.Trainer_Zipcode);
         FitnessType = (Spinner) findViewById(R.id.Type_spinner);
+        address = (EditText) findViewById(R.id.editText7);
+        city = (EditText) findViewById(R.id.editText);
+        state = (EditText) findViewById(R.id.editText5);
 
         //---------------------------------------------
         //for the spinner part
@@ -92,6 +95,9 @@ public class StudentRegistrationAdd extends AppCompatActivity {
                 DatabaseReference mRefChildEmail3 = mRefChild.child("Age");mRefChildEmail3.setValue(age.getText().toString().trim());
                 DatabaseReference mRefChildEmail4 = mRefChild.child("ZipCode");mRefChildEmail4.setValue(zipcode.getText().toString().trim());
                 DatabaseReference mRefChildEmail5 = mRefChild.child("FitnessType");mRefChildEmail5.setValue(sType);
+                DatabaseReference mRefChildEmail8 = mRefChild.child("Address");mRefChildEmail8.setValue(address.getText().toString().trim());
+                DatabaseReference mRefChildEmail9 = mRefChild.child("City");mRefChildEmail9.setValue(city.getText().toString().trim());
+                DatabaseReference mRefChildEmail10 = mRefChild.child("State");mRefChildEmail10.setValue(state.getText().toString().trim());
                 startActivity(new Intent(StudentRegistrationAdd.this, StudentDashboard.class));
             }
         });

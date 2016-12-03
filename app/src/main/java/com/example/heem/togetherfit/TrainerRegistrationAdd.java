@@ -60,7 +60,7 @@ public class TrainerRegistrationAdd extends AppCompatActivity {
                 sType = adapter.getItemAtPosition(position).toString();
                 // Showing selected spinner item
                 Toast.makeText(getApplicationContext(),
-                        "Selected Country : " + sType, Toast.LENGTH_SHORT).show();
+                        "Selected Type : " + sType, Toast.LENGTH_SHORT).show();
             }
             @Override
             public void onNothingSelected(AdapterView<?> arg0) {

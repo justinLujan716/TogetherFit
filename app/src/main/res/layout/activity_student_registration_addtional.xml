@@ -12,6 +12,19 @@
 
 
     <TextView
+        android:text="Address:"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#ffffff"
+        android:textSize="18dp"
+        android:textStyle="bold"
+        android:id="@+id/textView17"
+        android:layout_marginTop="15dp"
+        android:layout_below="@+id/Trainer_Age"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
         android:text="We need to know you better"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -107,19 +120,6 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
-    <TextView
-        android:text="Zip Code:"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="#ffffff"
-        android:textSize="18dp"
-        android:textStyle="bold"
-        android:id="@+id/ZipeCode"
-        android:layout_marginTop="18dp"
-        android:layout_below="@+id/Trainer_Age"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
-
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -145,4 +145,86 @@
         android:layout_marginTop="15dp"
         android:layout_below="@+id/Trainer_Zipcode"
         android:layout_centerHorizontal="true" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="text"
+        android:textColor="#ffffff"
+        android:textColorHint="#C9C9CA"
+        android:ems="10"
+        android:id="@+id/editText"
+        android:backgroundTint="#AFD3DF"
+        android:hint="Your City"
+        android:layout_alignTop="@+id/textView13"
+        android:layout_alignRight="@+id/add_button_Trainer"
+        android:layout_alignEnd="@+id/add_button_Trainer" />
+
+    <TextView
+        android:text="State:"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#ffffff"
+        android:textSize="18dp"
+        android:textStyle="bold"
+        android:id="@+id/textView16"
+        android:layout_marginTop="10dp"
+        android:layout_below="@+id/editText"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textEmailAddress"
+        android:textColor="#ffffff"
+        android:textColorHint="#C9C9CA"
+        android:ems="10"
+        android:id="@+id/editText5"
+        android:backgroundTint="#AFD3DF"
+        android:hint="Your State"
+        android:layout_alignTop="@+id/textView16"
+        android:layout_alignLeft="@+id/Trainer_Zipcode"
+        android:layout_alignStart="@+id/Trainer_Zipcode" />
+
+    <TextView
+        android:text="City:"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#ffffff"
+        android:textSize="18dp"
+        android:textStyle="bold"
+        android:id="@+id/textView13"
+        android:layout_below="@+id/editText7"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="16dp" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="text"
+        android:textColor="#ffffff"
+        android:textColorHint="#C9C9CA"
+        android:ems="10"
+        android:id="@+id/editText7"
+        android:backgroundTint="#AFD3DF"
+        android:hint="Your Address"
+        android:layout_alignBaseline="@+id/textView17"
+        android:layout_alignBottom="@+id/textView17"
+        android:layout_alignLeft="@+id/Trainer_Age"
+        android:layout_alignStart="@+id/Trainer_Age" />
+
+    <TextView
+        android:text="Zip Code:"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#ffffff"
+        android:textSize="18dp"
+        android:textStyle="bold"
+        android:id="@+id/ZipeCode"
+        android:layout_marginTop="15dp"
+        android:layout_below="@+id/editText5"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 </RelativeLayout>
