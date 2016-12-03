@@ -1,6 +1,7 @@
 package com.example.heem.togetherfit;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.location.Geocoder;
@@ -35,6 +36,7 @@ import android.location.Location;
 
 import com.google.android.gms.maps.model.Polyline;
 import com.google.android.gms.maps.model.PolylineOptions;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -74,12 +76,13 @@ public class FindPlaceTrainer extends FragmentActivity implements OnMapReadyCall
     Button updateLoc;
     EditText txtUpdate;
     Context mContext = FindPlaceTrainer.this;
+    Button clearPath;
     //To find distance
     Location start;
     Location dis;
     LatLng holdCurrent;
-    //To get pictures of the locaiton from the firebase storage
-    //FirebaseStorage storage = FirebaseStorage.getInstance();
+    //To keep track of paths
+    List<Polyline> polyPaths = new ArrayList<>();
 
 
     @Override
@@ -121,11 +124,12 @@ public class FindPlaceTrainer extends FragmentActivity implements OnMapReadyCall
                                 dis = latlngToloc(lat, lon); //Update the distention
                                 float distance = start.distanceTo(dis) / 1000;
                                 //To find a distance in KM
-                                if (distance <= 5) //Find places near the current location, at most 5 KM almost 2.5 Miles
+                                if (distance <= 5) { //Find places near the current location, at most 5 KM almost 2.5 Miles
                                     toPrint.add(name); //Add them to the toPrint list
+                                }
                             }
 
-                       }
+                        }
 
                         //To print out each location close to the current location
                         if (toPrint.size() > 0) {
@@ -136,9 +140,8 @@ public class FindPlaceTrainer extends FragmentActivity implements OnMapReadyCall
                                 longitude = closeLoc.longitude;
                                 address(latitude, longitude, s, BitmapDescriptorFactory.HUE_AZURE);
                             }
-                        }
-                        else
-                        Toast.makeText(getApplicationContext(),"Can not find a close places",Toast.LENGTH_SHORT).show();
+                        } else
+                            Toast.makeText(getApplicationContext(), "Can not find a close places", Toast.LENGTH_SHORT).show();
                     }
 
                     @Override
@@ -164,12 +167,9 @@ public class FindPlaceTrainer extends FragmentActivity implements OnMapReadyCall
             @Override
             public void onClick(View v) {
                 newLocation = String.valueOf(txtUpdate.getText());
-                if (newLocation.length()<= 5)
-                {
+                if (newLocation.length() <= 5) {
                     Toast.makeText(getApplicationContext(), "You must enter a valid location", Toast.LENGTH_LONG).show();
-                }
-                else
-                {
+                } else {
                     //get the string entered by user
                     location = getLocationFromAddress(newLocation);
                     holdCurrent = getLocationFromAddress(newLocation); //To hold
@@ -179,11 +179,38 @@ public class FindPlaceTrainer extends FragmentActivity implements OnMapReadyCall
                     mMap.animateCamera(cameraUpdate);
                     latitude = location.latitude;
                     longitude = location.longitude;
-                    start = latlngToloc(latitude,longitude);
+                    start = latlngToloc(latitude, longitude);
                     //Rose to distinguish the current location marker
-                    address(latitude,longitude,("Your location: " + newLocation),BitmapDescriptorFactory.HUE_ROSE);
+                    address(latitude, longitude, ("Your location: " + newLocation), BitmapDescriptorFactory.HUE_ROSE);
                 }
 
+            }
+        });
+
+
+        //Back button takes back to sign in activity
+        //This is the way to refer to outside button from another laytout back button is in header.xml
+        View myLayout = findViewById(R.id.backbtnlayout); // root View id from that link
+        Button backbutton = (Button) myLayout.findViewById(R.id.backbtn); // id of a view contained in the included file
+        backbutton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // the name of the receiving activity is declared in the Intent Constructor, go back to log in page
+                Intent back = new Intent(FindPlaceTrainer.this, TrainerDashboard.class);
+                //start the activity
+                startActivity(back);
+            }
+        });
+        //Log out button at the tool bar to take the user to main page
+        View myLayout2 = findViewById(R.id.signOut); // root View id from that link
+        Button signOut = (Button) myLayout2.findViewById(R.id.signOutbtn); // id of a view contained in the included file
+        signOut.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FirebaseAuth.getInstance().signOut();
+                Intent back = new Intent(FindPlaceTrainer.this, MainActivity.class);
+                //start the activity
+                startActivity(back);
             }
         });
 
@@ -303,6 +330,9 @@ public class FindPlaceTrainer extends FragmentActivity implements OnMapReadyCall
             @Override
             public View getInfoContents(Marker marker) {
 
+                if (polyPaths.size()>0) //Delete path just to make sure there is no more than one paths there
+                    deletePath();
+
                 LinearLayout info = new LinearLayout(mContext);
                 info.setOrientation(LinearLayout.VERTICAL);
                 TextView title = new TextView(mContext);
@@ -395,6 +425,7 @@ public class FindPlaceTrainer extends FragmentActivity implements OnMapReadyCall
                         .add(new LatLng(src.latitude, src.longitude), new LatLng(dest.latitude, dest.longitude))
                         .width(6)
                         .color(Color.parseColor("#696969")).geodesic(true));
+                polyPaths.add(line);//To keep track of paths
             }
 
         }
@@ -456,6 +487,20 @@ public class FindPlaceTrainer extends FragmentActivity implements OnMapReadyCall
         urlString.append(destLoc.longitude);
         urlString.append("&sensor=false&mode=driving&alternatives=true");
         return urlString.toString();
+    }
+
+    /*
+     * Method to clear the path
+     */
+    public void deletePath()
+    {
+        for(Polyline path: polyPaths)
+        {
+            path.remove();
+        }
+
+        polyPaths.clear();
+
     }
 
 }

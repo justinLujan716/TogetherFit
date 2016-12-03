@@ -13,15 +13,24 @@
     <!-- For search box -->
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="120dp"
+        android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:weightSum="3"
+        android:weightSum="4"
         android:id="@+id/layout1" >
+        <!-- Header aligned to top -->
+        <include layout="@layout/header"/>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:layout_weight="2"
             android:orientation="horizontal">
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/txtupdateLocation"
+                android:hint="Update your current location"
+                android:background="#ffffff"
+                android:layout_weight="1"/>
             <Button
                 android:textStyle="bold"
                 android:textSize="18dp"
@@ -29,16 +38,10 @@
                 android:layout_height="60dp"
                 android:id="@+id/updateLocation"
                 android:background="@drawable/search" />
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:id="@+id/txtupdateLocation"
-                android:hint="Update your current location"
-                android:background="#ffffff" />
         </LinearLayout>
         <Button
             android:layout_width="match_parent"
-            android:text="Click to Find close places"
+            android:text="Click to Find Close Places"
             android:textStyle="bold"
             android:textColor="#AFD3DF"
             android:textSize="18dp"
@@ -47,7 +50,6 @@
             android:id="@+id/search"
             android:background="#444345"
             android:layout_weight="1"/>
-
     </LinearLayout>
 
 </FrameLayout>

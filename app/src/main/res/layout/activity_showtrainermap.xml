@@ -5,18 +5,18 @@
 
     <fragment xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
-        android:id="@+id/map2"
+        android:id="@+id/map"
         android:name="com.google.android.gms.maps.SupportMapFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context="com.example.heem.togetherfit.FindPlaceStudent" />
+        tools:context="com.example.heem.togetherfit.FindPlaceTrainer" />
     <!-- For search box -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:weightSum="4"
-        android:id="@+id/layout2" >
+        android:id="@+id/layout1" >
         <!-- Header aligned to top -->
         <include layout="@layout/header"/>
         <LinearLayout
@@ -27,7 +27,7 @@
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:id="@+id/txtupdateLocations"
+                android:id="@+id/txtupdateLocation"
                 android:hint="Update your current location"
                 android:background="#ffffff"
                 android:layout_weight="1"/>
@@ -36,18 +36,18 @@
                 android:textSize="18dp"
                 android:layout_width="50dp"
                 android:layout_height="60dp"
-                android:id="@+id/updateLocations"
+                android:id="@+id/updateLocation"
                 android:background="@drawable/search" />
         </LinearLayout>
         <Button
             android:layout_width="match_parent"
-            android:text="Click to Find close places"
+            android:text="Click to Find Close Trainers"
             android:textStyle="bold"
             android:textColor="#AFD3DF"
             android:textSize="18dp"
             android:layout_height="60dp"
             android:layout_gravity="top"
-            android:id="@+id/searchs"
+            android:id="@+id/search"
             android:background="#444345"
             android:layout_weight="1"/>
     </LinearLayout>

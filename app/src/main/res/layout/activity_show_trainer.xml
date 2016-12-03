@@ -1,20 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:background="@drawable/backgroundsec"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_add_class"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:weightSum="1">
-
+    tools:context="com.example.heem.togetherfit.AddClass"
+    android:background="@drawable/backgroundsec"
+    android:orientation="vertical">
+    <!-- Header aligned to top -->
+    <include layout="@layout/header"/>
     <ListView
-        android:id="@+id/list"
+        android:id="@+id/listAllForTrainer"
+        android:fadingEdge="vertical"
+        android:fadingEdgeLength="10dp"
+        android:longClickable="true"
+        android:listSelector="#AFD3DF"
         android:layout_width="match_parent"
-        android:layout_height="388dp"
-        android:layout_weight="0.96" />
-
-    <Button
-        android:text="Search Again"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/SearchBTN" />
-
+        android:layout_height="match_parent">
+    </ListView>
 </LinearLayout>

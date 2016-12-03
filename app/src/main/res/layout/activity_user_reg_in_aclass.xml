@@ -8,11 +8,27 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.example.heem.togetherfit.UserRegInAClass">
-<ListView
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:id="@+id/userList"
-    >
-</ListView>
+    tools:context="com.example.heem.togetherfit.UserRegInAClass"
+    android:background="@drawable/backgroundsec">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <!-- Header aligned to top -->
+        <include layout="@layout/header"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="#AFD3DF"
+            android:textStyle="bold"
+            android:textSize="20dp"
+            android:text="\nHere Are Users' Information That Are Currently Registered in Your Class ...\n"/>
+        <ListView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/userList"
+        >
+        </ListView>
+    </LinearLayout>
 </RelativeLayout>

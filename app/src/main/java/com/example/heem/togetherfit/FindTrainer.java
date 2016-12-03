@@ -20,7 +20,7 @@ import java.util.List;
 
 public class FindTrainer extends AppCompatActivity {
 
-    private EditText ByLocation;
+    //Variables
     private Button zSearch;
     private Button wtSearch;
     private RadioButton zipBtn;
@@ -37,8 +37,7 @@ public class FindTrainer extends AppCompatActivity {
         TextView welcome = (TextView) findViewById(R.id.title);
         welcome.setTextColor(Color.parseColor("#ffffff"));
 
-
-        ByLocation = (EditText) findViewById(R.id.ZipInput);
+        //fields
         zSearch = (Button) findViewById(R.id.zSearchBtn); //search button for zipcodes
         wtSearch = (Button) findViewById(R.id.wtSearchBtn); //search button for workouttype
         zipBtn = (RadioButton) findViewById(R.id.ZipRadio);
@@ -64,17 +63,10 @@ public class FindTrainer extends AppCompatActivity {
         zSearch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String Zip = ByLocation.getText().toString();
-
-                if (TextUtils.isEmpty(Zip) || Zip.length()!=5) {
-                    Toast.makeText(getApplicationContext(), "Enter A Valid Zip Code", Toast.LENGTH_SHORT).show();
-                    return;
-                }
-                else{
-                    Intent intent = new Intent(FindTrainer.this, ShowTrainer.class);
-                    intent.putExtra("Zip", Zip); //sends Zip to next page
-                    startActivity(intent);
-                }
+                //When user try to find trainer by location, take the user to map
+                Intent intent = new Intent(FindTrainer.this, showtrainermap.class);
+                //start the activity
+                startActivity(intent);
             }
         });
 
@@ -93,7 +85,6 @@ public class FindTrainer extends AppCompatActivity {
         zipBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                findViewById(R.id.ZipInput).setVisibility(View.VISIBLE);
                 findViewById(R.id.WorkoutTypeRadio).setVisibility(View.INVISIBLE);
                 findViewById(R.id.zSearchBtn).setVisibility(View.VISIBLE);
                 findViewById(R.id.redo).setVisibility(View.VISIBLE);
@@ -129,36 +120,6 @@ public class FindTrainer extends AppCompatActivity {
             }
         });
 
-        //***************************************************************
-        //              Buttons on the imported header
-        //***************************************************************
-        //Back button takes back to sign in activity
-        //This is the way to refer to outside button from another laytout back button is in header.xml
-        /*
-        View myLayout = findViewById(R.id.backbtnlayout); // root View id from that link
-        Button backbutton = (Button) myLayout.findViewById(R.id.backbtn); // id of a view contained in the included file
-        backbutton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // the name of the receiving activity is declared in the Intent Constructor, go back to log in page
-                Intent back = new Intent(FindTrainer.this, FindTrainer.class);
-                //start the activity
-                startActivity(back);
-            }
-        });
-        //Log out button at the tool bar to take the user to main page
-        View myLayout2 = findViewById(R.id.signOut); // root View id from that link
-        Button signOut = (Button) myLayout2.findViewById(R.id.signOutbtn); // id of a view contained in the included file
-        signOut.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent logout = new Intent(FindTrainer.this, StudentLogin.class);
-                finish();
-                startActivity(logout);
-            }
-        });
-
-*/
     }
 }
 

@@ -44,7 +44,7 @@ public class TrainerDashboard extends AppCompatActivity {
             }
         });
         //Back button takes back to sign in activity
-        //This is the way to refer to outside button from another laytout back button is in header.xml
+        //This is the way to refer to outside button from another layout back button is in header.xml
         View myLayout = findViewById( R.id.backbtnlayout ); // root View id from that link
         Button backbutton = (Button) myLayout.findViewById( R.id.backbtn ); // id of a view contained in the included file
         backbutton.setOnClickListener(new View.OnClickListener() {

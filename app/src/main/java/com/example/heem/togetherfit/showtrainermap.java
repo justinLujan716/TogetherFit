@@ -9,7 +9,7 @@ import android.location.Geocoder;
 import android.location.Location;
 import android.location.LocationManager;
 import android.os.AsyncTask;
-import android.support.v7.app.AppCompatActivity;
+import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Gravity;
@@ -47,7 +47,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
-public class FindPlaceStudent extends AppCompatActivity implements OnMapReadyCallback {
+public class showtrainermap extends FragmentActivity implements OnMapReadyCallback {
 
     //Map
     private GoogleMap mMap;
@@ -74,70 +74,99 @@ public class FindPlaceStudent extends AppCompatActivity implements OnMapReadyCal
     Button searchbtn;
     Button updateLoc;
     EditText txtUpdate;
-    Context mContext = FindPlaceStudent.this;
+    Context mContext = showtrainermap.this;
+    Button clearPath;
     //To find distance
     Location start;
     Location dis;
     LatLng holdCurrent;
+    //To keep track of paths
     List<Polyline> polyPaths = new ArrayList<>();
+    //To record trainer information
+    List<String> trainername = new ArrayList<>();
+    List<String> traineremail = new ArrayList<>();
+    List<String> trainerfitnesstype = new ArrayList<>();
+
+
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_find_place_student);
+        setContentView(R.layout.activity_showtrainermap);
         // Connect to the Firebase database and access TrainerPlaces database
-        database = FirebaseDatabase.getInstance().getReference().child("StudentPlaces");
+        database = FirebaseDatabase.getInstance().getReference().child("User");
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
-        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map2);
+        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
         // Create a storage reference from our app
         //StorageReference storageRef = storage.getReferenceFromUrl("gs://<your-bucket-name>");
 
         /*
          * Show closets locations
-         * Search button, once the user click on this button. To Show the user all closest fitness places
+         * Search button, once the user click on this button. To Show the user all closest places to train students at
          */
 
-        searchbtn = (Button) findViewById(R.id.searchs);
+        searchbtn = (Button) findViewById(R.id.search);
         searchbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 // Attach a listener to read the data at our posts reference
                 database.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot snapshot) {
                         toPrint = new ArrayList<String>(); //To update array list
                         for (DataSnapshot chunk : snapshot.getChildren()) {
-                            //get value from the database. The name to find closets locations.
-                            String name = (String) chunk.child("name").getValue();
+                            //get value from the database. You the name to find closets locations.
+                            String localAddress = (String) chunk.child("Address").getValue();
+                            String localCity = (String) chunk.child("City").getValue();
+                            String localState = (String) chunk.child("State").getValue();
+                            String localZip = (String) chunk.child("ZipCode").getValue();
+                            String locallocation = localAddress + " " + localCity + " " + localState + " " + localZip;
+                            //get the user type and check if it is trainer or not
+                            String userType = (String) chunk.child("Type").getValue();
                             //For the new location from the Database
                             //Find the lat and lon for the new location
-                            LatLng nearLoc = getLocationFromAddress(name);
-                            if (nearLoc != null) {  //To make sure that nearLoc is not null first
-                                double lat = nearLoc.latitude;
-                                double lon = nearLoc.longitude;
-                                dis = latlngToloc(lat, lon); //Update the distention
-                                float distance = start.distanceTo(dis) / 1000;
-                                //To find a distance in KM
-                                if (distance <= 5) //Find places near the current location, at most 5 KM almost 2.5 Miles
-                                    toPrint.add(name); //Add them to the toPrint list
+                            if (userType.equalsIgnoreCase("trainer")) {
+                                LatLng nearLoc = getLocationFromAddress(locallocation);
+                                if (nearLoc != null) {  //To make sure that nearLoc is not null first
+                                    double lat = nearLoc.latitude;
+                                    double lon = nearLoc.longitude;
+                                    dis = latlngToloc(lat, lon); //Update the distention
+                                    float distance = start.distanceTo(dis) / 1000;
+                                    //To find a distance in KM
+                                    if (distance <= 5) { //Find places near the current location, at most 5 KM almost 2.5 Miles
+                                        toPrint.add(locallocation); //Add them to the toPrint list
+                                        String getTrainername = (String) chunk.child("Name").getValue();
+                                        trainername.add(getTrainername);
+                                        String getTraineremail = (String) chunk.child("Email").getValue();
+                                        traineremail.add(getTraineremail);
+                                        String getTrainerfitnesstype = (String) chunk.child("FitnessType").getValue();
+                                        trainerfitnesstype.add(getTrainerfitnesstype);
+                                    }
+                                }
                             }
+                            else
+                            {
+                                //Since it is not trainer do not check
+                                continue;
+                            }
+
                         }
 
                         //To print out each location close to the current location
                         if (toPrint.size() > 0) {
+                            int  i  = 0;
                             for (String s : toPrint) {
                                 //Find closets place to the trainer
                                 LatLng closeLoc = getLocationFromAddress(s);
                                 latitude = closeLoc.latitude;
                                 longitude = closeLoc.longitude;
-                                address(latitude, longitude, s, BitmapDescriptorFactory.HUE_AZURE);
+                                address(latitude, longitude, s, BitmapDescriptorFactory.HUE_AZURE, i);
+                                i++;
                             }
-                        }
-                        else
-                            Toast.makeText(getApplicationContext(),"Can not find a close places",Toast.LENGTH_SHORT).show();
+                        } else
+                            Toast.makeText(getApplicationContext(), "Can not find a close trainers", Toast.LENGTH_SHORT).show();
                     }
 
                     @Override
@@ -157,18 +186,15 @@ public class FindPlaceStudent extends AppCompatActivity implements OnMapReadyCal
          * to update current location when user click on the search button and typing a valid location
          */
 
-        updateLoc = (Button) findViewById(R.id.updateLocations);
-        txtUpdate = (EditText) findViewById(R.id.txtupdateLocations);
+        updateLoc = (Button) findViewById(R.id.updateLocation);
+        txtUpdate = (EditText) findViewById(R.id.txtupdateLocation);
         updateLoc.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 newLocation = String.valueOf(txtUpdate.getText());
-                if (newLocation.length()<= 5)
-                {
+                if (newLocation.length() <= 5) {
                     Toast.makeText(getApplicationContext(), "You must enter a valid location", Toast.LENGTH_LONG).show();
-                }
-                else
-                {
+                } else {
                     //get the string entered by user
                     location = getLocationFromAddress(newLocation);
                     holdCurrent = getLocationFromAddress(newLocation); //To hold
@@ -178,35 +204,36 @@ public class FindPlaceStudent extends AppCompatActivity implements OnMapReadyCal
                     mMap.animateCamera(cameraUpdate);
                     latitude = location.latitude;
                     longitude = location.longitude;
-                    start = latlngToloc(latitude,longitude);
+                    start = latlngToloc(latitude, longitude);
                     //Rose to distinguish the current location marker
-                    address(latitude,longitude,("Your location: " + newLocation),BitmapDescriptorFactory.HUE_ROSE);
+                    address(latitude, longitude, ("Your location: " + newLocation), BitmapDescriptorFactory.HUE_ROSE, -1);// -1 because we do not need to add trainer info
                 }
 
             }
         });
 
+
         //Back button takes back to sign in activity
-        //This is the way to refer to outside button from another layout back button is in header.xml
-        View myLayout = findViewById( R.id.backbtnlayout ); // root View id from that link
-        Button backbutton = (Button) myLayout.findViewById( R.id.backbtn ); // id of a view contained in the included file
+        //This is the way to refer to outside button from another laytout back button is in header.xml
+        View myLayout = findViewById(R.id.backbtnlayout); // root View id from that link
+        Button backbutton = (Button) myLayout.findViewById(R.id.backbtn); // id of a view contained in the included file
         backbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 // the name of the receiving activity is declared in the Intent Constructor, go back to log in page
-                Intent back = new Intent(FindPlaceStudent.this, StudentDashboard.class);
+                Intent back = new Intent(showtrainermap.this, FindTrainer.class);
                 //start the activity
                 startActivity(back);
             }
         });
         //Log out button at the tool bar to take the user to main page
-        View myLayout2 = findViewById( R.id.signOut); // root View id from that link
-        Button signOut = (Button) myLayout2.findViewById( R.id.signOutbtn ); // id of a view contained in the included file
+        View myLayout2 = findViewById(R.id.signOut); // root View id from that link
+        Button signOut = (Button) myLayout2.findViewById(R.id.signOutbtn); // id of a view contained in the included file
         signOut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 FirebaseAuth.getInstance().signOut();
-                Intent back = new Intent(FindPlaceStudent.this, MainActivity.class);
+                Intent back = new Intent(showtrainermap.this, MainActivity.class);
                 //start the activity
                 startActivity(back);
             }
@@ -229,7 +256,7 @@ public class FindPlaceStudent extends AppCompatActivity implements OnMapReadyCal
 
         mMap = googleMap;
         // create class object from GPSTracker which will find current location if it is enabled or ask the user to enable locaiton service
-        gps = new GPSTracker(FindPlaceStudent.this,FindPlaceStudent.this);
+        gps = new GPSTracker(showtrainermap.this,showtrainermap.this);
         geocoder = new Geocoder(this, Locale.getDefault());
         Log.e("latitude", "latitude--" + latitude);
         // check if GPS enabled
@@ -249,7 +276,7 @@ public class FindPlaceStudent extends AppCompatActivity implements OnMapReadyCal
         start = latlngToloc(latitude,longitude);
         holdCurrent = new LatLng(latitude,longitude); //To hold
         //Rose to distinguish the current location marker
-        address(latitude,longitude,"Your location",BitmapDescriptorFactory.HUE_ROSE);
+        address(latitude,longitude,"Your location",BitmapDescriptorFactory.HUE_ROSE,-1);//-1 because we do not need to add trainer info
 
     }
 
@@ -288,7 +315,7 @@ public class FindPlaceStudent extends AppCompatActivity implements OnMapReadyCal
     /*
      * Method to update complete address from lng and lat to string address and also add a marker
      */
-    public void address(double lat, double lng, String name, float f) {
+    public void address(double lat, double lng, String name, float f, int index) {
 
         //These variables to get the complete address
         location = new LatLng(lat, lng);
@@ -306,8 +333,18 @@ public class FindPlaceStudent extends AppCompatActivity implements OnMapReadyCal
                 country = addresses.get(0).getCountryName();
                 postalCode = addresses.get(0).getPostalCode();
                 knownName = addresses.get(0).getFeatureName(); //We might use it in future just keep it
-                //This will appare when the user click on the marker (marker color passonh when the method is called)
-                mMap.addMarker(new MarkerOptions().position(location).title(name).snippet("Street: " + address +"\n"+"City: " + city + "\n" + "State: " + state  +"\n" + "Country: " + country + "\n" + "Postal Code: " + postalCode).icon(BitmapDescriptorFactory.defaultMarker(f)));
+                if (index != -1) {
+                    String tname = trainername.get(index);
+                    String temail = traineremail.get(index);
+                    String tfitness = trainerfitnesstype.get(index);
+                    //This will appare when the user click on the marker (marker color passonh when the method is called)
+                    mMap.addMarker(new MarkerOptions().position(location).title("Trainer Name: " + tname).snippet("Trainer Email: " + traineremail + "\nTrainer Fitness Type: " + trainerfitnesstype + "\nStreet: " + address + "\n" + "City: " + city + "\n" + "State: " + state + "\n" + "Country: " + country + "\n" + "Postal Code: " + postalCode).icon(BitmapDescriptorFactory.defaultMarker(f)));
+
+                }
+                else {
+                    //This will appare when the user click on the marker (marker color passonh when the method is called)
+                    mMap.addMarker(new MarkerOptions().position(location).title(name).snippet("Street: " + address + "\n" + "City: " + city + "\n" + "State: " + state + "\n" + "Country: " + country + "\n" + "Postal Code: " + postalCode).icon(BitmapDescriptorFactory.defaultMarker(f)));
+                }
 
             }
         } catch (IOException e) {
@@ -341,6 +378,7 @@ public class FindPlaceStudent extends AppCompatActivity implements OnMapReadyCal
                 TextView snippet = new TextView(mContext);
                 snippet.setTextColor(Color.BLACK);
                 snippet.setText(marker.getSnippet());
+
                 info.addView(title);
                 info.addView(snippet);
                 LatLng position = marker.getPosition();
@@ -348,7 +386,10 @@ public class FindPlaceStudent extends AppCompatActivity implements OnMapReadyCal
                 return info;
             }
         });
+
+
     }
+
 
 
     /*
@@ -370,7 +411,7 @@ public class FindPlaceStudent extends AppCompatActivity implements OnMapReadyCal
      */
     public void Direction(LatLng from, LatLng to){
         String url = makeURL(from, to);
-        FindPlaceStudent.RoutePathTask routePathTask = new FindPlaceStudent.RoutePathTask(url);
+        showtrainermap.RoutePathTask routePathTask = new showtrainermap.RoutePathTask(url);
         routePathTask.execute();
     }
 
@@ -398,6 +439,7 @@ public class FindPlaceStudent extends AppCompatActivity implements OnMapReadyCal
             }
         }
     }
+
     /*
      *Method to draw the path between 2 points
      */
@@ -424,7 +466,6 @@ public class FindPlaceStudent extends AppCompatActivity implements OnMapReadyCal
         }
         catch (JSONException e) {
             e.printStackTrace();
-
         }
     }
 
@@ -483,10 +524,9 @@ public class FindPlaceStudent extends AppCompatActivity implements OnMapReadyCal
         return urlString.toString();
     }
 
-
     /*
- * Method to clear the path
- */
+     * Method to clear the path
+     */
     public void deletePath()
     {
         for(Polyline path: polyPaths)

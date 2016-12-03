@@ -70,15 +70,17 @@
             android:label="Map" />
         <activity android:name=".StudentDashboard" />
         <activity android:name=".AddClass" />
-        <activity
-            android:name=".ClassDetail"
-            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".ClassDetail" />
         <activity android:name=".ConfirmRegistration" />
         <activity android:name=".ShowClasses" />
         <activity android:name=".EditProfileStudent" />
         <activity android:name=".EditProfileTrainer" />
-        <activity android:name=".UserRegInAClass">
-        </activity>
+        <activity android:name=".UserRegInAClass" />
+        <activity android:name=".SendEmailThroughAndroid" />
+        <activity
+            android:name=".showtrainermap"
+            android:label="Map" />
+        <activity android:name=".EmailSentConfirmation"></activity>
     </application>
 
 </manifest>

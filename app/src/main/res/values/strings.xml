@@ -89,4 +89,6 @@
 
     <string name="pref_title_vibrate">Vibrate</string>
     <string name="title_activity_classdetails">classdetails</string>
+    <string name="title_activity_showtraineronmap">Map</string>
+    <string name="title_activity_showtrainermap">Map</string>
 </resources>

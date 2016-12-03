@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_confirm_registration"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.example.heem.togetherfit.ConfirmRegistration"
+    android:orientation="vertical"
+    android:weightSum="2">
+    <!-- Header aligned to top -->
+    <include layout="@layout/header"/>
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/logo"
+        android:layout_weight="1"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="50dp"
+        android:textSize="25dp"
+        android:textStyle="bold"
+        android:textColor="#444345"
+        android:gravity="center"
+        android:layout_weight="1"
+        android:text="Thank You For Using TogetherFit\nYour Email Has Been Sent!"/>
+
+</LinearLayout>

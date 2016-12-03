@@ -55,8 +55,6 @@ public class SendEmail extends AsyncTask<Void,Void,Void> {
         super.onPostExecute(aVoid);
         //Dismissing the progress dialog
         progressDialog.dismiss();
-        //Showing a success message, this is just to test do not show for the user !
-        //Toast.makeText(context,"Email Sent",Toast.LENGTH_SHORT).show();
     }
 
     @Override

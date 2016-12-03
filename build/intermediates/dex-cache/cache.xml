@@ -12,12 +12,39 @@
     </item>
     <item
         is-multidex="true"
+        jar="/Users/Heem/Desktop/TogetherFit/teamb/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-identity/9.8.0/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="cef85cfc7df40e29fbea58844dd4c1e7d0b15542">
+        <dex dex="/Users/Heem/Desktop/TogetherFit/teamb/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-identity-9.8.0_58f070d91b9a61fd81022ad5f62144f4c9ff65a1/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
         jar="/Users/Heem/Desktop/TogetherFit/teamb/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-auth/9.8.0/jars/classes.jar"
         jumboMode="true"
         optimize="true"
         revision="25.0.0"
         sha1="ca851be26ff89f5b32cc222cee98139fb3fac830">
         <dex dex="/Users/Heem/Desktop/TogetherFit/teamb/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-auth-9.8.0_1136bd14007496665eecf9449d28f5b4b9a3804c/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/Heem/Desktop/TogetherFit/teamb/app/build/intermediates/exploded-aar/com.android.support/support-v4/24.0.0/jars/libs/internal_impl-24.0.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="fcaf463e10e69c1923ccf1edeba3b4196d239e00">
+        <dex dex="/Users/Heem/Desktop/TogetherFit/teamb/app/build/intermediates/transforms/dex/debug/folders/1000/10/internal_impl-24.0.0_9bc0944c5370592c1c99cf6560e252bef9692241/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/Heem/Desktop/TogetherFit/teamb/app/build/intermediates/exploded-aar/com.google.firebase/firebase-analytics-impl/9.8.0/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="190a642ba16d1421296a4d794606279b80039c59">
+        <dex dex="/Users/Heem/Desktop/TogetherFit/teamb/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.firebase-firebase-analytics-impl-9.8.0_453473563680578b00d6653752832dbaa2568c17/classes.dex" />
     </item>
     <item
         is-multidex="true"
@@ -93,12 +120,75 @@
     </item>
     <item
         is-multidex="true"
+        jar="/Users/Heem/Desktop/TogetherFit/teamb/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-awareness/9.8.0/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="a2537b11ae24b42172d34e2a613fc0b903c56158">
+        <dex dex="/Users/Heem/Desktop/TogetherFit/teamb/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-awareness-9.8.0_3fff1d18f291138f422f75fd45a67208d5eda937/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/Heem/Desktop/TogetherFit/teamb/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-cast/9.8.0/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="74ac7cbcf0de4a88e59612dc3a9e3f9e71acb4ca">
+        <dex dex="/Users/Heem/Desktop/TogetherFit/teamb/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-cast-9.8.0_98d47d2470616b02fa8d57b16ae5e15e6fb0427c/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/Heem/Desktop/TogetherFit/teamb/app/build/intermediates/exploded-aar/com.google.firebase/firebase-auth/9.8.0/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="15e59454416c6341bd3ed2533b585cd340682dd1">
+        <dex dex="/Users/Heem/Desktop/TogetherFit/teamb/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.firebase-firebase-auth-9.8.0_01ceca41ff842071fa3e3ef392170b327143635c/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/Heem/Desktop/TogetherFit/teamb/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-panorama/9.8.0/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="2d3035050a075484cbf2e33f1ce1f779bae4d451">
+        <dex dex="/Users/Heem/Desktop/TogetherFit/teamb/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-panorama-9.8.0_ae3a3be4b09b1927dadce6f2966e99cf3d884966/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/Heem/Desktop/TogetherFit/teamb/app/lib/additionnal.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="bd9e8dc422bb8c8405359947fe9f4282b49f57f4">
+        <dex dex="/Users/Heem/Desktop/TogetherFit/teamb/app/build/intermediates/transforms/dex/debug/folders/1000/2/additionnal_96064c3fc717b9ad8ea28304e429c348afc583e5/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/Heem/Desktop/TogetherFit/teamb/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-maps/9.8.0/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="122ec9237acd8a57d974b9d529987f1ee6ca5aea">
+        <dex dex="/Users/Heem/Desktop/TogetherFit/teamb/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-maps-9.8.0_836c6f70f702ec70406dca5ce0d08b0b3bb1fe97/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
         jar="/Users/Heem/Desktop/TogetherFit/teamb/app/build/intermediates/exploded-aar/com.google.firebase/firebase-messaging/9.8.0/jars/classes.jar"
         jumboMode="true"
         optimize="true"
         revision="25.0.0"
         sha1="5ffe8867f51cfc726e9fb21db1e5b6962ebf25a0">
         <dex dex="/Users/Heem/Desktop/TogetherFit/teamb/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.firebase-firebase-messaging-9.8.0_05a5c1ba195b338117a75c195711a03a94b2609e/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/Heem/Desktop/TogetherFit/teamb/app/build/intermediates/exploded-aar/com.android.support/recyclerview-v7/23.4.0/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="ec75036c3c52e451d0cde50a5aedaf5fd32354a0">
+        <dex dex="/Users/Heem/Desktop/TogetherFit/teamb/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-recyclerview-v7-23.4.0_007d1974fa6ed3b1e11da8a2899077637b91c3c2/classes.dex" />
     </item>
     <item
         is-multidex="true"
@@ -129,6 +219,15 @@
     </item>
     <item
         is-multidex="true"
+        jar="/Users/Heem/Desktop/TogetherFit/teamb/app/build/intermediates/exploded-aar/com.google.firebase/firebase-auth-module/9.8.0/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="3f8f779a22cbb4c4d0759467a4f1011bb5252970">
+        <dex dex="/Users/Heem/Desktop/TogetherFit/teamb/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.firebase-firebase-auth-module-9.8.0_af1692607231c3aef48884eabff986ddbe799bba/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
         jar="/Users/Heem/Desktop/TogetherFit/teamb/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-games/9.8.0/jars/classes.jar"
         jumboMode="true"
         optimize="true"
@@ -138,12 +237,48 @@
     </item>
     <item
         is-multidex="true"
+        jar="/Users/Heem/Desktop/TogetherFit/teamb/app/lib/activation.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="d1257cbff6faa44c1f325ae0d9413522d4644383">
+        <dex dex="/Users/Heem/Desktop/TogetherFit/teamb/app/build/intermediates/transforms/dex/debug/folders/1000/2/activation_600ce275522efec60a700ded2f0b5be4834a1ef2/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
         jar="/Users/Heem/Desktop/TogetherFit/teamb/app/build/intermediates/exploded-aar/com.android.support/mediarouter-v7/24.0.0/jars/classes.jar"
         jumboMode="true"
         optimize="true"
         revision="25.0.0"
         sha1="b327fbe2fad414bc38cf0ce8f7efe1a38f572837">
         <dex dex="/Users/Heem/Desktop/TogetherFit/teamb/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-mediarouter-v7-24.0.0_da0d75e27657246c61043d124562aa24a90be801/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/Heem/Desktop/TogetherFit/teamb/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-appindexing/9.8.0/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="e3234cd25e23069abd48ecd2117bc0e8011bf45a">
+        <dex dex="/Users/Heem/Desktop/TogetherFit/teamb/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-appindexing-9.8.0_6ee4bf8cd91a8c9b475e7b302c7209efe6398b4a/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/Heem/Desktop/TogetherFit/teamb/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-places/9.8.0/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="679251204de40ace98776a6f4e3a649c27e3d89f">
+        <dex dex="/Users/Heem/Desktop/TogetherFit/teamb/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-places-9.8.0_fc5a4400c5bee2505589c59cab51f62bbf8fa393/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/Heem/Desktop/TogetherFit/teamb/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-ads/9.8.0/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="f2d240dd085626f03f759c41d628a0c8b63e491f">
+        <dex dex="/Users/Heem/Desktop/TogetherFit/teamb/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-ads-9.8.0_cecbb098f5e5f2ebd74f1288fd18e732ae198aa2/classes.dex" />
     </item>
     <item
         is-multidex="true"
@@ -189,240 +324,6 @@
         revision="25.0.0"
         sha1="9ff04cc3470178a44512624036751a803418c2ca">
         <dex dex="/Users/Heem/Desktop/TogetherFit/teamb/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.firebase-firebase-analytics-9.8.0_9c5081c2eac7c19692d9bb600241d702690cf781/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/Users/Heem/Desktop/TogetherFit/teamb/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-gass/9.8.0/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.0"
-        sha1="363a20f1d25336e827dd24020f2ecdc42d62638f">
-        <dex dex="/Users/Heem/Desktop/TogetherFit/teamb/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-gass-9.8.0_d0058d271b44c54e978f0e4403d936ac86b76bcf/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/Users/Heem/Desktop/TogetherFit/teamb/app/build/intermediates/exploded-aar/com.google.firebase/firebase-crash/9.8.0/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.0"
-        sha1="b4671be3d1288bf4e5f527cd33e42909fbe4ecc6">
-        <dex dex="/Users/Heem/Desktop/TogetherFit/teamb/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.firebase-firebase-crash-9.8.0_f51a4fd33e1b791bf1af8dbc2cbe5c0172cfd4dc/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/Users/Heem/Desktop/TogetherFit/teamb/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-vision/9.8.0/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.0"
-        sha1="a30aea7df545072ad3c06f56b2efc13e67222140">
-        <dex dex="/Users/Heem/Desktop/TogetherFit/teamb/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-vision-9.8.0_ed39af61ab04c46fcdee2deecf0d5de2e6246e9f/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/Users/Heem/Desktop/TogetherFit/teamb/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-nearby/9.8.0/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.0"
-        sha1="c81df6bd515398ebe45089b0b16c55752a131f6a">
-        <dex dex="/Users/Heem/Desktop/TogetherFit/teamb/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-nearby-9.8.0_0332b14e4c9a0eb03341a22518cbff79fb4b24bd/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/Users/Heem/Desktop/TogetherFit/teamb/app/build/intermediates/exploded-aar/com.google.firebase/firebase-storage/9.8.0/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.0"
-        sha1="7fd91ec2730fdaa82906aad32a3f3d3e574bae56">
-        <dex dex="/Users/Heem/Desktop/TogetherFit/teamb/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.firebase-firebase-storage-9.8.0_7f6c2af3a06b4414f81cbcaa67388f5fe4813f58/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/Users/Heem/Desktop/TogetherFit/teamb/app/build/intermediates/exploded-aar/com.android.support/support-v4/24.0.0/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.0"
-        sha1="2f7e6e2dad1bccaf68a8820820adc6c0d5b96d37">
-        <dex dex="/Users/Heem/Desktop/TogetherFit/teamb/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-v4-24.0.0_06e737c28671d138be77e40ca5cc89b5d8a528e6/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/Users/Heem/Desktop/TogetherFit/teamb/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-wallet/9.8.0/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.0"
-        sha1="910c013c511f752c4bbe24c5f492f669f4a3ccc0">
-        <dex dex="/Users/Heem/Desktop/TogetherFit/teamb/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-wallet-9.8.0_7da8d5eb6ad47d9a608c53e2e6eaab1331ef6ff6/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/Users/Heem/Desktop/TogetherFit/teamb/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-analytics/9.8.0/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.0"
-        sha1="16afe57c1d7f8165d107c7806ce7b0c71de87159">
-        <dex dex="/Users/Heem/Desktop/TogetherFit/teamb/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-analytics-9.8.0_52ec546a6190c20e39e293bd657e735673fe5fe3/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/Users/Heem/Desktop/TogetherFit/teamb/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-tagmanager/9.8.0/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.0"
-        sha1="a972970c8beddb69c198f61f3fc55f0606a7dfe3">
-        <dex dex="/Users/Heem/Desktop/TogetherFit/teamb/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-tagmanager-9.8.0_20df7e19a86874e3990b5f257e49183b61c359ed/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/Users/Heem/Desktop/TogetherFit/teamb/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-gcm/9.8.0/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.0"
-        sha1="9dae58326f6f6a515022468cce56dd04ec3b9fdb">
-        <dex dex="/Users/Heem/Desktop/TogetherFit/teamb/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-gcm-9.8.0_907a4b1f9b76e67bcdd824181807fce0b24b676a/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/Users/Heem/Desktop/TogetherFit/teamb/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-appinvite/9.8.0/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.0"
-        sha1="e56f31b23ddb067f95f01255295167db7c798612">
-        <dex dex="/Users/Heem/Desktop/TogetherFit/teamb/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-appinvite-9.8.0_c6a780eb46df80e33bcaac6b4e7bbcdad8db841d/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/Users/Heem/Desktop/TogetherFit/teamb/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.0.0/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.0"
-        sha1="0874286cc2fd88d54fdf130e9d5372730da6de97">
-        <dex dex="/Users/Heem/Desktop/TogetherFit/teamb/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-appcompat-v7-24.0.0_c76c4fa01c917b95b367e8ca0d9e4cd13a16c657/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/Users/Heem/Desktop/TogetherFit/teamb/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-ads-lite/9.8.0/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.0"
-        sha1="e9b2cfdfd59b03643f1e240668275378b96615a8">
-        <dex dex="/Users/Heem/Desktop/TogetherFit/teamb/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-ads-lite-9.8.0_e408b11f45bbd3a72538f3f5bae79037225c43e5/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/Users/Heem/Desktop/TogetherFit/teamb/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-identity/9.8.0/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.0"
-        sha1="cef85cfc7df40e29fbea58844dd4c1e7d0b15542">
-        <dex dex="/Users/Heem/Desktop/TogetherFit/teamb/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-identity-9.8.0_58f070d91b9a61fd81022ad5f62144f4c9ff65a1/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/Users/Heem/Desktop/TogetherFit/teamb/app/build/intermediates/exploded-aar/com.android.support/support-v4/24.0.0/jars/libs/internal_impl-24.0.0.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.0"
-        sha1="fcaf463e10e69c1923ccf1edeba3b4196d239e00">
-        <dex dex="/Users/Heem/Desktop/TogetherFit/teamb/app/build/intermediates/transforms/dex/debug/folders/1000/10/internal_impl-24.0.0_9bc0944c5370592c1c99cf6560e252bef9692241/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/Users/Heem/Desktop/TogetherFit/teamb/app/build/intermediates/exploded-aar/com.google.firebase/firebase-analytics-impl/9.8.0/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.0"
-        sha1="190a642ba16d1421296a4d794606279b80039c59">
-        <dex dex="/Users/Heem/Desktop/TogetherFit/teamb/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.firebase-firebase-analytics-impl-9.8.0_453473563680578b00d6653752832dbaa2568c17/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/Users/Heem/Desktop/TogetherFit/teamb/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-awareness/9.8.0/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.0"
-        sha1="a2537b11ae24b42172d34e2a613fc0b903c56158">
-        <dex dex="/Users/Heem/Desktop/TogetherFit/teamb/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-awareness-9.8.0_3fff1d18f291138f422f75fd45a67208d5eda937/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/Users/Heem/Desktop/TogetherFit/teamb/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-cast/9.8.0/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.0"
-        sha1="74ac7cbcf0de4a88e59612dc3a9e3f9e71acb4ca">
-        <dex dex="/Users/Heem/Desktop/TogetherFit/teamb/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-cast-9.8.0_98d47d2470616b02fa8d57b16ae5e15e6fb0427c/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/Users/Heem/Desktop/TogetherFit/teamb/app/build/intermediates/exploded-aar/com.google.firebase/firebase-auth/9.8.0/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.0"
-        sha1="15e59454416c6341bd3ed2533b585cd340682dd1">
-        <dex dex="/Users/Heem/Desktop/TogetherFit/teamb/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.firebase-firebase-auth-9.8.0_01ceca41ff842071fa3e3ef392170b327143635c/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/Users/Heem/Desktop/TogetherFit/teamb/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-panorama/9.8.0/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.0"
-        sha1="2d3035050a075484cbf2e33f1ce1f779bae4d451">
-        <dex dex="/Users/Heem/Desktop/TogetherFit/teamb/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-panorama-9.8.0_ae3a3be4b09b1927dadce6f2966e99cf3d884966/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/Users/Heem/Desktop/TogetherFit/teamb/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-maps/9.8.0/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.0"
-        sha1="122ec9237acd8a57d974b9d529987f1ee6ca5aea">
-        <dex dex="/Users/Heem/Desktop/TogetherFit/teamb/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-maps-9.8.0_836c6f70f702ec70406dca5ce0d08b0b3bb1fe97/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/Users/Heem/Desktop/TogetherFit/teamb/app/build/intermediates/exploded-aar/com.android.support/recyclerview-v7/23.4.0/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.0"
-        sha1="ec75036c3c52e451d0cde50a5aedaf5fd32354a0">
-        <dex dex="/Users/Heem/Desktop/TogetherFit/teamb/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-recyclerview-v7-23.4.0_007d1974fa6ed3b1e11da8a2899077637b91c3c2/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/Users/Heem/Desktop/TogetherFit/teamb/app/build/intermediates/exploded-aar/com.google.firebase/firebase-auth-module/9.8.0/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.0"
-        sha1="3f8f779a22cbb4c4d0759467a4f1011bb5252970">
-        <dex dex="/Users/Heem/Desktop/TogetherFit/teamb/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.firebase-firebase-auth-module-9.8.0_af1692607231c3aef48884eabff986ddbe799bba/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/Users/Heem/Desktop/TogetherFit/teamb/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-appindexing/9.8.0/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.0"
-        sha1="e3234cd25e23069abd48ecd2117bc0e8011bf45a">
-        <dex dex="/Users/Heem/Desktop/TogetherFit/teamb/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-appindexing-9.8.0_6ee4bf8cd91a8c9b475e7b302c7209efe6398b4a/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/Users/Heem/Desktop/TogetherFit/teamb/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-places/9.8.0/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.0"
-        sha1="679251204de40ace98776a6f4e3a649c27e3d89f">
-        <dex dex="/Users/Heem/Desktop/TogetherFit/teamb/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-places-9.8.0_fc5a4400c5bee2505589c59cab51f62bbf8fa393/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/Users/Heem/Desktop/TogetherFit/teamb/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-ads/9.8.0/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.0"
-        sha1="f2d240dd085626f03f759c41d628a0c8b63e491f">
-        <dex dex="/Users/Heem/Desktop/TogetherFit/teamb/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-ads-9.8.0_cecbb098f5e5f2ebd74f1288fd18e732ae198aa2/classes.dex" />
     </item>
     <item
         is-multidex="true"
@@ -480,6 +381,15 @@
     </item>
     <item
         is-multidex="true"
+        jar="/Users/Heem/Desktop/TogetherFit/teamb/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-gass/9.8.0/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="363a20f1d25336e827dd24020f2ecdc42d62638f">
+        <dex dex="/Users/Heem/Desktop/TogetherFit/teamb/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-gass-9.8.0_d0058d271b44c54e978f0e4403d936ac86b76bcf/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
         jar="/Users/Heem/Desktop/TogetherFit/teamb/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-tagmanager-api/9.8.0/jars/classes.jar"
         jumboMode="true"
         optimize="true"
@@ -498,11 +408,29 @@
     </item>
     <item
         is-multidex="true"
+        jar="/Users/Heem/Desktop/TogetherFit/teamb/app/build/intermediates/exploded-aar/com.google.firebase/firebase-crash/9.8.0/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="b4671be3d1288bf4e5f527cd33e42909fbe4ecc6">
+        <dex dex="/Users/Heem/Desktop/TogetherFit/teamb/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.firebase-firebase-crash-9.8.0_f51a4fd33e1b791bf1af8dbc2cbe5c0172cfd4dc/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/Heem/Desktop/TogetherFit/teamb/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-vision/9.8.0/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="a30aea7df545072ad3c06f56b2efc13e67222140">
+        <dex dex="/Users/Heem/Desktop/TogetherFit/teamb/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-vision-9.8.0_ed39af61ab04c46fcdee2deecf0d5de2e6246e9f/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
         jar="/Users/Heem/Desktop/TogetherFit/teamb/app/build/intermediates/incremental-runtime-classes/debug/instant-run.jar"
         jumboMode="true"
         optimize="true"
         revision="25.0.0"
-        sha1="2e89664fa83933a737911c5d8d71fd2bd2007a1e">
+        sha1="3ca4b3af264d5f814a4380c684a0672f9fdc6386">
         <dex dex="/Users/Heem/Desktop/TogetherFit/teamb/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run_5c8941cb61ea8d9821da7f5b25b04dd807a69cb5/classes.dex" />
     </item>
     <item
@@ -525,12 +453,93 @@
     </item>
     <item
         is-multidex="true"
+        jar="/Users/Heem/Desktop/TogetherFit/teamb/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-nearby/9.8.0/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="c81df6bd515398ebe45089b0b16c55752a131f6a">
+        <dex dex="/Users/Heem/Desktop/TogetherFit/teamb/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-nearby-9.8.0_0332b14e4c9a0eb03341a22518cbff79fb4b24bd/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
         jar="/Users/Heem/Desktop/TogetherFit/teamb/app/build/intermediates/exploded-aar/com.android.support/mediarouter-v7/24.0.0/jars/libs/internal_impl-24.0.0.jar"
         jumboMode="true"
         optimize="true"
         revision="25.0.0"
         sha1="b6763651ec29b4c95e7bbe63fc393ffcc8c4c2c5">
         <dex dex="/Users/Heem/Desktop/TogetherFit/teamb/app/build/intermediates/transforms/dex/debug/folders/1000/10/internal_impl-24.0.0_2906f43e407045cedfa6aede978ceabccb7657df/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/Heem/Desktop/TogetherFit/teamb/app/build/intermediates/exploded-aar/com.google.firebase/firebase-storage/9.8.0/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="7fd91ec2730fdaa82906aad32a3f3d3e574bae56">
+        <dex dex="/Users/Heem/Desktop/TogetherFit/teamb/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.firebase-firebase-storage-9.8.0_7f6c2af3a06b4414f81cbcaa67388f5fe4813f58/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/Heem/Desktop/TogetherFit/teamb/app/build/intermediates/exploded-aar/com.android.support/support-v4/24.0.0/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="2f7e6e2dad1bccaf68a8820820adc6c0d5b96d37">
+        <dex dex="/Users/Heem/Desktop/TogetherFit/teamb/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-v4-24.0.0_06e737c28671d138be77e40ca5cc89b5d8a528e6/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/Heem/Desktop/TogetherFit/teamb/app/lib/mail.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="428e267abff0d10802ccde86b915da2c20471160">
+        <dex dex="/Users/Heem/Desktop/TogetherFit/teamb/app/build/intermediates/transforms/dex/debug/folders/1000/2/mail_53ba486a67d82d26e9e7cdf368dbcba1a7164ddd/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/Heem/Desktop/TogetherFit/teamb/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-wallet/9.8.0/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="910c013c511f752c4bbe24c5f492f669f4a3ccc0">
+        <dex dex="/Users/Heem/Desktop/TogetherFit/teamb/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-wallet-9.8.0_7da8d5eb6ad47d9a608c53e2e6eaab1331ef6ff6/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/Heem/Desktop/TogetherFit/teamb/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-analytics/9.8.0/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="16afe57c1d7f8165d107c7806ce7b0c71de87159">
+        <dex dex="/Users/Heem/Desktop/TogetherFit/teamb/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-analytics-9.8.0_52ec546a6190c20e39e293bd657e735673fe5fe3/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/Heem/Desktop/TogetherFit/teamb/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-tagmanager/9.8.0/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="a972970c8beddb69c198f61f3fc55f0606a7dfe3">
+        <dex dex="/Users/Heem/Desktop/TogetherFit/teamb/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-tagmanager-9.8.0_20df7e19a86874e3990b5f257e49183b61c359ed/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/Heem/Desktop/TogetherFit/teamb/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-gcm/9.8.0/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="9dae58326f6f6a515022468cce56dd04ec3b9fdb">
+        <dex dex="/Users/Heem/Desktop/TogetherFit/teamb/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-gcm-9.8.0_907a4b1f9b76e67bcdd824181807fce0b24b676a/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/Heem/Desktop/TogetherFit/teamb/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-appinvite/9.8.0/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="e56f31b23ddb067f95f01255295167db7c798612">
+        <dex dex="/Users/Heem/Desktop/TogetherFit/teamb/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-appinvite-9.8.0_c6a780eb46df80e33bcaac6b4e7bbcdad8db841d/classes.dex" />
     </item>
     <item
         is-multidex="true"
@@ -556,8 +565,26 @@
         jumboMode="true"
         optimize="true"
         revision="25.0.0"
-        sha1="c5f0abc9ebcdd9cdadec7dc130afc4a8169a1721">
+        sha1="d8355d1d1376646a4aa814b698f180b605c30a3c">
         <dex dex="/Users/Heem/Desktop/TogetherFit/teamb/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run-bootstrap_f2fff24776117a0f06fc66fa860a69eb55e65755/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/Heem/Desktop/TogetherFit/teamb/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.0.0/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="0874286cc2fd88d54fdf130e9d5372730da6de97">
+        <dex dex="/Users/Heem/Desktop/TogetherFit/teamb/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-appcompat-v7-24.0.0_c76c4fa01c917b95b367e8ca0d9e4cd13a16c657/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/Heem/Desktop/TogetherFit/teamb/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-ads-lite/9.8.0/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="e9b2cfdfd59b03643f1e240668275378b96615a8">
+        <dex dex="/Users/Heem/Desktop/TogetherFit/teamb/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-ads-lite-9.8.0_e408b11f45bbd3a72538f3f5bae79037225c43e5/classes.dex" />
     </item>
     <item
         is-multidex="true"

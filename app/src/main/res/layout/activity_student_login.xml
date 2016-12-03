@@ -74,6 +74,7 @@
         android:layout_alignParentEnd="true"
         android:backgroundTint="#AFD3DF"
         />
+
     <Button
         android:text="Register"
         android:layout_width="wrap_content"

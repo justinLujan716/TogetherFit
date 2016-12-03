@@ -24,37 +24,29 @@
 
     <Button
         android:text="Search"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/zSearchBtn"
         android:background="#AFD3DF"
         android:onClick="ButtonOnClick"
         android:visibility="invisible"
-        android:textSize="20sp"
+        android:textSize="20dp"
         android:textStyle="normal|bold"
         android:layout_marginTop="49dp"
-        android:layout_below="@+id/workoutDropdownBtn"
-        android:layout_alignLeft="@+id/ZipInput"
-        android:layout_alignStart="@+id/ZipInput"
-        android:layout_alignRight="@+id/ZipInput"
-        android:layout_alignEnd="@+id/ZipInput" />
+        android:layout_below="@+id/workoutDropdownBtn"/>
 
     <Button
         android:text="Search"
         android:visibility="invisible"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/wtSearchBtn"
         android:background="#AFD3DF"
         android:onClick="ButtonOnClick"
-        android:textSize="20sp"
+        android:textSize="20dp"
         android:textStyle="normal|bold"
         android:layout_marginTop="49dp"
-        android:layout_below="@+id/workoutDropdownBtn"
-        android:layout_alignLeft="@+id/ZipInput"
-        android:layout_alignStart="@+id/ZipInput"
-        android:layout_alignRight="@+id/ZipInput"
-        android:layout_alignEnd="@+id/ZipInput" />
+        android:layout_below="@+id/workoutDropdownBtn"/>
 
     <TextView
         android:text="Find a Trainer by..."
@@ -64,7 +56,7 @@
         android:id="@+id/title"
         android:textAppearance="@style/TextAppearance.AppCompat"
         android:fontFamily="sans-serif"
-        android:textSize="20sp"
+        android:textSize="20dp"
         android:textStyle="normal|bold"
         android:visibility="visible"
         android:layout_centerHorizontal="true" />
@@ -74,16 +66,15 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="#C9C9CA"
-        android:textSize="18sp"
         android:textStyle="normal|bold"
         android:id="@+id/WorkoutTypeRadio"
         android:layout_marginTop="31dp"
         android:layout_below="@+id/title"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:textSize="20dp"/>
 
     <RadioButton
-        android:text="Zip Code"
-        android:textSize="18sp"
+        android:text="Location"
         android:textStyle="normal|bold"
         android:textColor="#C9C9CA"
         android:layout_width="wrap_content"
@@ -91,21 +82,8 @@
         android:id="@+id/ZipRadio"
         android:layout_marginTop="21dp"
         android:layout_below="@+id/WorkoutTypeRadio"
-        android:layout_centerHorizontal="true" />
-
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="number"
-        android:textColor="#ffffff"
-        android:textColorHint="#C9C9CA"
-        android:backgroundTint="#AFD3DF"
-        android:ems="10"
-        android:id="@+id/ZipInput"
-        android:hint="Location/Zip Code"
-        android:visibility="invisible"
-        android:layout_alignBottom="@+id/workoutDropdownBtn"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:textSize="20dp"/>
 
     <Spinner
         android:text="Fitness Type"
@@ -118,7 +96,8 @@
         android:layout_marginTop="42dp"
         android:layout_below="@+id/ZipRadio"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:textSize="20dp"/>
 
     <TextView
         android:text="placeholder"
@@ -127,13 +106,14 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:id="@+id/placeholder" />
+        android:id="@+id/placeholder"
+        android:textSize="20dp"/>
 
     <Button
         android:text="Clear Search"
         android:textStyle="normal|bold"
         android:visibility="invisible"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/redo"
         android:layout_marginTop="15dp"
@@ -142,12 +122,13 @@
         android:layout_alignLeft="@+id/zSearchBtn"
         android:layout_alignStart="@+id/zSearchBtn"
         android:layout_alignRight="@+id/zSearchBtn"
+        android:textSize="20dp"
         android:layout_alignEnd="@+id/zSearchBtn" />
 
     <Button
         android:text="Back to Dashboard"
         android:textStyle="normal|bold"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="#AFD3DF"
         android:layout_below="@+id/redo"
@@ -155,8 +136,9 @@
         android:layout_alignStart="@+id/redo"
         android:visibility="visible"
         android:id="@+id/back"
-        android:layout_alignRight="@+id/redo"
-        android:layout_alignEnd="@+id/redo" />
+        android:textSize="20dp"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
 
 
 </RelativeLayout>
