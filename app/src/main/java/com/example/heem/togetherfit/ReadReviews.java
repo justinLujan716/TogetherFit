@@ -45,13 +45,18 @@ public class ReadReviews extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_read_reviews);
+        //listview
+        list = (ListView) findViewById(R.id.listAll);
+        list.setAdapter(null); //to make sure the list view is empty
+
         //Initialize
         UserName = new ArrayList<>();
         Comment = new ArrayList<>();
         Rate = new ArrayList<>();
         Date = new ArrayList<>();
         UserId = new ArrayList<>();
-
+        keeptrackofrating = 0;
+        i = 0;
         //To receive a value from Show Trainer
         Intent intent = getIntent();
         email = (String) intent.getSerializableExtra("traineremail");
@@ -89,20 +94,22 @@ public class ReadReviews extends AppCompatActivity {
 
                 //Access each child under this user who has wrriten a review
                 for (DataSnapshot ds : snapshot.getChildren()) {
-                    for (DataSnapshot single : ds.getChildren()) {
-                        String localid = single.getKey();
-                        String localcomment = (String) single.child("Comment").getValue();
-                        String localrate = (String) single.child("Rating").getValue();
-                        String localdate = (String) single.child("Date").getValue();
-                        //Add them to the lists
-                        UserId.add(localid);
-                        Comment.add(localcomment);
-                        Rate.add(localrate);
-                        Date.add(localdate);
-                        //convert the rating to number
-                        float num = Float.parseFloat(localrate);
-                        keeptrackofrating = keeptrackofrating + num;
-                        i++;
+                    if (id.equalsIgnoreCase(ds.getKey())) {
+                        for (DataSnapshot single : ds.getChildren()) {
+                            String localid = single.getKey();
+                            String localcomment = (String) single.child("Comment").getValue();
+                            String localrate = (String) single.child("Rating").getValue();
+                            String localdate = (String) single.child("Date").getValue();
+                            //Add them to the lists
+                            UserId.add(localid);
+                            Comment.add(localcomment);
+                            Rate.add(localrate);
+                            Date.add(localdate);
+                            //convert the rating to number
+                            float num = Float.parseFloat(localrate);
+                            keeptrackofrating = keeptrackofrating + num;
+                            i++;
+                        }
                     }
                 }
 
@@ -121,9 +128,6 @@ public class ReadReviews extends AppCompatActivity {
                             }
                         }
 
-                        //listview
-                        list = (ListView) findViewById(R.id.listAll);
-                        list.setAdapter(null); //to make sure the list view is empty
 
                         //Just check one of them
                         if (UserName.size() > 0) {

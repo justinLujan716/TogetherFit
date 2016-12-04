@@ -100,6 +100,7 @@ public class WriteReview extends AppCompatActivity {
                             public void run() {
                                 // Actions to do after 10 seconds
                                 Intent intent = new Intent(WriteReview.this, ReadReviews.class);
+                                intent.putExtra("traineremail", email);
                                 startActivity(intent);
                             }
                         }, 3000);
