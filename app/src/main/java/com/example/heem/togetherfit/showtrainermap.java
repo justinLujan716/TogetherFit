@@ -1,6 +1,7 @@
 package com.example.heem.togetherfit;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
@@ -11,6 +12,7 @@ import android.location.LocationManager;
 import android.os.AsyncTask;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
@@ -46,7 +48,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
-
+//Show Trainer by location
 public class showtrainermap extends FragmentActivity implements OnMapReadyCallback {
 
     //Map
@@ -86,7 +88,7 @@ public class showtrainermap extends FragmentActivity implements OnMapReadyCallba
     List<String> trainername = new ArrayList<>();
     List<String> traineremail = new ArrayList<>();
     List<String> trainerfitnesstype = new ArrayList<>();
-
+    TextView title;
 
 
 
@@ -338,7 +340,7 @@ public class showtrainermap extends FragmentActivity implements OnMapReadyCallba
                     String temail = traineremail.get(index);
                     String tfitness = trainerfitnesstype.get(index);
                     //This will appare when the user click on the marker (marker color passonh when the method is called)
-                    mMap.addMarker(new MarkerOptions().position(location).title("Trainer Name: " + tname).snippet("Trainer Email: " + traineremail + "\nTrainer Fitness Type: " + trainerfitnesstype + "\nStreet: " + address + "\n" + "City: " + city + "\n" + "State: " + state + "\n" + "Country: " + country + "\n" + "Postal Code: " + postalCode).icon(BitmapDescriptorFactory.defaultMarker(f)));
+                    mMap.addMarker(new MarkerOptions().position(location).title(temail).snippet("Trainer Name: " + tname + "\nTrainer Fitness Type: " + tfitness + "\nStreet: " + address + "\n" + "City: " + city + "\n" + "State: " + state + "\n" + "Country: " + country + "\n" + "Postal Code: " + postalCode).icon(BitmapDescriptorFactory.defaultMarker(f)));
 
                 }
                 else {
@@ -367,10 +369,9 @@ public class showtrainermap extends FragmentActivity implements OnMapReadyCallba
 
                 if (polyPaths.size()>0) //Delete path just to make sure there is no more than one paths there
                     deletePath();
-
+                title =  new TextView(mContext);
                 LinearLayout info = new LinearLayout(mContext);
                 info.setOrientation(LinearLayout.VERTICAL);
-                TextView title = new TextView(mContext);
                 title.setTextColor(Color.BLACK);
                 title.setGravity(Gravity.CENTER);
                 title.setTypeface(null, Typeface.BOLD);
@@ -387,9 +388,47 @@ public class showtrainermap extends FragmentActivity implements OnMapReadyCallba
             }
         });
 
+        mMap.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {
+            @Override
+            public void onInfoWindowClick(Marker marker) {
+                //final String currentEmail = traineremail.get(+position);
+                final String trainerEmail = title.getText().toString();
+                if (!trainerEmail.equalsIgnoreCase("Your Location")) { //To make sure when the user click on his locaiton nothing appear
+                    AlertDialog.Builder builder = new AlertDialog.Builder(showtrainermap.this);
+                    builder.setMessage("What do you like to do? You chose "+ trainerEmail)
+                            .setCancelable(true)
+                            .setPositiveButton("Send Email", new DialogInterface.OnClickListener() { //To send email
+                                public void onClick(DialogInterface dialog, int id) {
+
+                                    Toast.makeText(showtrainermap.this, "You Clicked at " + trainerEmail + "\nI took you to send email page", Toast.LENGTH_SHORT).show();
+                                    Intent intent = new Intent(showtrainermap.this, SendEmailThroughAndroid.class);
+                                    intent.putExtra("emailTo", trainerEmail);
+                                    startActivity(intent);
+                                }
+                            })
+                            .setNegativeButton("Write Review", new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int id) {
+                                    Intent intent = new Intent(showtrainermap.this,WriteReview.class);
+                                    intent.putExtra("TrainerEmail", trainerEmail);
+                                    startActivity(intent);
+                                }
+                            })
+                            .setNeutralButton("Read Reviews", new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int which) {
+                                    Intent intent = new Intent(showtrainermap.this, ReadReviews.class);
+                                    intent.putExtra("traineremail", trainerEmail);
+                                    //start the activity
+                                    startActivity(intent);
+                                }
+                            });
+                    AlertDialog alert = builder.create();
+                    alert.show();
+                }
+            }
+        });
+
 
     }
-
 
 
     /*

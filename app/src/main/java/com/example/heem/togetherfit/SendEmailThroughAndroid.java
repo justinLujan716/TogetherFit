@@ -23,7 +23,7 @@ public class SendEmailThroughAndroid extends AppCompatActivity {
     EditText sub;
     EditText msg;
     Button send;
-
+    Button back;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +34,7 @@ public class SendEmailThroughAndroid extends AppCompatActivity {
         sub = (EditText) findViewById(R.id.subject);
         msg = (EditText) findViewById(R.id.msg);
         send = (Button) findViewById(R.id.sendbutton);
+
 
         Intent intent = getIntent();
         String emailTo = intent.getStringExtra("emailTo");
@@ -58,13 +59,24 @@ public class SendEmailThroughAndroid extends AppCompatActivity {
                             Intent intent = new Intent(SendEmailThroughAndroid.this, EmailSentConfirmation.class);
                             startActivity(intent);
                         }
-                    }, 5000);
+                    }, 3000);
                 }
                 else
                 {
                     Toast.makeText(getApplicationContext(),"Make sure there is no empty field!",Toast.LENGTH_SHORT).show();
                 }
 
+            }
+        });
+
+        back = (Button) findViewById(R.id.backbutton);
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // the name of the receiving activity is declared in the Intent Constructor, go back to log in page
+                Intent back = new Intent(SendEmailThroughAndroid.this, FindTrainer.class);
+                //start the activity
+                startActivity(back);
             }
         });
     }
@@ -91,6 +103,7 @@ public class SendEmailThroughAndroid extends AppCompatActivity {
         SendEmail sm = new SendEmail(this, toEmail,subject, message);
         //Executing SendEmail to send email
         sm.execute();
+
     }
 
     /*

@@ -72,8 +72,9 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
-        android:backgroundTint="#AFD3DF"
-        />
+        android:backgroundTint="#AFD3DF">
+        <requestFocus />
+    </EditText>
 
     <Button
         android:text="Register"

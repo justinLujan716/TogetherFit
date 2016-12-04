@@ -1,6 +1,7 @@
 package com.example.heem.togetherfit;
 
 import android.content.Intent;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -19,10 +20,11 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import android.content.DialogInterface;
 
 import java.util.ArrayList;
-import java.util.Objects;
 
+//Show Trainer by Fitness Type
 public class ShowTrainer extends AppCompatActivity {
 
     private DatabaseReference mRef;
@@ -87,11 +89,37 @@ public class ShowTrainer extends AppCompatActivity {
                             //When they click on an Item
                             @Override
                             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                                    String currentEmail = email.get(+position);
-                                    Toast.makeText(ShowTrainer.this, "You Clicked at " + name.get(+position) + "\nI took you to send email page", Toast.LENGTH_SHORT).show();
-                                    Intent intent = new Intent(ShowTrainer.this, SendEmailThroughAndroid.class);
-                                    intent.putExtra("emailTo", currentEmail);
-                                    startActivity(intent);
+                                final String currentEmail = email.get(+position);
+                                final String trainname = name.get(+position);
+                                AlertDialog.Builder builder = new AlertDialog.Builder(ShowTrainer.this);
+                                builder.setMessage("What do you like to do? You chose Trainer: " + trainname)
+                                        .setCancelable(true)
+                                        .setPositiveButton("Send Email", new DialogInterface.OnClickListener() {
+                                            public void onClick(DialogInterface dialog, int id) {
+
+                                                Toast.makeText(ShowTrainer.this, "You Clicked at " + trainname + "\nI took you to send email page", Toast.LENGTH_SHORT).show();
+                                                Intent intent = new Intent(ShowTrainer.this, SendEmailThroughAndroid.class);
+                                                intent.putExtra("emailTo", currentEmail);
+                                                startActivity(intent);
+                                            }
+                                        })
+                                        .setNegativeButton("Write Review", new DialogInterface.OnClickListener() {
+                                            public void onClick(DialogInterface dialog, int id) {
+                                                Intent intent = new Intent(ShowTrainer.this,WriteReview.class);
+                                                intent.putExtra("TrainerEmail", currentEmail);
+                                                startActivity(intent);
+                                            }
+                                        })
+                                         .setNeutralButton("Read Reviews", new DialogInterface.OnClickListener() {
+                                            public void onClick(DialogInterface dialog, int which) {
+                                                Intent intent = new Intent(ShowTrainer.this, ReadReviews.class);
+                                                intent.putExtra("traineremail", currentEmail);
+                                                //start the activity
+                                                startActivity(intent);
+                                            }
+                                });
+                                AlertDialog alert = builder.create();
+                                alert.show();
                                 }
                         });
 

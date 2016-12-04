@@ -10,10 +10,8 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.heem.togetherfit.SendEmailThroughAndroid"
     android:orientation="vertical"
-    android:weightSum="7"
+    android:weightSum="8"
     android:background="@drawable/backgroundsec">
-    <!-- Header aligned to top -->
-    <include layout="@layout/header"/>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -102,6 +100,19 @@
         android:background= "#AFD3DF"
         android:textSize="25dp"
         android:textStyle="bold"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1">
+        <Button
+            android:id="@+id/backbutton"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="Back"
+            android:background= "#AFD3DF"
+            android:textSize="25dp"
+            android:textStyle="bold"/>
     </LinearLayout>
 
 </LinearLayout>
