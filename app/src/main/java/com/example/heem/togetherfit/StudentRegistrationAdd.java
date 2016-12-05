@@ -4,7 +4,9 @@ package com.example.heem.togetherfit;
  * Created by Administrator on 11/16/16.
  */
 
+import android.app.ProgressDialog;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -12,22 +14,33 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
+
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
+import com.squareup.picasso.Picasso;
 
 
 public class StudentRegistrationAdd extends AppCompatActivity {
 
     private EditText name, age, zipcode,address,city, state;
     private Spinner FitnessType;
-    private Button btnSSignUp;
+    private Button btnSSignUp,uploadImage;
     private FirebaseAuth auth;
     private DatabaseReference mRef;
     private ArrayAdapter<String> adapter;
     String sType;
+    private StorageReference mStorage;
+    private ProgressDialog mProgress;
+    private ImageView imageView;
+    private String imageURL = "https://firebasestorage.googleapis.com/v0/b/togetherfit-148901.appspot.com/o/default-medium.png?alt=media&token=61977a76-af1c-46d1-b350-8f669c2ed993";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,6 +58,10 @@ public class StudentRegistrationAdd extends AppCompatActivity {
         address = (EditText) findViewById(R.id.editText7);
         city = (EditText) findViewById(R.id.editText);
         state = (EditText) findViewById(R.id.editText5);
+        //create image function
+        uploadImage = (Button) findViewById(R.id.button5);
+        imageView = (ImageView) findViewById(R.id.imageView);
+        mStorage = FirebaseStorage.getInstance().getReference();
 
         //---------------------------------------------
         //for the spinner part
@@ -98,9 +115,41 @@ public class StudentRegistrationAdd extends AppCompatActivity {
                 DatabaseReference mRefChildEmail8 = mRefChild.child("Address");mRefChildEmail8.setValue(address.getText().toString().trim());
                 DatabaseReference mRefChildEmail9 = mRefChild.child("City");mRefChildEmail9.setValue(city.getText().toString().trim());
                 DatabaseReference mRefChildEmail10 = mRefChild.child("State");mRefChildEmail10.setValue(state.getText().toString().trim());
+                DatabaseReference mRefChildEmail11 = mRefChild.child("imageURL");mRefChildEmail11.setValue(imageURL);
                 startActivity(new Intent(StudentRegistrationAdd.this, StudentDashboard.class));
             }
         });
+        //personal portrait part
+        Picasso.with(StudentRegistrationAdd.this).load(Uri.parse(imageURL)).into(imageView);
+        mProgress = new ProgressDialog(this);
+        uploadImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(Intent.ACTION_PICK);
+                i.setType("image/*");
+                startActivityForResult(i, 400);
+            }
+
+        });
+    }
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == 400 && resultCode == RESULT_OK) {
+            mProgress.setMessage("Uploading image ...");
+            mProgress.show();
+            Uri uri = data.getData();
+            StorageReference filepath = mStorage.child("portrait").child(uri.getLastPathSegment());
+
+            filepath.putFile(uri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                @Override
+                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                    mProgress.dismiss();
+                    Uri downloadUri = taskSnapshot.getDownloadUrl();
+                    Picasso.with(StudentRegistrationAdd.this).load(downloadUri).into(imageView);
+                    imageURL = downloadUri.toString().trim();
+                    Toast.makeText(StudentRegistrationAdd.this, "upload done, ", Toast.LENGTH_LONG).show();
+                }
+            });
+        }
     }
 }
 

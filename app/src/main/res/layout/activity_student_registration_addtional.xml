@@ -1,4 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/gray">
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_trainer_student_additional"
@@ -48,8 +53,10 @@
         android:id="@+id/Type_spinner"
         android:layout_alignTop="@+id/Fitness_Type"
         android:layout_toRightOf="@+id/Fitness_Type"
-        android:layout_toEndOf="@+id/Fitness_Type"
-        android:entries="@array/type" />
+        android:entries="@array/type"
+        android:layout_alignBottom="@+id/Fitness_Type"
+        android:layout_alignRight="@+id/add_button_Trainer"
+        android:layout_alignEnd="@+id/add_button_Trainer" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -80,19 +87,6 @@
         android:layout_alignBottom="@+id/Age"
         android:layout_alignLeft="@+id/Trainer_Name"
         android:layout_alignStart="@+id/Trainer_Name" />
-
-    <TextView
-        android:text="Interest Type:"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="#ffffff"
-        android:textSize="18dp"
-        android:textStyle="bold"
-        android:id="@+id/Fitness_Type"
-        android:layout_below="@+id/welcomeStudent"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="19dp" />
 
     <TextView
         android:text="Your Name:"
@@ -145,20 +139,6 @@
         android:layout_marginTop="15dp"
         android:layout_below="@+id/Trainer_Zipcode"
         android:layout_centerHorizontal="true" />
-
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="text"
-        android:textColor="#ffffff"
-        android:textColorHint="#C9C9CA"
-        android:ems="10"
-        android:id="@+id/editText"
-        android:backgroundTint="#AFD3DF"
-        android:hint="Your City"
-        android:layout_alignTop="@+id/textView13"
-        android:layout_alignRight="@+id/add_button_Trainer"
-        android:layout_alignEnd="@+id/add_button_Trainer" />
 
     <TextView
         android:text="State:"
@@ -227,4 +207,53 @@
         android:layout_below="@+id/editText5"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
+
+    <ImageView
+        android:layout_width="150dp"
+        android:layout_height="120dp"
+        android:id="@+id/imageView"
+        android:layout_below="@+id/welcomeStudent"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <Button
+        android:text="Upload Picture"
+        android:layout_width="350dp"
+        android:layout_height="25dp"
+        android:id="@+id/button5"
+        android:textStyle="bold"
+        android:background="#AFD3DF"
+        android:layout_below="@+id/imageView"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignRight="@+id/imageView"
+        android:layout_alignEnd="@+id/imageView" />
+
+    <TextView
+        android:text="Interest Type:"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#ffffff"
+        android:textSize="18dp"
+        android:textStyle="bold"
+        android:id="@+id/Fitness_Type"
+        android:layout_below="@+id/button5"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="19dp" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="text"
+        android:textColor="#ffffff"
+        android:textColorHint="#C9C9CA"
+        android:ems="10"
+        android:id="@+id/editText"
+        android:backgroundTint="#AFD3DF"
+        android:hint="Your City"
+        android:layout_alignTop="@+id/textView13"
+        android:layout_alignLeft="@+id/editText5"
+        android:layout_alignStart="@+id/editText5" />
 </RelativeLayout>
+</ScrollView>
