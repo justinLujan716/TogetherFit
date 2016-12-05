@@ -73,19 +73,6 @@
         android:inputType="text" />
 
     <TextView
-        android:text="Fitness Type:"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="#ffffff"
-        android:textSize="18dp"
-        android:textStyle="bold"
-        android:id="@+id/Fitness_Type"
-        android:layout_below="@+id/welcomeStudent"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="19dp" />
-
-    <TextView
         android:text="Your Name:"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -284,6 +271,41 @@
         android:layout_alignBottom="@+id/textView14"
         android:layout_alignLeft="@+id/Trainer_Age"
         android:layout_alignStart="@+id/Trainer_Age" />
+
+    <ImageView
+        android:layout_width="150dp"
+        android:layout_height="120dp"
+        android:id="@+id/imageView"
+        android:layout_below="@+id/welcomeStudent"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="15dp" />
+
+    <Button
+        android:text="Upload Picture"
+        android:layout_width="350dp"
+        android:layout_height="25dp"
+        android:id="@+id/button5"
+        android:textStyle="bold"
+        android:background="#AFD3DF"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/imageView"
+        android:layout_alignRight="@+id/imageView"
+        android:layout_alignEnd="@+id/imageView" />
+
+    <TextView
+        android:text="Fitness Type:"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#ffffff"
+        android:textSize="18dp"
+        android:textStyle="bold"
+        android:id="@+id/Fitness_Type"
+        android:layout_marginTop="14dp"
+        android:layout_below="@+id/button5"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
 
 </RelativeLayout>
