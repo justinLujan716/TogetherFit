@@ -30,7 +30,7 @@
         android:layout_alignParentEnd="true" />
 
     <Button
-        android:text="Back to Dashboard"
+        android:text="Back"
         android:textStyle="normal|bold"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -38,6 +38,7 @@
         android:layout_below="@+id/redo"
         android:layout_alignLeft="@+id/redo"
         android:layout_alignStart="@+id/redo"
+        android:layout_alignParentRight="true"
         android:visibility="visible"
         android:id="@+id/back"
         android:layout_alignRight="@+id/redo"
