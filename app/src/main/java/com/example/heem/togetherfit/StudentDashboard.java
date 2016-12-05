@@ -78,7 +78,6 @@ public class StudentDashboard extends AppCompatActivity {
             public void onClick(View v){
                 Intent intent = new Intent(StudentDashboard.this, ChatRoom.class);
                 startActivity(intent);
-                finish();
             }
         });
 

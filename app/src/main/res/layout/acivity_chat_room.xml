@@ -10,6 +10,8 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.heem.togetherfit.ChatRoom">
 
+     <include layout="@layout/header"/>
+
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -45,6 +47,7 @@
         android:layout_alignEnd="@+id/redo" />
 
     <ListView
+        android:paddingTop="50dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/listView"

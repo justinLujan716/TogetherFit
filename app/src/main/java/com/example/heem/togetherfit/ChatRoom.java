@@ -40,6 +40,7 @@ public class ChatRoom extends AppCompatActivity {
     private DatabaseReference nameRef = FirebaseDatabase.getInstance().getReference("Chat");
     private Button back;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,13 +51,6 @@ public class ChatRoom extends AppCompatActivity {
         listView = (ListView) findViewById(R.id.listView);
         back = (Button) findViewById(R.id.back);
 
-        back.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent back = new Intent(ChatRoom.this, StudentDashboard.class);
-                startActivity(back);
-            }
-        });
 
         arrayAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,list_of_rooms);
 
@@ -71,8 +65,6 @@ public class ChatRoom extends AppCompatActivity {
                 Map<String,Object> map = new HashMap<String, Object>();
                 map.put(room_name.getText().toString(),"");
                 nameRef.updateChildren(map);
-
-
 
             }
         });
@@ -137,6 +129,16 @@ public class ChatRoom extends AppCompatActivity {
                 intent.putExtra("room_name",((TextView)view).getText().toString() );
                 intent.putExtra("user_name",name);
                 startActivity(intent);
+            }
+
+
+        });
+
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent back = new Intent(ChatRoom.this, StudentDashboard.class);
+                startActivity(back);
             }
         });
 
