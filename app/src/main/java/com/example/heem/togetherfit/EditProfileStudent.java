@@ -30,10 +30,14 @@ public class EditProfileStudent extends AppCompatActivity {
     TextView title;
     TextView info;
     EditText newName;
-    EditText newLocation;
+    EditText newAddress;
+    EditText newCity;
+    EditText newZip;
+    EditText newState;
     Spinner WorkoutDropdown;
     Button backbtn;
     Button submit;
+    Button showInfo;
     EditText newage;
 
     //private DatabaseReference mRef;
@@ -48,8 +52,15 @@ public class EditProfileStudent extends AppCompatActivity {
     String fitnesstype = "";
     String zipcode = "";
     String currentUId =  "";
+    String userAddress = "";
+    String city = "";
+    String userState = "";
+    String image;
+
     //Firebase reference
     DatabaseReference database;
+
+    String userInfo;
 
 
     @Override
@@ -57,15 +68,21 @@ public class EditProfileStudent extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_profile_student);
 
-        title = (TextView) findViewById(R.id.profile);
-        title.setPaintFlags(title.getPaintFlags()| Paint.UNDERLINE_TEXT_FLAG);
+        //title = (TextView) findViewById(R.id.profile);
+        //title.setPaintFlags(title.getPaintFlags()| Paint.UNDERLINE_TEXT_FLAG);
 
         newName = (EditText) findViewById(R.id.newname);
-        newLocation = (EditText) findViewById(R.id.newlocation);
-        info = (TextView) findViewById(R.id.InfoView);
-        backbtn = (Button) findViewById(R.id.back);
-        submit = (Button) findViewById(R.id.submit);
+        newAddress = (EditText) findViewById(R.id.newAddress);
+        newCity = (EditText) findViewById(R.id.newCity);
+        newZip = (EditText) findViewById(R.id.newZip);
+        newState = (EditText) findViewById(R.id.newState);
         newage = (EditText) findViewById(R.id.newage);
+
+        //info = (TextView) findViewById(R.id.InfoView);
+        backbtn = (Button) findViewById(R.id.back);//back to dashboard
+        submit = (Button) findViewById(R.id.submit);//submit changes
+        showInfo = (Button) findViewById(R.id.show);//shows info
+
 
         WorkoutDropdown = (Spinner) findViewById(R.id.workoutDropdownBtn);
         List<String> list = new ArrayList<String>();
@@ -90,9 +107,14 @@ public class EditProfileStudent extends AppCompatActivity {
                 age = dataSnapshot.child(currentUId).child("Age").getValue().toString();
                 fitnesstype = dataSnapshot.child(currentUId).child("FitnessType").getValue().toString();
                 zipcode = dataSnapshot.child(currentUId).child("ZipCode").getValue().toString();
+                userAddress = dataSnapshot.child(currentUId).child("Address").getValue().toString();
+                city = dataSnapshot.child(currentUId).child("City").getValue().toString();
+                userState = dataSnapshot.child(currentUId).child("State").getValue().toString();
+                image = dataSnapshot.child(currentUId).child("imageURL").getValue().toString();
 
-                String userinfo = "Student" + "\n" + "Name: " + username + "\n" + "Email: " + email + "\n" + "Age: " + age + "\n" + "Fitness Type: " + fitnesstype + "\n" + "Location: " + zipcode + "\n";
-                info.setText(userinfo);
+                userInfo = "Student" + "\n" + "Name: " + username + "\n" + "Email: " + email + "\n" + "Age: " + age + "\n" + "Fitness Type: " + fitnesstype + "\n" + "Location: " + userAddress + " "
+                        + city + " " + userState + " " + zipcode + "\n";
+                //info.setText(userinfo);
             }
 
             @Override
@@ -110,20 +132,45 @@ public class EditProfileStudent extends AppCompatActivity {
             }
         });
 
+        showInfo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(EditProfileStudent.this, ProfileData.class);
+                intent.putExtra("data", userInfo);//sends data to next page
+                intent.putExtra("picture", image);//sends data to next page
+                startActivity(intent);
+            }
+        });
+
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String location = newLocation.getText().toString();
+                String address = newAddress.getText().toString();
+                String newUserZip = newZip.getText().toString();
+                String newUserCity = newCity.getText().toString();
+                String newUserState = newState.getText().toString();
                 String newUserName = newName.getText().toString();
                 String dropdownValue = String.valueOf(WorkoutDropdown.getSelectedItem());
                 String newAge = newage.getText().toString();
 
                 if(!newUserName.equals("")) {
-                    DatabaseReference database = FirebaseDatabase.getInstance().getReference().child("User").child(currentUId).child("Name");
-                    database.setValue(newUserName);
+                    FirebaseDatabase.getInstance().getReference().child("User").child(currentUId).child("Name").setValue(newUserName);
                 }
-                if( (!TextUtils.isEmpty(location)) && (location.length()==5)){
-                    FirebaseDatabase.getInstance().getReference().child("User").child(currentUId).child("ZipCode").setValue(location);
+
+                if(!address.equals("")) {
+                    FirebaseDatabase.getInstance().getReference().child("User").child(currentUId).child("Address").setValue(address);
+                }
+
+                if(!newUserCity.equals("")) {
+                    FirebaseDatabase.getInstance().getReference().child("User").child(currentUId).child("City").setValue(newUserCity);
+                }
+
+                if(!newUserState.equals("")) {
+                    FirebaseDatabase.getInstance().getReference().child("User").child(currentUId).child("State").setValue(newUserState);
+                }
+
+                if( (!TextUtils.isEmpty(newUserZip)) && (newUserZip.length()==5)){
+                    FirebaseDatabase.getInstance().getReference().child("User").child(currentUId).child("ZipCode").setValue(newUserZip);
                 }
                 FirebaseDatabase.getInstance().getReference().child("User").child(currentUId).child("FitnessType").setValue(dropdownValue);
 
