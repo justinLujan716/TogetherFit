@@ -47,6 +47,7 @@
         <activity android:name=".FindTrainer" />
         <activity android:name=".ShowTrainer" />
         <activity android:name=".TrainerCreateClassAdd" />
+        <activity android:name=".ProfileData" />
         <!-- create class -->
 
 
@@ -73,8 +74,10 @@
         <activity android:name=".ClassDetail" />
         <activity android:name=".ConfirmRegistration" />
         <activity android:name=".ShowClasses" />
-        <activity android:name=".EditProfileStudent" />
-        <activity android:name=".EditProfileTrainer" />
+        <activity android:name=".EditProfileStudent"
+            android:label="Edit Profile"/>
+        <activity android:name=".EditProfileTrainer"
+            android:label="Edit Profile"/>
         <activity android:name=".UserRegInAClass" />
         <activity android:name=".SendEmailThroughAndroid" />
         <activity

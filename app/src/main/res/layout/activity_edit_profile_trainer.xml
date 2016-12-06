@@ -9,34 +9,12 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
-        <TextView
-            android:text="Your Profile"
-            android:layout_width="match_parent"
-            android:textSize="30dp"
-            android:textColor="#C9C9CA"
-            android:layout_height="wrap_content"
-            android:backgroundTint="#AFD3DF"
-            android:id="@+id/profile"
-            android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true"
-            android:gravity="center" />
-
-        <TextView
-            android:text=""
-            android:layout_width="match_parent"
-            android:layout_height="155dp"
-            android:id="@+id/InfoView"
-            android:backgroundTint="#AFD3DF"
-            android:textSize="20dp"
-            android:textColor="#C9C9CA"
-            android:gravity="center"
-            android:layout_below="@+id/profile"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true" />
+        android:orientation="vertical"
+        android:weightSum="1">
 
 
         <EditText
@@ -48,12 +26,10 @@
             android:backgroundTint="#AFD3DF"
             android:hint="Enter New Name"
             android:ems="10"
-            android:textSize="20dp"
+            android:textSize="16dp"
             android:id="@+id/newname"
             android:layout_below="@+id/InfoView"
             android:layout_centerHorizontal="true" />
-
-
 
         <EditText
             android:layout_width="wrap_content"
@@ -64,7 +40,7 @@
             android:textColorHint="#C9C9CA"
             android:backgroundTint="#AFD3DF"
             android:ems="10"
-            android:textSize="20dp"
+            android:textSize="16dp"
             android:id="@+id/newage"
             android:layout_below="@+id/InfoView"
             android:layout_centerHorizontal="true" />
@@ -75,11 +51,86 @@
             android:textColor="#ffffff"
             android:textColorHint="#C9C9CA"
             android:backgroundTint="#AFD3DF"
-            android:inputType="number"
-            android:hint="Enter New Location/Zip"
+            android:inputType="text"
+            android:hint="Enter New Address"
             android:ems="10"
-            android:textSize="20dp"
-            android:id="@+id/newlocation"
+            android:textSize="16dp"
+            android:id="@+id/newAddress"
+            android:layout_below="@+id/newname"
+            android:layout_alignLeft="@+id/newname"
+            android:layout_alignStart="@+id/newname" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#ffffff"
+            android:textColorHint="#C9C9CA"
+            android:backgroundTint="#AFD3DF"
+            android:inputType="text"
+            android:hint="Enter New City"
+            android:ems="10"
+            android:textSize="16dp"
+            android:id="@+id/newCity"
+            android:layout_below="@+id/newname"
+            android:layout_alignLeft="@+id/newname"
+            android:layout_alignStart="@+id/newname" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#ffffff"
+            android:textColorHint="#C9C9CA"
+            android:backgroundTint="#AFD3DF"
+            android:inputType="text"
+            android:hint="Enter New State"
+            android:ems="10"
+            android:textSize="16dp"
+            android:id="@+id/newState"
+            android:layout_below="@+id/newname"
+            android:layout_alignLeft="@+id/newname"
+            android:layout_alignStart="@+id/newname" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#ffffff"
+            android:textColorHint="#C9C9CA"
+            android:backgroundTint="#AFD3DF"
+            android:inputType="number"
+            android:hint="Enter New ZipCode"
+            android:ems="10"
+            android:textSize="16dp"
+            android:id="@+id/newZip"
+            android:layout_below="@+id/newname"
+            android:layout_alignLeft="@+id/newname"
+            android:layout_alignStart="@+id/newname" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#ffffff"
+            android:textColorHint="#C9C9CA"
+            android:backgroundTint="#AFD3DF"
+            android:inputType="text"
+            android:hint="Enter New Organization"
+            android:ems="10"
+            android:textSize="16dp"
+            android:id="@+id/newCertOrgan"
+            android:layout_below="@+id/newname"
+            android:layout_alignLeft="@+id/newname"
+            android:layout_alignStart="@+id/newname" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#ffffff"
+            android:textColorHint="#C9C9CA"
+            android:backgroundTint="#AFD3DF"
+            android:inputType="number"
+            android:hint="Enter New Certification ID"
+            android:ems="10"
+            android:textSize="16dp"
+            android:id="@+id/newCertId"
             android:layout_below="@+id/newname"
             android:layout_alignLeft="@+id/newname"
             android:layout_alignStart="@+id/newname" />
@@ -88,7 +139,7 @@
             android:text="New Fitness Type: "
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="20dp"
+            android:textSize="16dp"
             android:textColor="#C9C9CA"
             android:backgroundTint="#AFD3DF"
             android:id="@+id/textView1"
@@ -111,35 +162,58 @@
             android:layout_alignStart="@+id/textView1"
             android:layout_alignRight="@+id/textView1"
             android:layout_alignEnd="@+id/textView1" />
+
     </LinearLayout>
 
-    <LinearLayout
+
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="horizontal"
-        android:weightSum="2"
-        android:gravity="bottom"
-        android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true">
+        android:layout_alignParentStart="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true">
+
+        <Button
+            android:text="Current Profile Information"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#AFD3DF"
+            android:id="@+id/show"
+            android:layout_row="1"
+            android:layout_column="0"
+            android:layout_marginBottom="10dp"
+            android:layout_above="@+id/back"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+
         <Button
             android:text="Back"
-            android:layout_width="wrap_content"
+            android:layout_width="177dp"
             android:layout_height="wrap_content"
             android:background="#AFD3DF"
             android:id="@+id/back"
-            android:layout_weight="1"
-            android:layout_margin="5dp"
-            />
+            android:layout_row="34"
+            android:layout_column="0"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
 
         <Button
             android:text="Submit Changes"
-            android:layout_width="wrap_content"
+            android:layout_width="170dp"
             android:background="#AFD3DF"
             android:layout_height="wrap_content"
             android:id="@+id/submit"
             android:layout_weight="1"
-            android:layout_margin="5dp"/>
+            android:layout_row="2"
+            android:layout_column="0"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginRight="12dp"
+            android:layout_marginEnd="12dp" />
 
-    </LinearLayout>
+    </RelativeLayout>
+
 </RelativeLayout>
