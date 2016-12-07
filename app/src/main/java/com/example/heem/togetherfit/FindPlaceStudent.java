@@ -1,5 +1,6 @@
 package com.example.heem.togetherfit;
 
+import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
@@ -14,8 +15,10 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -37,6 +40,8 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.squareup.picasso.Callback;
+import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -80,6 +85,8 @@ public class FindPlaceStudent extends AppCompatActivity implements OnMapReadyCal
     Location dis;
     LatLng holdCurrent;
     List<Polyline> polyPaths = new ArrayList<>();
+    List<String> imageURL = new ArrayList<>();
+    Dialog settingsDialog;
 
 
     @Override
@@ -123,6 +130,8 @@ public class FindPlaceStudent extends AppCompatActivity implements OnMapReadyCal
                                 //To find a distance in KM
                                 if (distance <= 5) //Find places near the current location, at most 5 KM almost 2.5 Miles
                                     toPrint.add(name); //Add them to the toPrint list
+                                imageURL.add(chunk.child("ImageURL").getValue().toString());
+
                             }
                         }
 
@@ -340,7 +349,11 @@ public class FindPlaceStudent extends AppCompatActivity implements OnMapReadyCal
                 title.setText(marker.getTitle());
                 TextView snippet = new TextView(mContext);
                 snippet.setTextColor(Color.BLACK);
-                snippet.setText(marker.getSnippet());
+                if (!marker.getTitle().equalsIgnoreCase("Your location") && (!marker.getTitle().substring(0, 4).equalsIgnoreCase("Your"))) {
+                    snippet.setText("Click for more info");
+                } else {
+                    snippet.setText(marker.getSnippet());
+                }
                 info.addView(title);
                 info.addView(snippet);
                 LatLng position = marker.getPosition();
@@ -348,6 +361,32 @@ public class FindPlaceStudent extends AppCompatActivity implements OnMapReadyCal
                 return info;
             }
         });
+
+        mMap.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {
+            @Override
+            public void onInfoWindowClick(Marker marker) {
+
+                final String name = marker.getTitle();
+                if (!name.equalsIgnoreCase("Your Location") && !name.substring(0,4).equalsIgnoreCase("Your")) { //To make sure when the user click on his locaiton nothing appear
+                    settingsDialog = new Dialog(FindPlaceStudent.this);
+                    settingsDialog.getWindow().requestFeature(Window.FEATURE_NO_TITLE);
+                    View view = getLayoutInflater().inflate(R.layout.custom_in_click_windows_places, null);
+                    view.invalidate();
+                    settingsDialog.setContentView(view);
+                    TextView placeName = (TextView) settingsDialog.findViewById(R.id.placeN);
+                    placeName.setText(marker.getTitle());
+                    TextView placeInfo = (TextView) settingsDialog.findViewById(R.id.placeS);
+                    placeInfo.setText(marker.getSnippet());
+                    String imageToShow = getImageURLFromtitle(marker.getTitle());
+                    ImageView trainerI = (ImageView) settingsDialog.findViewById(R.id.image);
+                    Picasso.with(mContext).load(imageToShow).resize(120, 120).error(R.drawable.personal).into(trainerI, new showtrainermap.MarkerCallback(marker));
+                    settingsDialog.show();
+                }
+
+
+            }
+        });
+
     }
 
 
@@ -497,5 +536,21 @@ public class FindPlaceStudent extends AppCompatActivity implements OnMapReadyCal
         polyPaths.clear();
 
     }
+
+        /*
+     * This method: to return url and disply that in info windows
+     */
+
+    public String getImageURLFromtitle(String title)
+    {
+        int index=0;
+        for (String name: toPrint) {
+            if (name.equalsIgnoreCase(title))
+                return imageURL.get(index);
+            ++index;
+        }
+        return "";
+    }
+    
 
 }

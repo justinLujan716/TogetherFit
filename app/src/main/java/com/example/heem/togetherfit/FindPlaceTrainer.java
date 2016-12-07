@@ -1,5 +1,6 @@
 package com.example.heem.togetherfit;
 
+import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
@@ -12,6 +13,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -44,6 +46,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
+import com.squareup.picasso.Callback;
+import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -83,6 +87,8 @@ public class FindPlaceTrainer extends FragmentActivity implements OnMapReadyCall
     LatLng holdCurrent;
     //To keep track of paths
     List<Polyline> polyPaths = new ArrayList<>();
+    List<String> imageURL = new ArrayList<>();
+    Dialog settingsDialog;
 
 
     @Override
@@ -126,6 +132,7 @@ public class FindPlaceTrainer extends FragmentActivity implements OnMapReadyCall
                                 //To find a distance in KM
                                 if (distance <= 5) { //Find places near the current location, at most 5 KM almost 2.5 Miles
                                     toPrint.add(name); //Add them to the toPrint list
+                                    imageURL.add(chunk.child("ImageURL").getValue().toString());
                                 }
                             }
 
@@ -309,7 +316,7 @@ public class FindPlaceTrainer extends FragmentActivity implements OnMapReadyCall
                 postalCode = addresses.get(0).getPostalCode();
                 knownName = addresses.get(0).getFeatureName(); //We might use it in future just keep it
                 //This will appare when the user click on the marker (marker color passonh when the method is called)
-                mMap.addMarker(new MarkerOptions().position(location).title(name).snippet("Street: " + address +"\n"+"City: " + city + "\n" + "State: " + state  +"\n" + "Country: " + country + "\n" + "Postal Code: " + postalCode).icon(BitmapDescriptorFactory.defaultMarker(f)));
+                mMap.addMarker(new MarkerOptions().position(location).title(name).snippet("Street: " + address + "\n" + "City: " + city + "\n" + "State: " + state + "\n" + "Country: " + country + "\n" + "Postal Code: " + postalCode).icon(BitmapDescriptorFactory.defaultMarker(f)));
 
             }
         } catch (IOException e) {
@@ -330,7 +337,7 @@ public class FindPlaceTrainer extends FragmentActivity implements OnMapReadyCall
             @Override
             public View getInfoContents(Marker marker) {
 
-                if (polyPaths.size()>0) //Delete path just to make sure there is no more than one paths there
+                if (polyPaths.size() > 0) //Delete path just to make sure there is no more than one paths there
                     deletePath();
 
                 LinearLayout info = new LinearLayout(mContext);
@@ -342,17 +349,44 @@ public class FindPlaceTrainer extends FragmentActivity implements OnMapReadyCall
                 title.setText(marker.getTitle());
                 TextView snippet = new TextView(mContext);
                 snippet.setTextColor(Color.BLACK);
-                snippet.setText(marker.getSnippet());
-
+                if (!marker.getTitle().equalsIgnoreCase("Your location") && !marker.getTitle().substring(0,4).equalsIgnoreCase("Your location")) {
+                    snippet.setText("Click for more info");
+                } else {
+                    snippet.setText(marker.getSnippet());
+                }
                 info.addView(title);
                 info.addView(snippet);
                 LatLng position = marker.getPosition();
-                Direction(holdCurrent,position);
+                Direction(holdCurrent, position);
                 return info;
             }
         });
 
 
+        mMap.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {
+            @Override
+            public void onInfoWindowClick(Marker marker) {
+
+                final String name = marker.getTitle();
+                if (!name.equalsIgnoreCase("Your Location") && !name.substring(0,4).equalsIgnoreCase("Your Location")) { //To make sure when the user click on his locaiton nothing appear
+                    settingsDialog = new Dialog(FindPlaceTrainer.this);
+                    settingsDialog.getWindow().requestFeature(Window.FEATURE_NO_TITLE);
+                    View view = getLayoutInflater().inflate(R.layout.custom_in_click_windows_places, null);
+                    view.invalidate();
+                    settingsDialog.setContentView(view);
+                    TextView placeName = (TextView) settingsDialog.findViewById(R.id.placeN);
+                    placeName.setText(marker.getTitle());
+                    TextView placeInfo = (TextView) settingsDialog.findViewById(R.id.placeS);
+                    placeInfo.setText(marker.getSnippet());
+                    String imageToShow = getImageURLFromtitle(marker.getTitle());
+                    ImageView trainerI = (ImageView) settingsDialog.findViewById(R.id.image);
+                    Picasso.with(mContext).load(imageToShow).resize(120, 120).error(R.drawable.personal).into(trainerI, new showtrainermap.MarkerCallback(marker));
+                    settingsDialog.show();
+                }
+
+
+            }
+        });
     }
 
 
@@ -360,13 +394,13 @@ public class FindPlaceTrainer extends FragmentActivity implements OnMapReadyCall
     /*
      * Mehtod to convert --> Latlng to Location
      */
-     public Location latlngToloc (double lat, double lng)
-     {
-         Location temp = new Location(LocationManager.GPS_PROVIDER);
-         temp.setLatitude(lat);
-         temp.setLongitude(lng);
-         return temp;
-     }
+    public Location latlngToloc (double lat, double lng)
+    {
+        Location temp = new Location(LocationManager.GPS_PROVIDER);
+        temp.setLatitude(lat);
+        temp.setLongitude(lng);
+        return temp;
+    }
 
 
     /*
@@ -502,5 +536,23 @@ public class FindPlaceTrainer extends FragmentActivity implements OnMapReadyCall
         polyPaths.clear();
 
     }
+
+
+    /*
+     * This method: to return url and disply that in info windows
+     */
+
+    public String getImageURLFromtitle(String title)
+    {
+        int index=0;
+        for (String name: toPrint) {
+            if (name.equalsIgnoreCase(title))
+                return imageURL.get(index);
+            ++index;
+        }
+        return "";
+    }
+
+
 
 }

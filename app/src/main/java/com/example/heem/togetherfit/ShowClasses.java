@@ -44,7 +44,7 @@ public class ShowClasses extends AppCompatActivity {
         list = (ListView) findViewById(R.id.listAllForTrainer);
         list.setAdapter(null); //to make sure the list view is empty
         //get teh current user id
-         UserId = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        UserId = FirebaseAuth.getInstance().getCurrentUser().getUid();
         // Connect to the Firebase database and access CreatedClass database
         database = FirebaseDatabase.getInstance().getReference().child("CreatedClass");
         // Attach a listener to read the data at our posts reference
@@ -107,6 +107,12 @@ public class ShowClasses extends AppCompatActivity {
 
     private void getUpdate(DataSnapshot ds)
     {
+        classTitle.clear();
+        classID.clear();
+        location.clear();
+        image.clear();
+        cap.clear();
+        regNum.clear();
         String dsId = (ds.child("Trainer").getValue()).toString();
         if (UserId.equalsIgnoreCase(dsId)) {
             //Get the class name and send that to the adapter

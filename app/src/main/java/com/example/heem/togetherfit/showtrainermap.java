@@ -1,23 +1,31 @@
 package com.example.heem.togetherfit;
 
+import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
+import android.graphics.drawable.Drawable;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
 import android.location.LocationManager;
+import android.net.Uri;
 import android.os.AsyncTask;
+import android.os.Handler;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
+import android.text.Layout;
 import android.util.Log;
 import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -33,12 +41,15 @@ import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.Polyline;
 import com.google.android.gms.maps.model.PolylineOptions;
+import com.google.android.gms.plus.model.people.Person;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.squareup.picasso.Callback;
+import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -48,6 +59,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
+
 //Show Trainer by location
 public class showtrainermap extends FragmentActivity implements OnMapReadyCallback {
 
@@ -88,9 +101,11 @@ public class showtrainermap extends FragmentActivity implements OnMapReadyCallba
     List<String> trainername = new ArrayList<>();
     List<String> traineremail = new ArrayList<>();
     List<String> trainerfitnesstype = new ArrayList<>();
+    List<String> trainerpicture = new ArrayList<>();
     TextView title;
-
-
+    TextView snippet;
+    ImageView image;
+    Dialog settingsDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -145,27 +160,27 @@ public class showtrainermap extends FragmentActivity implements OnMapReadyCallba
                                         traineremail.add(getTraineremail);
                                         String getTrainerfitnesstype = (String) chunk.child("FitnessType").getValue();
                                         trainerfitnesstype.add(getTrainerfitnesstype);
+                                        String getTrainerpicture = (String) chunk.child("imageURL").getValue();
+                                        trainerpicture.add(getTrainerpicture);
                                     }
                                 }
-                            }
-                            else
-                            {
+                            } else {
                                 //Since it is not trainer do not check
                                 continue;
                             }
 
                         }
 
-                        //To print out each location close to the current location
+                        //To print out each trainer location close to the current location
                         if (toPrint.size() > 0) {
-                            int  i  = 0;
+                            int i = 0;
                             for (String s : toPrint) {
-                                //Find closets place to the trainer
+                                //Find closets trainer
                                 LatLng closeLoc = getLocationFromAddress(s);
                                 latitude = closeLoc.latitude;
                                 longitude = closeLoc.longitude;
                                 address(latitude, longitude, s, BitmapDescriptorFactory.HUE_AZURE, i);
-                                i++;
+                                i++;//To pass the index
                             }
                         } else
                             Toast.makeText(getApplicationContext(), "Can not find a close trainers", Toast.LENGTH_SHORT).show();
@@ -177,7 +192,7 @@ public class showtrainermap extends FragmentActivity implements OnMapReadyCallba
                     }
                 });
 
-                Toast.makeText(getApplicationContext(), "Rose marker -- displays your current location \nBlue markers -- display places", Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), "Rose marker -- displays your current location \nBlue markers -- display trainers", Toast.LENGTH_LONG).show();
 
             }
         });
@@ -258,7 +273,7 @@ public class showtrainermap extends FragmentActivity implements OnMapReadyCallba
 
         mMap = googleMap;
         // create class object from GPSTracker which will find current location if it is enabled or ask the user to enable locaiton service
-        gps = new GPSTracker(showtrainermap.this,showtrainermap.this);
+        gps = new GPSTracker(showtrainermap.this, showtrainermap.this);
         geocoder = new Geocoder(this, Locale.getDefault());
         Log.e("latitude", "latitude--" + latitude);
         // check if GPS enabled
@@ -268,18 +283,16 @@ public class showtrainermap extends FragmentActivity implements OnMapReadyCallba
             longitude = gps.getLongitude();
             // \n is for new line
             Toast.makeText(getApplicationContext(), "Your Location is - \nLat: " + latitude + "\nLong: " + longitude, Toast.LENGTH_LONG).show();
-        }
-        else{
+        } else {
             // can't get location
             // GPS or Network is not enabled
             // Ask user to enable GPS/network in settings
             gps.showSettingsAlert();
         }
-        start = latlngToloc(latitude,longitude);
-        holdCurrent = new LatLng(latitude,longitude); //To hold
+        start = latlngToloc(latitude, longitude);
+        holdCurrent = new LatLng(latitude, longitude); //To hold
         //Rose to distinguish the current location marker
-        address(latitude,longitude,"Your location",BitmapDescriptorFactory.HUE_ROSE,-1);//-1 because we do not need to add trainer info
-
+        address(latitude, longitude, "Your location", BitmapDescriptorFactory.HUE_ROSE, -1);//-1 because we do not need to add trainer info to this marker
     }
 
     @Override
@@ -303,7 +316,7 @@ public class showtrainermap extends FragmentActivity implements OnMapReadyCallba
                 return null;
             }
             Address locationGet = address.get(0);
-            p1 = new LatLng(locationGet.getLatitude(), locationGet.getLongitude() );
+            p1 = new LatLng(locationGet.getLatitude(), locationGet.getLongitude());
 
         } catch (Exception ex) {
 
@@ -335,19 +348,18 @@ public class showtrainermap extends FragmentActivity implements OnMapReadyCallba
                 country = addresses.get(0).getCountryName();
                 postalCode = addresses.get(0).getPostalCode();
                 knownName = addresses.get(0).getFeatureName(); //We might use it in future just keep it
-                if (index != -1) {
+                if (index != -1) { //That's mean is not the user location
                     String tname = trainername.get(index);
                     String temail = traineremail.get(index);
                     String tfitness = trainerfitnesstype.get(index);
-                    //This will appare when the user click on the marker (marker color passonh when the method is called)
+                    String tpicture = trainerpicture.get(index); //Here where we get the picture
+                    //This will appear when the user click on the marker (marker color pass on when the method is called)
                     mMap.addMarker(new MarkerOptions().position(location).title(temail).snippet("Trainer Name: " + tname + "\nTrainer Fitness Type: " + tfitness + "\nStreet: " + address + "\n" + "City: " + city + "\n" + "State: " + state + "\n" + "Country: " + country + "\n" + "Postal Code: " + postalCode).icon(BitmapDescriptorFactory.defaultMarker(f)));
 
-                }
-                else {
-                    //This will appare when the user click on the marker (marker color passonh when the method is called)
+                } else {
+                    //This will appear when the user click on the marker (marker color pass on when the method is called)
                     mMap.addMarker(new MarkerOptions().position(location).title(name).snippet("Street: " + address + "\n" + "City: " + city + "\n" + "State: " + state + "\n" + "Country: " + country + "\n" + "Postal Code: " + postalCode).icon(BitmapDescriptorFactory.defaultMarker(f)));
                 }
-
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -357,7 +369,7 @@ public class showtrainermap extends FragmentActivity implements OnMapReadyCallba
         /*
            Multi line marker, this method just to design the marker when the user click on
          */
-        mMap.setInfoWindowAdapter(new GoogleMap.InfoWindowAdapter() {
+        mMap.setInfoWindowAdapter(new GoogleMap.InfoWindowAdapter() { //Here create a custom
 
             @Override
             public View getInfoWindow(Marker arg0) {
@@ -367,19 +379,22 @@ public class showtrainermap extends FragmentActivity implements OnMapReadyCallba
             @Override
             public View getInfoContents(Marker marker) {
 
-                if (polyPaths.size()>0) //Delete path just to make sure there is no more than one paths there
+                if (polyPaths.size() > 0) //Delete path just to make sure there is no more than one paths there
                     deletePath();
-                title =  new TextView(mContext);
+                title = new TextView(mContext);
                 LinearLayout info = new LinearLayout(mContext);
                 info.setOrientation(LinearLayout.VERTICAL);
                 title.setTextColor(Color.BLACK);
                 title.setGravity(Gravity.CENTER);
                 title.setTypeface(null, Typeface.BOLD);
                 title.setText(marker.getTitle());
-                TextView snippet = new TextView(mContext);
+                snippet = new TextView(mContext);
                 snippet.setTextColor(Color.BLACK);
-                snippet.setText(marker.getSnippet());
-
+                if (!marker.getTitle().equalsIgnoreCase("Your location") && !marker.getTitle().substring(0, 13).equalsIgnoreCase("Your location")) {
+                    snippet.setText("Click for more info");
+                } else {
+                    snippet.setText(marker.getSnippet());
+                }
                 info.addView(title);
                 info.addView(snippet);
                 LatLng position = marker.getPosition();
@@ -391,51 +406,61 @@ public class showtrainermap extends FragmentActivity implements OnMapReadyCallba
         mMap.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {
             @Override
             public void onInfoWindowClick(Marker marker) {
-                //final String currentEmail = traineremail.get(+position);
-                final String trainerEmail = title.getText().toString();
-                if (!trainerEmail.equalsIgnoreCase("Your Location")) { //To make sure when the user click on his locaiton nothing appear
-                    AlertDialog.Builder builder = new AlertDialog.Builder(showtrainermap.this);
-                    builder.setMessage("What do you like to do? You chose "+ trainerEmail)
-                            .setCancelable(true)
-                            .setPositiveButton("Send Email", new DialogInterface.OnClickListener() { //To send email
-                                public void onClick(DialogInterface dialog, int id) {
 
-                                    Toast.makeText(showtrainermap.this, "You Clicked at " + trainerEmail + "\nI took you to send email page", Toast.LENGTH_SHORT).show();
-                                    Intent intent = new Intent(showtrainermap.this, SendEmailThroughAndroid.class);
-                                    intent.putExtra("emailTo", trainerEmail);
-                                    startActivity(intent);
-                                }
-                            })
-                            .setNegativeButton("Write Review", new DialogInterface.OnClickListener() {
-                                public void onClick(DialogInterface dialog, int id) {
-                                    Intent intent = new Intent(showtrainermap.this,WriteReview.class);
-                                    intent.putExtra("TrainerEmail", trainerEmail);
-                                    startActivity(intent);
-                                }
-                            })
-                            .setNeutralButton("Read Reviews", new DialogInterface.OnClickListener() {
-                                public void onClick(DialogInterface dialog, int which) {
-                                    Intent intent = new Intent(showtrainermap.this, ReadReviews.class);
-                                    intent.putExtra("traineremail", trainerEmail);
-                                    //start the activity
-                                    startActivity(intent);
-                                }
-                            });
-                    AlertDialog alert = builder.create();
-                    alert.show();
+                final String temail = title.getText().toString();
+                if (!temail.equalsIgnoreCase("Your Location") && !temail.substring(0, 13).equalsIgnoreCase("Your Location")) { //To make sure when the user click on his locaiton nothing appear
+                    settingsDialog = new Dialog(showtrainermap.this);
+                    settingsDialog.getWindow().requestFeature(Window.FEATURE_NO_TITLE);
+                    View view = getLayoutInflater().inflate(R.layout.custom_in_click_info_windows, null);
+                    view.invalidate();
+                    settingsDialog.setContentView(view);
+                    TextView trainerT = (TextView) settingsDialog.findViewById(R.id.trainerT);
+                    trainerT.setText(marker.getTitle());
+                    TextView trainerS = (TextView) settingsDialog.findViewById(R.id.trainerS);
+                    trainerS.setText(marker.getSnippet());
+                    String imageToShow = getImageURLFromtitle(temail);
+                    ImageView trainerI = (ImageView) settingsDialog.findViewById(R.id.image);
+                    Picasso.with(mContext).load(imageToShow).resize(120,120).error(R.drawable.personal).into(trainerI, new MarkerCallback(marker));
+                    settingsDialog.show();
+
+                    Button read = (Button) settingsDialog.findViewById(R.id.ReadReview);
+                    read.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            Intent intent = new Intent(showtrainermap.this, ReadReviews.class);
+                            intent.putExtra("traineremail", temail);
+                            startActivity(intent);
+                        }
+                    });
+                    Button write = (Button) settingsDialog.findViewById(R.id.WriteReview);
+                    write.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            Intent intent = new Intent(showtrainermap.this, WriteReview.class);
+                            intent.putExtra("TrainerEmail", temail);
+                            startActivity(intent);
+                        }
+                    });
+                    Button email = (Button) settingsDialog.findViewById(R.id.SendEmail);
+                    email.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            Intent intent = new Intent(showtrainermap.this, SendEmailThroughAndroid.class);
+                            intent.putExtra("emailTo", temail);
+                            startActivity(intent);
+                        }
+                    });
                 }
             }
         });
-
-
     }
+
 
 
     /*
      * Mehtod to convert --> Latlng to Location
      */
-    public Location latlngToloc (double lat, double lng)
-    {
+    public Location latlngToloc(double lat, double lng) {
         Location temp = new Location(LocationManager.GPS_PROVIDER);
         temp.setLatitude(lat);
         temp.setLongitude(lng);
@@ -448,7 +473,7 @@ public class showtrainermap extends FragmentActivity implements OnMapReadyCallba
      * To get the source and destenation address
      * Calling routePathTask
      */
-    public void Direction(LatLng from, LatLng to){
+    public void Direction(LatLng from, LatLng to) {
         String url = makeURL(from, to);
         showtrainermap.RoutePathTask routePathTask = new showtrainermap.RoutePathTask(url);
         routePathTask.execute();
@@ -459,7 +484,7 @@ public class showtrainermap extends FragmentActivity implements OnMapReadyCallba
 
         private String url;
 
-        public RoutePathTask(String urlPass){
+        public RoutePathTask(String urlPass) {
             url = urlPass;
         }
 
@@ -473,7 +498,7 @@ public class showtrainermap extends FragmentActivity implements OnMapReadyCallba
         @Override
         protected void onPostExecute(String result) {
             super.onPostExecute(result);
-            if(result!=null){
+            if (result != null) {
                 drawPath(result);
             }
         }
@@ -482,7 +507,7 @@ public class showtrainermap extends FragmentActivity implements OnMapReadyCallba
     /*
      *Method to draw the path between 2 points
      */
-    public void drawPath(String  result) {
+    public void drawPath(String result) {
         try {
             //Transform the string into a json object
             final JSONObject json = new JSONObject(result);
@@ -492,9 +517,9 @@ public class showtrainermap extends FragmentActivity implements OnMapReadyCallba
             String encodedString = overviewPolylines.getString("points");
             List<LatLng> list = decodePoly(encodedString);
 
-            for(int z = 0; z<list.size()-1;z++){
-                LatLng src= list.get(z);
-                LatLng dest= list.get(z+1);
+            for (int z = 0; z < list.size() - 1; z++) {
+                LatLng src = list.get(z);
+                LatLng dest = list.get(z + 1);
                 Polyline line = mMap.addPolyline(new PolylineOptions()
                         .add(new LatLng(src.latitude, src.longitude), new LatLng(dest.latitude, dest.longitude))
                         .width(6)
@@ -502,8 +527,7 @@ public class showtrainermap extends FragmentActivity implements OnMapReadyCallba
                 polyPaths.add(line);//To keep track of paths
             }
 
-        }
-        catch (JSONException e) {
+        } catch (JSONException e) {
             e.printStackTrace();
         }
     }
@@ -537,8 +561,8 @@ public class showtrainermap extends FragmentActivity implements OnMapReadyCallba
             int dlng = ((result & 1) != 0 ? ~(result >> 1) : (result >> 1));
             lng += dlng;
 
-            LatLng p = new LatLng( (((double) lat / 1E5)),
-                    (((double) lng / 1E5) ));
+            LatLng p = new LatLng((((double) lat / 1E5)),
+                    (((double) lng / 1E5)));
             poly.add(p);
         }
 
@@ -548,7 +572,7 @@ public class showtrainermap extends FragmentActivity implements OnMapReadyCallba
     /*
      * Method to get the URL for the roting address
      */
-    public String makeURL (LatLng sourceLoc, LatLng destLoc ){
+    public String makeURL(LatLng sourceLoc, LatLng destLoc) {
         StringBuilder urlString = new StringBuilder();
         urlString.append("http://maps.googleapis.com/maps/api/directions/json");
         urlString.append("?origin=");// from
@@ -566,10 +590,8 @@ public class showtrainermap extends FragmentActivity implements OnMapReadyCallba
     /*
      * Method to clear the path
      */
-    public void deletePath()
-    {
-        for(Polyline path: polyPaths)
-        {
+    public void deletePath() {
+        for (Polyline path : polyPaths) {
             path.remove();
         }
 
@@ -577,4 +599,44 @@ public class showtrainermap extends FragmentActivity implements OnMapReadyCallba
 
     }
 
+    /*
+     * This method: to return url and disply that in info windows
+     */
+
+    public String getImageURLFromtitle(String email)
+    {
+        int index=0;
+        for (String temail: traineremail) {
+            if (temail.equalsIgnoreCase(email))
+                return trainerpicture.get(index);
+            ++index;
+        }
+        return "";
+    }
+
+
+    /*
+     * To hold some exception in Picasa
+     */
+    static class MarkerCallback implements Callback {
+        Marker marker=null;
+
+        MarkerCallback(Marker marker) {
+            this.marker=marker;
+        }
+
+        @Override
+        public void onError() {
+            Log.e(getClass().getSimpleName(), "Error loading thumbnail!");
+        }
+
+        @Override
+        public void onSuccess() {
+            if (marker != null && marker.isInfoWindowShown()) {
+                marker.showInfoWindow();
+            }
+        }
+    }
+
 }
+

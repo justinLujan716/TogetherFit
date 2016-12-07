@@ -53,87 +53,94 @@ public class ShowTrainer extends AppCompatActivity {
         mRef = FirebaseDatabase.getInstance().getReferenceFromUrl("https://togetherfit-148901.firebaseio.com/User");
         final String WorkoutType = getIntent().getStringExtra("WorkoutType"); //input from previous page
 
-            database.addValueEventListener(new ValueEventListener() {
-                @Override
-                public void onDataChange(DataSnapshot snapshot) {
-                    for (DataSnapshot chunk : snapshot.getChildren()) {
-                        //get value from the database. If it is equal to the postalcode from current location add the location to the user
-                         String localname = (String) chunk.child("Name").getValue();
-                         String localemail = (String) chunk.child("Email").getValue();
-                         String localAddress = (String) chunk.child("Address").getValue();
-                         String localCity = (String) chunk.child("City").getValue();
-                         String localState = (String) chunk.child("State").getValue();
-                         String localZip = (String) chunk.child("ZipCode").getValue();
-                         String locallocation = localAddress + " " + localCity + " " + localState + " " + localZip;
-                        //get the user type and check if it is trainer or not
-                         String userType = (String) chunk.child("Type").getValue();
-                        String localfitnesstype = (String) chunk.child("FitnessType").getValue();
-                        if( WorkoutType.equals(localfitnesstype) && userType.equalsIgnoreCase("trainer")){
-                            name.add(localname);
-                            email.add(localemail);
-                            address.add(locallocation);
-                            fitnesstype.add(localfitnesstype);
-                            image.add("https://goo.gl/images/kq302a");
+        database.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot snapshot) {
+                //make sure eveything is empty
+                name.clear();
+                email.clear();
+                address.clear();
+                fitnesstype.clear();
+                image.clear();
+                for (DataSnapshot chunk : snapshot.getChildren()) {
+                    //get value from the database. If it is equal to the postalcode from current location add the location to the user
+                    String localname = (String) chunk.child("Name").getValue();
+                    String localemail = (String) chunk.child("Email").getValue();
+                    String localAddress = (String) chunk.child("Address").getValue();
+                    String localCity = (String) chunk.child("City").getValue();
+                    String localState = (String) chunk.child("State").getValue();
+                    String localZip = (String) chunk.child("ZipCode").getValue();
+                    String locallocation = localAddress + " " + localCity + " " + localState + " " + localZip;
+                    //get the user type and check if it is trainer or not
+                    String userType = (String) chunk.child("Type").getValue();
+                    String imageurl = (String) chunk.child("imageURL").getValue();
+                    String localfitnesstype = (String) chunk.child("FitnessType").getValue();
+                    if( WorkoutType.equals(localfitnesstype) && userType.equalsIgnoreCase("trainer")){
+                        name.add(localname);
+                        email.add(localemail);
+                        address.add(locallocation);
+                        fitnesstype.add(localfitnesstype);
+                        image.add(imageurl);
+                    }
+                }
+
+                if( name.size() > 0 ){
+                    //name has the name of the trianer that match the data type
+                    //Find closets place to the trainer
+                    CustomListForShowTrainer adapter = new
+                            CustomListForShowTrainer(ShowTrainer.this, name, image, email, address,fitnesstype);
+                    list.setAdapter(adapter);
+                    //perform a specific action when the user click on a class redirect the user to class's detiales
+                    list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+                        //When they click on an Item
+                        @Override
+                        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                            final String currentEmail = email.get(+position);
+                            final String trainname = name.get(+position);
+                            AlertDialog.Builder builder = new AlertDialog.Builder(ShowTrainer.this);
+                            builder.setMessage("What do you like to do? You chose Trainer: " + trainname)
+                                    .setCancelable(true)
+                                    .setPositiveButton("Send Email", new DialogInterface.OnClickListener() {
+                                        public void onClick(DialogInterface dialog, int id) {
+
+                                            Toast.makeText(ShowTrainer.this, "You Clicked at " + trainname + "\nI took you to send email page", Toast.LENGTH_SHORT).show();
+                                            Intent intent = new Intent(ShowTrainer.this, SendEmailThroughAndroid.class);
+                                            intent.putExtra("emailTo", currentEmail);
+                                            startActivity(intent);
+                                        }
+                                    })
+                                    .setNegativeButton("Write Review", new DialogInterface.OnClickListener() {
+                                        public void onClick(DialogInterface dialog, int id) {
+                                            Intent intent = new Intent(ShowTrainer.this,WriteReview.class);
+                                            intent.putExtra("TrainerEmail", currentEmail);
+                                            startActivity(intent);
+                                        }
+                                    })
+                                    .setNeutralButton("Read Reviews", new DialogInterface.OnClickListener() {
+                                        public void onClick(DialogInterface dialog, int which) {
+                                            Intent intent = new Intent(ShowTrainer.this, ReadReviews.class);
+                                            intent.putExtra("traineremail", currentEmail);
+                                            //start the activity
+                                            startActivity(intent);
+                                        }
+                                    });
+                            AlertDialog alert = builder.create();
+                            alert.show();
                         }
-                    }
+                    });
 
-                    if( name.size() > 0 ){
-                        //name has the name of the trianer that match the data type
-                        //Find closets place to the trainer
-                        CustomListForShowTrainer adapter = new
-                                CustomListForShowTrainer(ShowTrainer.this, name, image, email, address,fitnesstype);
-                        list.setAdapter(adapter);
-                        //perform a specific action when the user click on a class redirect the user to class's detiales
-                        list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-
-                            //When they click on an Item
-                            @Override
-                            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                                final String currentEmail = email.get(+position);
-                                final String trainname = name.get(+position);
-                                AlertDialog.Builder builder = new AlertDialog.Builder(ShowTrainer.this);
-                                builder.setMessage("What do you like to do? You chose Trainer: " + trainname)
-                                        .setCancelable(true)
-                                        .setPositiveButton("Send Email", new DialogInterface.OnClickListener() {
-                                            public void onClick(DialogInterface dialog, int id) {
-
-                                                Toast.makeText(ShowTrainer.this, "You Clicked at " + trainname + "\nI took you to send email page", Toast.LENGTH_SHORT).show();
-                                                Intent intent = new Intent(ShowTrainer.this, SendEmailThroughAndroid.class);
-                                                intent.putExtra("emailTo", currentEmail);
-                                                startActivity(intent);
-                                            }
-                                        })
-                                        .setNegativeButton("Write Review", new DialogInterface.OnClickListener() {
-                                            public void onClick(DialogInterface dialog, int id) {
-                                                Intent intent = new Intent(ShowTrainer.this,WriteReview.class);
-                                                intent.putExtra("TrainerEmail", currentEmail);
-                                                startActivity(intent);
-                                            }
-                                        })
-                                         .setNeutralButton("Read Reviews", new DialogInterface.OnClickListener() {
-                                            public void onClick(DialogInterface dialog, int which) {
-                                                Intent intent = new Intent(ShowTrainer.this, ReadReviews.class);
-                                                intent.putExtra("traineremail", currentEmail);
-                                                //start the activity
-                                                startActivity(intent);
-                                            }
-                                });
-                                AlertDialog alert = builder.create();
-                                alert.show();
-                                }
-                        });
-
-                    }
-                    else{
-                        Toast.makeText(getApplicationContext(), "No Trainers Found, Please Search Again", Toast.LENGTH_SHORT).show();
-                    }
                 }
-
-                @Override
-                public void onCancelled(DatabaseError databaseErr) {
-                    System.out.println("The read failed: " + databaseErr.getCode());
+                else{
+                    Toast.makeText(getApplicationContext(), "No Trainers Found, Please Search Again", Toast.LENGTH_SHORT).show();
                 }
-            });
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseErr) {
+                System.out.println("The read failed: " + databaseErr.getCode());
+            }
+        });
 
         //Back button takes back to sign in activity
         //This is the way to refer to outside button from another laytout back button is in header.xml
@@ -161,5 +168,5 @@ public class ShowTrainer extends AppCompatActivity {
             }
         });
 
-        }
+    }
 }

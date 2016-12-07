@@ -1,6 +1,7 @@
 package com.example.heem.togetherfit;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.support.v7.app.AlertDialog;
@@ -8,6 +9,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
@@ -31,7 +33,9 @@ public class UserRegInAClass extends AppCompatActivity {
     ListView listUsers;
     String userid;
     ArrayAdapter<String> adapter;
-    ArrayList<String> userInfo=new ArrayList<String>();
+    ArrayList<String> userName=new ArrayList<String>();
+    ArrayList<String> userEmail = new ArrayList<>();
+    ArrayList<String> userImage = new ArrayList<>();
     DatabaseReference getUsers;
     DatabaseReference getInfo;
     @Override
@@ -49,6 +53,10 @@ public class UserRegInAClass extends AppCompatActivity {
         getUsers.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
+                //Make sure lists are empty to avoid duplicate
+                userName.clear();
+                userEmail.clear();
+                userImage.clear();
 
                 for (DataSnapshot ds : dataSnapshot.getChildren()) {
                     userid = ds.getValue().toString();
@@ -58,13 +66,56 @@ public class UserRegInAClass extends AppCompatActivity {
                         public void onDataChange(DataSnapshot dataSnapshot) {
                             String name = dataSnapshot.child("Name").getValue().toString();
                             String email = dataSnapshot.child("Email").getValue().toString();
-                            userInfo.add("Name: " + name + "\t   Email: " + email);
+                            String image = dataSnapshot.child("imageURL").getValue().toString();
+                            userName.add(name);
+                            userEmail.add(email);
+                            userImage.add(image);
+
+
+
+                            if( userName.size() > 0 ){
+                                //studentname greater than 0 t least one user to be showed
+                                CustomListUsers adapter = new
+                                        CustomListUsers(UserRegInAClass.this, userName, userEmail, userImage);
+                                listUsers.setAdapter(adapter);
+                                //perform a specific action when the user click on a class redirect the user to class's detiales
+                                listUsers.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+                                    //When they click on an Item
+                                    @Override
+                                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                                        final String studentEmail = userEmail.get(+position);
+                                        AlertDialog.Builder builder = new AlertDialog.Builder(UserRegInAClass.this);
+                                        builder.setMessage("Do you want to contact the student: " + userName.get(+position))
+                                                .setCancelable(true)
+                                                .setPositiveButton("Send Email", new DialogInterface.OnClickListener() {
+                                                    public void onClick(DialogInterface dialog, int id) {
+                                                        Intent intent = new Intent(UserRegInAClass.this, SendEmailThroughAndroid.class);
+                                                        intent.putExtra("emailTo", studentEmail);
+                                                        startActivity(intent);
+                                                    }
+                                                })
+                                                .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                                                    public void onClick(DialogInterface dialog, int id) {
+                                                        dialog.dismiss();
+                                                    }
+                                                });
+                                        AlertDialog alert = builder.create();
+                                        alert.show();
+                                    }
+                                });
+                            }
+                            else{
+                                Toast.makeText(getApplicationContext(), "No data to show", Toast.LENGTH_SHORT).show();
+                            }
                         }
 
                         @Override
                         public void onCancelled(DatabaseError databaseError) {
 
                         }
+
+
                     });
                 }
 
@@ -99,19 +150,6 @@ public class UserRegInAClass extends AppCompatActivity {
                 //start the activity
                 startActivity(back);
             }
-        });
-
-
-
-            listUsers.setAdapter(new ArrayAdapter<String>(UserRegInAClass.this, android.R.layout.simple_list_item_1, userInfo) {
-                @Override
-                public View getView(int position, View convertView, ViewGroup parent) {
-                    View view = super.getView(position, convertView, parent);
-                    TextView text = (TextView) view.findViewById(android.R.id.text1);
-                    text.setTextColor(Color.WHITE);
-                    return view;
-                }
-
         });
 
     }

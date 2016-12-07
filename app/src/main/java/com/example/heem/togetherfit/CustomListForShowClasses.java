@@ -28,7 +28,7 @@ public class CustomListForShowClasses extends ArrayAdapter<String>{
 
 
     public CustomListForShowClasses(Activity context,
-                      ArrayList<String> classtitle, ArrayList<String> imageId,
+                                    ArrayList<String> classtitle, ArrayList<String> imageId,
                                     ArrayList<String> classId, ArrayList<String> location, ArrayList<String> cap,
                                     ArrayList<String> numReg) {
         super(context, R.layout.activity_show_classes, classtitle);

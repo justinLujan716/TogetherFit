@@ -98,12 +98,10 @@ public class WriteReview extends AppCompatActivity {
                         Handler handler = new Handler();
                         handler.postDelayed(new Runnable() {
                             public void run() {
-                                // Actions to do after 10 seconds
-                                Intent intent = new Intent(WriteReview.this, ReadReviews.class);
-                                intent.putExtra("traineremail", email);
-                                startActivity(intent);
+                                // Actions to do after seconds
+                                onBackPressed(); //Go back once it submitted
                             }
-                        }, 3000);
+                        }, 5000);
                     }
                     @Override
                     public void onCancelled(DatabaseError databaseError) {

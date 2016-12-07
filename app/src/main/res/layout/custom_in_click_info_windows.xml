@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="250dp"
+    android:layout_height="400dp"
+    android:orientation="vertical"
+    android:background="#444345">
+
+    <LinearLayout
+        android:layout_width="250dp"
+        android:layout_height="350dp"
+        android:orientation="vertical">
+        <ImageView
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:layout_gravity="center"
+            android:adjustViewBounds="true"
+            android:id="@+id/image"
+            android:src="@drawable/personal"/>
+        <TextView
+            android:id="@+id/trainerT"
+            android:layout_below="@+id/image"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="15dp"
+            android:textStyle="bold"
+            android:layout_gravity="center"
+            android:textColor="#ffffff"/>
+        <TextView
+            android:id="@+id/trainerS"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="12dp"
+            android:layout_below="@+id/trainerT"
+            android:layout_gravity="center"
+            android:textColor="#ffffff"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="250dp"
+        android:layout_height="100dp"
+        android:orientation="horizontal"
+        android:weightSum="3">
+        <Button
+            android:layout_width="30dp"
+            android:layout_height="40dp"
+            android:background="@drawable/buttonbackground"
+            android:id="@+id/ReadReview"
+            android:textSize="8dp"
+            android:textColor="#444345"
+            android:text="Read Reviews"
+            android:layout_weight="1"/>
+        <Button
+            android:layout_width="30dp"
+            android:layout_height="40dp"
+            android:background="@drawable/buttonbackground"
+            android:id="@+id/WriteReview"
+            android:textSize="8dp"
+            android:textColor="#444345"
+            android:text="Write Review"
+            android:layout_weight="1"/>
+        <Button
+            android:layout_width="30dp"
+            android:layout_height="40dp"
+            android:background="@drawable/buttonbackground"
+            android:id="@+id/SendEmail"
+            android:textSize="8dp"
+            android:textColor="#444345"
+            android:text="Send Email"
+            android:layout_weight="1"/>
+    </LinearLayout>
+
+</LinearLayout>
