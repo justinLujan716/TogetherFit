@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_add_friend"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.heem.togetherfit.AddClass"
+    android:background="@drawable/backgroundsec"
+    android:orientation="vertical">
+    <!-- Header aligned to top -->
+    <include layout="@layout/header"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ListView
+            android:id="@+id/listAll"
+            android:fadingEdge="vertical"
+            android:fadingEdgeLength="10dp"
+            android:longClickable="true"
+            android:listSelector="#AFD3DF"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+        </ListView>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        >
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/buttonbackground"
+            android:textSize="15dp"
+            android:text="Add Friend To Chat"
+            android:id="@+id/addFriends"
+            />
+
+    </LinearLayout>
+</LinearLayout>
