@@ -87,7 +87,7 @@ public class TrainerDashboard extends AppCompatActivity {
         launchChat.setOnClickListener(new View.OnClickListener() {
            @Override
             public void onClick(View v){
-               Intent intent = new Intent(TrainerDashboard.this, ChatRoom.class);
+               Intent intent = new Intent(TrainerDashboard.this, ChatRoomNew.class);
                startActivity(intent);
            }
         });
