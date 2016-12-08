@@ -1,7 +1,6 @@
 package com.example.heem.togetherfit;
 
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
@@ -18,8 +17,6 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
-import com.google.firebase.auth.FirebaseAuth;
-
 
 public class LiveChat extends AppCompatActivity {
 
@@ -27,42 +24,59 @@ public class LiveChat extends AppCompatActivity {
     private EditText input_msg;
     private TextView chat_conversation;
 
-    private String user_name,room_name;
-    private DatabaseReference nameRef ;
+    private String sender,senderName,senderURL,receiver,receiverName,receiverURL, room_name;
+
+    private DatabaseReference nameRef,senderRef1, senderRef2, receiverRef1, receiverRef2;
     private String temp_key;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.activity_live_chat);
+
         btn_send_msg = (Button) findViewById(R.id.btn_send);
         input_msg = (EditText) findViewById(R.id.msg_input);
         chat_conversation = (TextView) findViewById(R.id.textView);
 
-        user_name = getIntent().getExtras().get("user_name").toString();
-        room_name = getIntent().getExtras().get("room_name").toString();
-        setTitle(" Room - "+room_name);
+        sender = (String)getIntent().getExtras().get("sender");
+        senderName = (String)getIntent().getExtras().get("senderName");
+        senderURL = (String)getIntent().getExtras().get("senderURL");
 
-        nameRef = FirebaseDatabase.getInstance().getReference("Chat").child(room_name);
+        receiver = (String)getIntent().getExtras().get("receiver");
+        receiverName = (String)getIntent().getExtras().get("receiverName");
+        receiverURL = (String)getIntent().getExtras().get("receiverURL");
+
+
+        room_name = (String)getIntent().getExtras().get("sender");
+        setTitle(" Chatting With - " + receiverName);
+
+        senderRef1 = FirebaseDatabase.getInstance().getReference("Chat").child(sender);
+        receiverRef1 = senderRef1.child(receiver);
+
+        senderRef2 = FirebaseDatabase.getInstance().getReference("Chat").child(receiver);
+        receiverRef2 = senderRef2.child(sender);
 
         btn_send_msg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
                 Map<String,Object> map = new HashMap<String, Object>();
-                temp_key = nameRef.push().getKey();
-                nameRef.updateChildren(map);
+                temp_key = receiverRef1.push().getKey();
+                receiverRef1.updateChildren(map);
+                receiverRef2.updateChildren(map);
 
-                DatabaseReference message_root = nameRef.child(temp_key);
+                DatabaseReference message_root1 = receiverRef1.child(temp_key);
+                DatabaseReference message_root2 = receiverRef2.child(temp_key);
                 Map<String,Object> map2 = new HashMap<String, Object>();
-                map2.put("name",user_name);
+                map2.put("name",senderName);
                 map2.put("msg",input_msg.getText().toString());
 
-                message_root.updateChildren(map2);
+                message_root1.updateChildren(map2);
+                message_root2.updateChildren(map2);
+
             }
         });
 
-        nameRef.addChildEventListener(new ChildEventListener() {
+        receiverRef1.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
 
@@ -101,10 +115,8 @@ public class LiveChat extends AppCompatActivity {
         Iterator i = dataSnapshot.getChildren().iterator();
 
         while (i.hasNext()){
-
             chat_msg = (String) ((DataSnapshot)i.next()).getValue();
             chat_user_name = (String) ((DataSnapshot)i.next()).getValue();
-
             chat_conversation.append(chat_user_name +" : "+chat_msg +" \n");
         }
 
