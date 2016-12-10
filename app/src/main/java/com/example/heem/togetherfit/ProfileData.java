@@ -69,7 +69,7 @@ public class ProfileData extends AppCompatActivity {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 imageURL = dataSnapshot.child(currentUId).child("imageURL").getValue().toString();
                 //personal portrait part
-                Picasso.with(ProfileData.this).load(Uri.parse(imageURL)).into(picture);
+                Picasso.with(ProfileData.this).load(Uri.parse(imageURL)).fit().into(picture);
                 mProgress = new ProgressDialog(ProfileData.this);
                 uploadimg.setOnClickListener(new View.OnClickListener() {
                     @Override

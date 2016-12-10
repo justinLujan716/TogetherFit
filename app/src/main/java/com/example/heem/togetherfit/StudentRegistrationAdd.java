@@ -120,7 +120,7 @@ public class StudentRegistrationAdd extends AppCompatActivity {
             }
         });
         //personal portrait part
-        Picasso.with(StudentRegistrationAdd.this).load(Uri.parse(imageURL)).into(imageView);
+        Picasso.with(StudentRegistrationAdd.this).load(Uri.parse(imageURL)).fit().into(imageView);
         mProgress = new ProgressDialog(this);
         uploadImage.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -144,7 +144,7 @@ public class StudentRegistrationAdd extends AppCompatActivity {
                 public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                     mProgress.dismiss();
                     Uri downloadUri = taskSnapshot.getDownloadUrl();
-                    Picasso.with(StudentRegistrationAdd.this).load(downloadUri).into(imageView);
+                    Picasso.with(StudentRegistrationAdd.this).load(downloadUri).fit().into(imageView);
                     imageURL = downloadUri.toString().trim();
                     Toast.makeText(StudentRegistrationAdd.this, "upload done, ", Toast.LENGTH_LONG).show();
                 }
