@@ -46,24 +46,30 @@ public class AddFriends extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_friends);
 
         searchUser = (EditText) findViewById(R.id.searchUser);
         list = (ListView) findViewById(R.id.listAll);
+        list.setAdapter(null); //Make sure the list is null at the beginning before any adapter
 
         //get current user id, because user shoudl not its self !
         final String currentUser = FirebaseAuth.getInstance().getCurrentUser().getUid();
         allusers = FirebaseDatabase.getInstance().getReference().child("Friends");
         getInfo = FirebaseDatabase.getInstance().getReference().child("User");
-        list.setAdapter(null); //Make sure the list is null at the beginning before any adapter
-
 
                 //First iterate through the friend list for this user
                 allusers.child(currentUser).addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
-
+                        //Variables
+                        email.clear();
+                        ids.clear();
+                        imageURL.clear();
+                        fitnesstype.clear();
+                        usertype.clear();
+                        currentFriends.clear();
                         for (DataSnapshot ds : dataSnapshot.getChildren()) {
                             String id = ds.getKey().toString();
                             currentFriends.add(id);//Add Id to the list
