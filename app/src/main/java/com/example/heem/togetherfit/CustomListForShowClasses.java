@@ -52,7 +52,7 @@ public class CustomListForShowClasses extends ArrayAdapter<String>{
         TextView numOfReg = (TextView) rowView.findViewById(R.id.numOfReg);
         title.setText(classtitle.get(position));
         //Use Picasso Jar file to display the image
-        Picasso.with(context).load(imageId.get(position)).into(imageView);
+        Picasso.with(context).load(imageId.get(position)).fit().into(imageView);
         id.setText("Class ID: " + classId.get(position));
         txtLocation.setText("Class Location: " + location.get(position));
         capacity.setText("Capacity: " + cap.get(position));

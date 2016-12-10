@@ -44,7 +44,7 @@ public class CustomListUsers extends ArrayAdapter<String> {
         TextView studentEmail = (TextView) rowView.findViewById(R.id.studentEmail);
         studentName.setText("Student Name: " + studentname.get(position));
         //Use Picasso Jar file to display the image
-        Picasso.with(context).load(studentPicture.get(position)).into(imageView);
+        Picasso.with(context).load(studentPicture.get(position)).fit().into(imageView);
         studentEmail.setText("Student Email : " + studentemail.get(position));
         return rowView;
     }

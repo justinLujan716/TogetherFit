@@ -43,7 +43,7 @@ public class CustomList extends ArrayAdapter<String>{
         TextView txtLocation = (TextView) rowView.findViewById(R.id.location);
         txtTitle.setText(title.get(position));
         //Use Picasso Jar file to display the image
-        Picasso.with(context).load(imageId.get(position)).into(imageView);
+        Picasso.with(context).load(imageId.get(position)).fit().into(imageView);
         txtType.setText("Fitness Type: " + type.get(position));
         txtLocation.setText("Class Location: " + location.get(position));
         return rowView;

@@ -48,6 +48,8 @@
         <activity android:name=".ShowTrainer" />
         <activity android:name=".TrainerCreateClassAdd" />
         <activity android:name=".ProfileData" />
+        <activity android:name=".currentFriends" />
+        <activity android:name=".AddFriends" />
         <!-- create class -->
 
 

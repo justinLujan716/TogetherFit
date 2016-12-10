@@ -48,7 +48,7 @@ public class CustomListForCurrentFriends extends ArrayAdapter<String> {
         usertype.setText("User Type: " + UserType.get(position));
         ImageView image = (ImageView) rowView.findViewById(R.id.image);
         //Use Picasso Jar file to display the image
-        Picasso.with(context).load(Image.get(position)).transform(new CircleTransform()).error(R.drawable.personalcircle).into(image);
+        Picasso.with(context).load(Image.get(position)).transform(new CircleTransform()).error(R.drawable.personalcircle).fit().into(image);
         return rowView;
     }
 }
