@@ -374,7 +374,7 @@ public class FindPlaceStudent extends AppCompatActivity implements OnMapReadyCal
                     view.invalidate();
                     settingsDialog.setContentView(view);
                     TextView placeName = (TextView) settingsDialog.findViewById(R.id.placeN);
-                    placeName.setText(marker.getTitle());
+                    placeName.setText(marker.getTitle() + "\n");
                     TextView placeInfo = (TextView) settingsDialog.findViewById(R.id.placeS);
                     placeInfo.setText(marker.getSnippet());
                     String imageToShow = getImageURLFromtitle(marker.getTitle());
@@ -522,10 +522,9 @@ public class FindPlaceStudent extends AppCompatActivity implements OnMapReadyCal
         return urlString.toString();
     }
 
-
     /*
- * Method to clear the path
- */
+     * Method to clear the path
+     */
     public void deletePath()
     {
         for(Polyline path: polyPaths)
@@ -551,6 +550,6 @@ public class FindPlaceStudent extends AppCompatActivity implements OnMapReadyCal
         }
         return "";
     }
-    
+
 
 }

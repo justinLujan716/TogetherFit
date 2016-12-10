@@ -375,7 +375,7 @@ public class FindPlaceTrainer extends FragmentActivity implements OnMapReadyCall
                     view.invalidate();
                     settingsDialog.setContentView(view);
                     TextView placeName = (TextView) settingsDialog.findViewById(R.id.placeN);
-                    placeName.setText(marker.getTitle());
+                    placeName.setText(marker.getTitle() + "\n");
                     TextView placeInfo = (TextView) settingsDialog.findViewById(R.id.placeS);
                     placeInfo.setText(marker.getSnippet());
                     String imageToShow = getImageURLFromtitle(marker.getTitle());

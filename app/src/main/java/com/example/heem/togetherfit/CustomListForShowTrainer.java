@@ -29,7 +29,7 @@ public class CustomListForShowTrainer extends ArrayAdapter<String>{
     public CustomListForShowTrainer(Activity context,
                                     ArrayList<String> trainerName, ArrayList<String> imageId,
                                     ArrayList<String> traineremail, ArrayList<String> location, ArrayList<String> fitnestype) {
-        super(context, R.layout.activity_show_classes, trainerName);
+        super(context, R.layout.activity_show_trainer, trainerName);
         this.context = context;
         this.trainerName = trainerName;
         this.imageId = imageId;
