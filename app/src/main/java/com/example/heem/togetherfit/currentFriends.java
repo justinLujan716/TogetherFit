@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -89,10 +90,12 @@ public class currentFriends extends AppCompatActivity {
                                 CustomListForCurrentFriends(currentFriends.this, emails, imageURLs, fitnesstypes, usertypes);
                         list.setAdapter(adapter);
                     }
-                    else
-                    {
-                        Toast.makeText(getApplicationContext(),"You do not have any friend, click to add friend",Toast.LENGTH_SHORT).show();
-                    }
+                }
+                if(ids.size()==0)
+                {
+                    Toast.makeText(getApplicationContext(),"You do not have any friend, click to add friend",Toast.LENGTH_SHORT).show();
+                    TextView title = (TextView) findViewById(R.id.title);
+                    title.setText("Friends List...\n\n Empty - Click to Add Friends");
                 }
 
             }
