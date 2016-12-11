@@ -114,7 +114,7 @@ public class AddFriends extends AppCompatActivity {
                                     @Override
                                     public void onItemClick(AdapterView<?> parent, View view, final int position, long id) {
                                         AlertDialog.Builder builder = new AlertDialog.Builder(AddFriends.this);
-                                        builder.setMessage("Are you sure you want to add this user")
+                                        builder.setMessage("Are you sure you want to add " + email.get(+position) + "?")
                                                 .setCancelable(true)
                                                 .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                                                     public void onClick(DialogInterface dialog, int id) {
@@ -162,8 +162,9 @@ public class AddFriends extends AppCompatActivity {
         backbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                onBackPressed();
-
+                Intent back = new Intent(AddFriends.this, currentFriends.class);
+                //start the activity
+                startActivity(back);
             }
         });
         //Log out button at the tool bar to take the user to main page
@@ -176,6 +177,35 @@ public class AddFriends extends AppCompatActivity {
                 Intent back = new Intent(AddFriends.this, MainActivity.class);
                 //start the activity
                 startActivity(back);
+            }
+        });
+
+
+        searchUser = (EditText) findViewById(R.id.searchUser) ;
+        searchUser.addTextChangedListener(new TextWatcher() {
+
+            @Override
+            public void onTextChanged(CharSequence cs, int arg1, int arg2, int arg3) {
+                //To update every-time
+                adapter = new
+                        CustomListForAddFriends(AddFriends.this, email, imageURL, fitnesstype, usertype);
+                list.setAdapter(adapter);
+                adapter.notifyDataSetChanged();
+                AddFriends.this.adapter.getFilter().filter(cs);
+            }
+
+            @Override
+            public void beforeTextChanged(CharSequence arg0, int arg1, int arg2,
+                                          int arg3) {
+                // TODO Auto-generated method stub
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable arg0) {
+                // TODO Auto-generated method stub
+
+
             }
         });
     }
