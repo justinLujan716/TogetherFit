@@ -113,10 +113,7 @@ public class LiveChat extends AppCompatActivity {
         backbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Intent back = new Intent(LiveChat.this, .class);
-                //start the activity
-                //startActivity(back);
-                finish();
+                onBackPressed();
             }
         });
         //Log out button at the tool bar to take the user to main page

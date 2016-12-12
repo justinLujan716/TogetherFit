@@ -251,7 +251,7 @@ public class TrainerCreateClass extends AppCompatActivity{
                 public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                     mProgress.dismiss();
                     Uri downloadUri = taskSnapshot.getDownloadUrl();
-                    Picasso.with(TrainerCreateClass.this).load(downloadUri).into(imageView);
+                    Picasso.with(TrainerCreateClass.this).load(downloadUri).fit().into(imageView);
                     imageURL = downloadUri.toString().trim();
                     Toast.makeText(TrainerCreateClass.this, "upload done, ", Toast.LENGTH_LONG).show();
                 }

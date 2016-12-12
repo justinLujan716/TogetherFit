@@ -38,6 +38,12 @@ public class ShowClasses extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        classTitle.clear();
+        classID.clear();
+        location.clear();
+        image.clear();
+        cap.clear();
+        regNum.clear();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_show_classes);
         //listview
@@ -107,12 +113,6 @@ public class ShowClasses extends AppCompatActivity {
 
     private void getUpdate(DataSnapshot ds)
     {
-        classTitle.clear();
-        classID.clear();
-        location.clear();
-        image.clear();
-        cap.clear();
-        regNum.clear();
         String dsId = (ds.child("Trainer").getValue()).toString();
         if (UserId.equalsIgnoreCase(dsId)) {
             //Get the class name and send that to the adapter
