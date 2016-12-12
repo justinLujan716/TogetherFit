@@ -154,12 +154,14 @@ public class TrainerCreateClass extends AppCompatActivity{
                     mRefChildEmail11.setValue(dateFrom);
                     DatabaseReference mRefChildEmail12 = mRefChild.child("To Date");
                     mRefChildEmail12.setValue(dateTo);
+                    startActivity(new Intent(TrainerCreateClass.this, TrainerDashboard.class));
+
 
                 }catch (Exception e)
                 {
                     Toast.makeText(TrainerCreateClass.this, "Failed to create a class", Toast.LENGTH_SHORT).show();
                 }
-                startActivity(new Intent(TrainerCreateClass.this, TrainerDashboard.class));
+
             }
         });
         //This method, Add place to class
