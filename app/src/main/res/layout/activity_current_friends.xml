@@ -8,7 +8,7 @@
     tools:context="com.example.heem.togetherfit.AddClass"
     android:background="@drawable/backgroundsec"
     android:orientation="vertical"
-    android:layout_weight="2">
+    android:layout_weight="3">
     <!-- Header aligned to top -->
     <include layout="@layout/header"/>
     <LinearLayout
@@ -26,12 +26,11 @@
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_gravity="bottom"
         android:layout_weight="1"
         >
         <Button
-            android:layout_marginTop="30dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/buttonbackground"
