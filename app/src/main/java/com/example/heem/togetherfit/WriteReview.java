@@ -99,6 +99,7 @@ public class WriteReview extends AppCompatActivity {
                         handler.postDelayed(new Runnable() {
                             public void run() {
                                 // Actions to do after seconds
+                                progressDialog.dismiss();
                                 onBackPressed(); //Go back once it submitted
                             }
                         }, 5000);

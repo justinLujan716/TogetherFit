@@ -106,7 +106,10 @@ public class ReadReviews extends AppCompatActivity {
                             Rate.add(localrate);
                             Date.add(localdate);
                             //convert the rating to number
-                            float num = Float.parseFloat(localrate);
+                            float num = 0;
+                            if (localrate != null) {
+                                num = Float.parseFloat(localrate);
+                            }
                             keeptrackofrating = keeptrackofrating + num;
                             i++;
                         }
