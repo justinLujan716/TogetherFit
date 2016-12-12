@@ -390,7 +390,7 @@ public class showtrainermap extends FragmentActivity implements OnMapReadyCallba
                 title.setText(marker.getTitle());
                 snippet = new TextView(mContext);
                 snippet.setTextColor(Color.BLACK);
-                if (!marker.getTitle().equalsIgnoreCase("Your location") && !marker.getTitle().substring(0, 13).equalsIgnoreCase("Your location")) {
+                if (!marker.getTitle().equalsIgnoreCase("Your location") && !marker.getTitle().substring(0,4).equalsIgnoreCase("Your")) {
                     snippet.setText("Click for more info");
                 } else {
                     snippet.setText(marker.getSnippet());
@@ -408,7 +408,7 @@ public class showtrainermap extends FragmentActivity implements OnMapReadyCallba
             public void onInfoWindowClick(Marker marker) {
 
                 final String temail = title.getText().toString();
-                if (!temail.equalsIgnoreCase("Your Location") && !temail.substring(0, 13).equalsIgnoreCase("Your Location")) { //To make sure when the user click on his locaiton nothing appear
+                if (!temail.equalsIgnoreCase("Your Location") && !temail.substring(0,4).equalsIgnoreCase("Your")) { //To make sure when the user click on his locaiton nothing appear
                     settingsDialog = new Dialog(showtrainermap.this);
                     settingsDialog.getWindow().requestFeature(Window.FEATURE_NO_TITLE);
                     View view = getLayoutInflater().inflate(R.layout.custom_in_click_info_windows, null);
@@ -420,7 +420,7 @@ public class showtrainermap extends FragmentActivity implements OnMapReadyCallba
                     trainerS.setText(marker.getSnippet());
                     String imageToShow = getImageURLFromtitle(temail);
                     ImageView trainerI = (ImageView) settingsDialog.findViewById(R.id.image);
-                    Picasso.with(mContext).load(imageToShow).resize(120,120).error(R.drawable.personal).into(trainerI, new MarkerCallback(marker));
+                    Picasso.with(mContext).load(imageToShow).fit().error(R.drawable.personal).into(trainerI, new MarkerCallback(marker));
                     settingsDialog.show();
 
                     Button read = (Button) settingsDialog.findViewById(R.id.ReadReview);

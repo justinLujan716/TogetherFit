@@ -35,21 +35,36 @@
         <activity
             android:name=".StudentLogin"
             android:label="@string/title_activity_login_student" />
-        <activity android:name=".StudentRegistration" />
-        <activity android:name=".TrainerRegistration" />
-        <activity android:name=".StudentRegistrationAdd" />
-        <activity android:name=".TrainerLogin" />
-        <activity android:name=".TrainerDashboard" />
-        <activity android:name=".TrainerRegistrationAdd" />
-        <activity android:name=".ChatRoom" />
-        <activity android:name=".LiveChat" />
-        <activity android:name=".TrainerCreateClass" />
-        <activity android:name=".FindTrainer" />
-        <activity android:name=".ShowTrainer" />
-        <activity android:name=".TrainerCreateClassAdd" />
-        <activity android:name=".ProfileData" />
-        <activity android:name=".currentFriends" />
-        <activity android:name=".AddFriends" />
+        <activity android:name=".StudentRegistration"
+            android:label="Student Registration"/>
+        <activity android:name=".TrainerRegistration"
+            android:label="Trainer Registration"/>
+        <activity android:name=".StudentRegistrationAdd"
+            android:label="Student Registration"/>
+        <activity android:name=".TrainerLogin"
+            android:label="Student Sign in"/>
+        <activity android:name=".TrainerDashboard"
+            android:label="Trainer Dashboard"/>
+        <activity android:name=".TrainerRegistrationAdd"
+            android:label="Trainer Registration"/>
+        <activity android:name=".ChatRoom"
+            android:label="Live Chat"/>
+        <activity android:name=".LiveChat"
+            android:label="Live Chat"/>
+        <activity android:name=".TrainerCreateClass"
+            android:label="Create Class"/>
+        <activity android:name=".FindTrainer"
+            android:label="Find Trainer"/>
+        <activity android:name=".ShowTrainer"
+            android:label="Find Trainer By Workout Type"/>
+        <activity android:name=".TrainerCreateClassAdd"
+            android:label="Create Class"/>
+        <activity android:name=".ProfileData"
+            android:label="Profile Data"/>
+        <activity android:name=".currentFriends"
+            android:label="Friends List"/>
+        <activity android:name=".AddFriends"
+            android:label="Add Friends"/>
         <!-- create class -->
 
 
@@ -67,25 +82,38 @@
 
         <activity
             android:name=".FindPlaceTrainer"
-            android:label="@string/title_activity_find_place_trainer" />
+            android:label="Find Place To Train at"
+            />
         <activity
             android:name=".FindPlaceStudent"
-            android:label="Map" />
-        <activity android:name=".StudentDashboard" />
-        <activity android:name=".AddClass" />
-        <activity android:name=".ClassDetail" />
-        <activity android:name=".ConfirmRegistration" />
-        <activity android:name=".ShowClasses" />
+            android:label="Fidn Place To Workout" />
+        <activity android:name=".StudentDashboard"
+            android:label="Student Dashboard"/>
+        <activity android:name=".AddClass"
+            android:label="Register in a Class"/>
+        <activity android:name=".ClassDetail"
+            android:label="Class Detail"/>
+        <activity android:name=".ConfirmRegistration"
+            android:label="Confirm Registration"/>
+        <activity android:name=".ShowClasses"
+            android:label="Show Classes"/>
         <activity android:name=".EditProfileStudent"
             android:label="Edit Profile"/>
         <activity android:name=".EditProfileTrainer"
             android:label="Edit Profile"/>
-        <activity android:name=".UserRegInAClass" />
-        <activity android:name=".SendEmailThroughAndroid" />
+        <activity android:name=".UserRegInAClass"
+            android:label="Users Registered in this Class"/>
+        <activity android:name=".SendEmailThroughAndroid"
+            android:label="Send Email"/>
         <activity
             android:name=".showtrainermap"
-            android:label="Map" />
-        <activity android:name=".EmailSentConfirmation"></activity>
+            android:label="Find Trainer By Location" />
+        <activity android:name=".EmailSentConfirmation"
+            android:label="Email Sent Confirmation"></activity>
+        <activity android:name=".ReadReviews"
+            android:label="Read Reviews"></activity>
+        <activity android:name=".WriteReview"
+            android:label="Write Review"></activity>
     </application>
 
 </manifest>

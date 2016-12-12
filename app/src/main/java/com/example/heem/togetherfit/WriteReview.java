@@ -115,10 +115,7 @@ public class WriteReview extends AppCompatActivity {
         backbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // the name of the receiving activity is declared in the Intent Constructor, go back to log in page
-                Intent back = new Intent(WriteReview.this, FindTrainer.class);
-                //start the activity
-                startActivity(back);
+                onBackPressed();
             }
         });
 

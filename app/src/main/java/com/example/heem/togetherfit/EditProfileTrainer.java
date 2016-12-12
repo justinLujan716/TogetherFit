@@ -97,7 +97,7 @@ public class EditProfileTrainer extends AppCompatActivity {
         WorkoutDropdown = (Spinner) findViewById(R.id.workoutDropdownBtn);
         List<String> list = new ArrayList<String>();
         list.add("Yoga");
-        list.add("Flexibilitiy");
+        list.add("Flexibility");
         list.add("Strength");
         list.add("Balance");
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, list);// Create an ArrayAdapter using the string array and a default spinner layout

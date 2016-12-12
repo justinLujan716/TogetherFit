@@ -25,16 +25,18 @@ import java.util.Map;
 
 import android.app.ListActivity;
 
+/* Student Side:
+ * This class to show all current avaliable class and allow the student to click on a specific class
+ */
 public class AddClass extends AppCompatActivity {
 
-    //Variables
+    //Variables - lists to record class info
     ListView list;
     ArrayList<String> title = new ArrayList<String>();
     ArrayList<String> type = new ArrayList<String>();
     ArrayList<String> location = new ArrayList<String>();
     ArrayList<String> image = new ArrayList<>();
     View mylayout;
-    TextView ClassName;
     //Firebase variable
     DatabaseReference database;
     //Class Id
@@ -59,7 +61,7 @@ public class AddClass extends AppCompatActivity {
 
                 String id = dataSnapshot.getRef().getKey();
                 ClassId.add(id);
-                getUpdate(dataSnapshot);
+                getUpdate(dataSnapshot);//Call the method to show all classes on update
             }
 
             @Override
@@ -84,7 +86,7 @@ public class AddClass extends AppCompatActivity {
         });
 
         //Back button takes back to sign in activity
-        //This is the way to refer to outside button from another laytout back button is in header.xml
+        //This is the way to refer to outside button from another layout back button is in header.xml
         View myLayout = findViewById(R.id.backbtnlayout); // root View id from that link
         Button backbutton = (Button) myLayout.findViewById(R.id.backbtn); // id of a view contained in the included file
         backbutton.setOnClickListener(new View.OnClickListener() {
@@ -125,9 +127,10 @@ public class AddClass extends AppCompatActivity {
         String imageURL = (ds.child("ImageURL").getValue()).toString();
         image.add(imageURL);
         location.add(locationValue);
+        //If size > 0
         if (title.size() >0)
         {
-
+            //Set a custom adapter by using custome list class
             CustomList adapter = new
                     CustomList(AddClass.this, title, image, type,location);
             list.setAdapter(adapter);

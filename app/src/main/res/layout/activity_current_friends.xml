@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_add_friend"
@@ -6,12 +7,14 @@
     android:layout_height="match_parent"
     tools:context="com.example.heem.togetherfit.AddClass"
     android:background="@drawable/backgroundsec"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:layout_weight="2">
     <!-- Header aligned to top -->
     <include layout="@layout/header"/>
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_weight="1">
         <ListView
             android:id="@+id/listAll"
             android:fadingEdge="vertical"
@@ -25,8 +28,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
+        android:layout_weight="1"
         >
         <Button
+            android:layout_marginTop="30dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/buttonbackground"
@@ -34,6 +39,6 @@
             android:text="Add Friend"
             android:id="@+id/addFriends"
             />
-
     </LinearLayout>
 </LinearLayout>
+

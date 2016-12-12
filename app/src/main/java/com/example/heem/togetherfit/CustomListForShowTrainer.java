@@ -49,7 +49,7 @@ public class CustomListForShowTrainer extends ArrayAdapter<String>{
         TextView fitnesstype = (TextView) rowView.findViewById(R.id.trainerfitnesstype);
         name.setText("Trainer Name: " + trainerName.get(position));
         //Use Picasso Jar file to display the image
-        Picasso.with(context).load(imageId.get(position)).resize(120,120).error(R.drawable.personal).fit().into(imageView);
+        Picasso.with(context).load(imageId.get(position)).error(R.drawable.personal).fit().into(imageView);
         trainerEmail.setText("Trainer Email : " + traineremail.get(position));
         txtLocation.setText("Trainer Location: " + location.get(position));
         fitnesstype.setText("Trainer fitness Type: " + fitnestype.get(position));

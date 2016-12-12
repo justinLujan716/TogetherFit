@@ -164,10 +164,7 @@ public class ReadReviews extends AppCompatActivity {
         backbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // the name of the receiving activity is declared in the Intent Constructor, go back to log in page
-                Intent back = new Intent(ReadReviews.this, FindTrainer.class);
-                //start the activity
-                startActivity(back);
+                onBackPressed();
             }
         });
         //Log out button at the tool bar to take the user to main page

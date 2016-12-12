@@ -24,7 +24,9 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-
+/* Student & Trainer Side:
+ * Show all users who are not in the current user's firned list and allow the user to add a new user as a friend
+ */
 public class AddFriends extends AppCompatActivity {
 
     //Database Reference
@@ -108,11 +110,12 @@ public class AddFriends extends AppCompatActivity {
                                         CustomListForAddFriends(AddFriends.this, email, imageURL, fitnesstype, usertype);
                                 list.setAdapter(adapter);
 
-                                //perform a specific action when the user click on a class redirect the user to class's detiales
+                                //perform a specific action when the user click on a class redirect the user to class's details
                                 list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                                     //When they click on an Item
                                     @Override
                                     public void onItemClick(AdapterView<?> parent, View view, final int position, long id) {
+                                        //Show dialaog to ask the user yes or no to add a friend
                                         AlertDialog.Builder builder = new AlertDialog.Builder(AddFriends.this);
                                         builder.setMessage("Are you sure you want to add " + email.get(+position) + "?")
                                                 .setCancelable(true)
@@ -132,7 +135,7 @@ public class AddFriends extends AppCompatActivity {
                                                     }
                                                 });
                                         AlertDialog alert = builder.create();
-                                        alert.show();
+                                        alert.show();//show daialog
 
                                     }
                                 });
@@ -162,9 +165,7 @@ public class AddFriends extends AppCompatActivity {
         backbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent back = new Intent(AddFriends.this, currentFriends.class);
-                //start the activity
-                startActivity(back);
+                onBackPressed();
             }
         });
         //Log out button at the tool bar to take the user to main page
