@@ -41,6 +41,7 @@ public class AddClass extends AppCompatActivity {
     DatabaseReference database;
     //Class Id
     ArrayList<String> ClassId = new ArrayList<>();
+    Button show;
 
 
 
@@ -108,6 +109,17 @@ public class AddClass extends AppCompatActivity {
                 Intent back = new Intent(AddClass.this, MainActivity.class);
                 //start the activity
                 startActivity(back);
+            }
+        });
+
+        show = (Button) findViewById(R.id.show);
+        show.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // the name of the receiving activity is declared in the Intent Constructor, go back to log in page
+                Intent go = new Intent(AddClass.this, ClassesRegisteredForUser.class);
+                //start the activity
+                startActivity(go);
             }
         });
 

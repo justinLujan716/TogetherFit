@@ -35,36 +35,51 @@
         <activity
             android:name=".StudentLogin"
             android:label="@string/title_activity_login_student" />
-        <activity android:name=".StudentRegistration"
-            android:label="Student Registration"/>
-        <activity android:name=".TrainerRegistration"
-            android:label="Trainer Registration"/>
-        <activity android:name=".StudentRegistrationAdd"
-            android:label="Student Registration"/>
-        <activity android:name=".TrainerLogin"
-            android:label="Student Sign in"/>
-        <activity android:name=".TrainerDashboard"
-            android:label="Trainer Dashboard"/>
-        <activity android:name=".TrainerRegistrationAdd"
-            android:label="Trainer Registration"/>
-        <activity android:name=".ChatRoom"
-            android:label="Live Chat"/>
-        <activity android:name=".LiveChat"
-            android:label="Live Chat"/>
-        <activity android:name=".TrainerCreateClass"
-            android:label="Create Class"/>
-        <activity android:name=".FindTrainer"
-            android:label="Find Trainer"/>
-        <activity android:name=".ShowTrainer"
-            android:label="Find Trainer By Workout Type"/>
-        <activity android:name=".TrainerCreateClassAdd"
-            android:label="Create Class"/>
-        <activity android:name=".ProfileData"
-            android:label="Profile Data"/>
-        <activity android:name=".currentFriends"
-            android:label="Friends List"/>
-        <activity android:name=".AddFriends"
-            android:label="Add Friends"/>
+        <activity
+            android:name=".StudentRegistration"
+            android:label="Student Registration" />
+        <activity
+            android:name=".TrainerRegistration"
+            android:label="Trainer Registration" />
+        <activity
+            android:name=".StudentRegistrationAdd"
+            android:label="Student Registration" />
+        <activity
+            android:name=".TrainerLogin"
+            android:label="Student Sign in" />
+        <activity
+            android:name=".TrainerDashboard"
+            android:label="Trainer Dashboard" />
+        <activity
+            android:name=".TrainerRegistrationAdd"
+            android:label="Trainer Registration" />
+        <activity
+            android:name=".ChatRoom"
+            android:label="Live Chat" />
+        <activity
+            android:name=".LiveChat"
+            android:label="Live Chat" />
+        <activity
+            android:name=".TrainerCreateClass"
+            android:label="Create Class" />
+        <activity
+            android:name=".FindTrainer"
+            android:label="Find Trainer" />
+        <activity
+            android:name=".ShowTrainer"
+            android:label="Find Trainer By Workout Type" />
+        <activity
+            android:name=".TrainerCreateClassAdd"
+            android:label="Create Class" />
+        <activity
+            android:name=".ProfileData"
+            android:label="Profile Data" />
+        <activity
+            android:name=".currentFriends"
+            android:label="Friends List" />
+        <activity
+            android:name=".AddFriends"
+            android:label="Add Friends" />
         <!-- create class -->
 
 
@@ -82,42 +97,57 @@
 
         <activity
             android:name=".FindPlaceTrainer"
-            android:label="Find Place To Train at"
-            />
+            android:label="Find Place To Train at" />
         <activity
             android:name=".FindPlaceStudent"
             android:label="Fidn Place To Workout" />
-        <activity android:name=".StudentDashboard"
-            android:label="Student Dashboard"/>
-        <activity android:name=".AddClass"
-            android:label="Register in a Class"/>
-        <activity android:name=".ClassDetail"
-            android:label="Class Detail"/>
-        <activity android:name=".ConfirmRegistration"
-            android:label="Confirm Registration"/>
-        <activity android:name=".ShowClasses"
-            android:label="Show Classes"/>
-        <activity android:name=".EditProfileStudent"
-            android:label="Edit Profile"/>
-        <activity android:name=".EditProfileTrainer"
-            android:label="Edit Profile"/>
-        <activity android:name=".UserRegInAClass"
-            android:label="Users Registered in this Class"/>
-        <activity android:name=".SendEmailThroughAndroid"
-            android:label="Send Email"/>
+        <activity
+            android:name=".StudentDashboard"
+            android:label="Student Dashboard" />
+        <activity
+            android:name=".AddClass"
+            android:label="Register in a Class" />
+        <activity
+            android:name=".ClassDetail"
+            android:label="Class Detail" />
+        <activity
+            android:name=".ConfirmRegistration"
+            android:label="Confirm Registration" />
+        <activity
+            android:name=".ShowClasses"
+            android:label="Show Classes" />
+        <activity
+            android:name=".EditProfileStudent"
+            android:label="Edit Profile" />
+        <activity
+            android:name=".EditProfileTrainer"
+            android:label="Edit Profile" />
+        <activity
+            android:name=".UserRegInAClass"
+            android:label="Users Registered in this Class" />
+        <activity
+            android:name=".SendEmailThroughAndroid"
+            android:label="Send Email" />
         <activity
             android:name=".showtrainermap"
-            android:label="Find Trainer By Location"/>
-        <activity android:name=".EmailSentConfirmation"
-            android:label="Email Sent Confirmation"/>
-        <activity android:name=".ReadReviews"
-            android:label="Read Reviews"/>
-        <activity android:name=".WriteReview"
-            android:label="Write Review"/>
-        <activity android:name=".SelectChatPerson"
-            android:label="Select a User to Chat With"/>
-        <activity android:name=".ChatRoomNew"
-            android:label="Chat Room"/>
+            android:label="Find Trainer By Location" />
+        <activity
+            android:name=".EmailSentConfirmation"
+            android:label="Email Sent Confirmation" />
+        <activity
+            android:name=".ReadReviews"
+            android:label="Read Reviews" />
+        <activity
+            android:name=".WriteReview"
+            android:label="Write Review" />
+        <activity
+            android:name=".SelectChatPerson"
+            android:label="Select a User to Chat With" />
+        <activity
+            android:name=".ChatRoomNew"
+            android:label="Chat Room" />
+        <activity android:name=".ClassesRegisteredForUser"
+            android:label="Show Classes"></activity>
     </application>
 
 </manifest>
