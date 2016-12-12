@@ -349,7 +349,7 @@ public class FindPlaceTrainer extends FragmentActivity implements OnMapReadyCall
                 title.setText(marker.getTitle());
                 TextView snippet = new TextView(mContext);
                 snippet.setTextColor(Color.BLACK);
-                if (!marker.getTitle().equalsIgnoreCase("Your location") && !marker.getTitle().substring(0,4).equalsIgnoreCase("Your location")) {
+                if (!marker.getTitle().equalsIgnoreCase("Your location") && !marker.getTitle().substring(0,4).equalsIgnoreCase("Your")) {
                     snippet.setText("Click for more info");
                 } else {
                     snippet.setText(marker.getSnippet());
@@ -368,7 +368,7 @@ public class FindPlaceTrainer extends FragmentActivity implements OnMapReadyCall
             public void onInfoWindowClick(Marker marker) {
 
                 final String name = marker.getTitle();
-                if (!name.equalsIgnoreCase("Your Location") && !name.substring(0,4).equalsIgnoreCase("Your Location")) { //To make sure when the user click on his locaiton nothing appear
+                if (!name.equalsIgnoreCase("Your Location") && !name.substring(0,4).equalsIgnoreCase("Your")) { //To make sure when the user click on his locaiton nothing appear
                     settingsDialog = new Dialog(FindPlaceTrainer.this);
                     settingsDialog.getWindow().requestFeature(Window.FEATURE_NO_TITLE);
                     View view = getLayoutInflater().inflate(R.layout.custom_in_click_windows_places, null);

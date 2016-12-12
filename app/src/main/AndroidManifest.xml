@@ -97,7 +97,7 @@
 
         <activity
             android:name=".FindPlaceTrainer"
-            android:label="Find Place To Train at" />
+            android:label="Find Place To Train Student" />
         <activity
             android:name=".FindPlaceStudent"
             android:label="Fidn Place To Workout" />
@@ -142,10 +142,10 @@
             android:label="Write Review" />
         <activity
             android:name=".SelectChatPerson"
-            android:label="Select a User to Chat With" />
+            android:label="Chat Room" />
         <activity
             android:name=".ChatRoomNew"
-            android:label="Chat Room" />
+            android:label="Select a User to Chat With" />
         <activity android:name=".ClassesRegisteredForUser"
             android:label="Show Classes"></activity>
     </application>
