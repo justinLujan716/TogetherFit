@@ -42,7 +42,6 @@ public class currentFriends extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_current_friends);
-
         list = (ListView) findViewById(R.id.listAll);
         list.setAdapter(null); //Make sure the list is null at the beginning before any adapter
         //Access Friend table under current user
@@ -91,12 +90,6 @@ public class currentFriends extends AppCompatActivity {
                         list.setAdapter(adapter);
                     }
                 }
-                if(ids.size()==0)
-                {
-                    Toast.makeText(getApplicationContext(),"You do not have any friend, click to add friend",Toast.LENGTH_SHORT).show();
-                    TextView title = (TextView) findViewById(R.id.title);
-                    title.setText("Friends List...\n\n Empty - Click to Add Friends");
-                }
 
             }
 
@@ -116,7 +109,6 @@ public class currentFriends extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 onBackPressed();
-
             }
         });
         //Log out button at the tool bar to take the user to main page
@@ -141,5 +133,15 @@ public class currentFriends extends AppCompatActivity {
                 startActivity(addpage);
             }
         });
+
+
+    }
+    // Refresh the page when next acitivty go back to this acitivity
+    @Override
+    public void onRestart()
+    {
+        super.onRestart();
+        finish();
+        startActivity(getIntent());
     }
 }

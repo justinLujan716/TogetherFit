@@ -107,13 +107,17 @@
             android:label="Send Email"/>
         <activity
             android:name=".showtrainermap"
-            android:label="Find Trainer By Location" />
+            android:label="Find Trainer By Location"/>
         <activity android:name=".EmailSentConfirmation"
-            android:label="Email Sent Confirmation"></activity>
+            android:label="Email Sent Confirmation"/>
         <activity android:name=".ReadReviews"
-            android:label="Read Reviews"></activity>
+            android:label="Read Reviews"/>
         <activity android:name=".WriteReview"
-            android:label="Write Review"></activity>
+            android:label="Write Review"/>
+        <activity android:name=".SelectChatPerson"
+            android:label="Select a User to Chat With"/>
+        <activity android:name=".ChatRoomNew"
+            android:label="Chat Room"/>
     </application>
 
 </manifest>
