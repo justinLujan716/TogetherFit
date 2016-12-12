@@ -1,5 +1,6 @@
 package com.example.heem.togetherfit;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -7,6 +8,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -58,7 +60,6 @@ public class LiveChat extends AppCompatActivity {
         btn_send_msg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 Map<String,Object> map = new HashMap<String, Object>();
                 temp_key = receiverRef1.push().getKey();
                 receiverRef1.updateChildren(map);
@@ -72,7 +73,7 @@ public class LiveChat extends AppCompatActivity {
 
                 message_root1.updateChildren(map2);
                 message_root2.updateChildren(map2);
-
+                input_msg.setText("");
             }
         });
 
@@ -103,6 +104,31 @@ public class LiveChat extends AppCompatActivity {
             @Override
             public void onCancelled(DatabaseError databaseError) {
 
+            }
+        });
+        //Back button takes back to sign in activity
+        //This is the way to refer to outside button from another laytout back button is in header.xml
+        View myLayout = findViewById(R.id.backbtnlayout); // root View id from that link
+        Button backbutton = (Button) myLayout.findViewById(R.id.backbtn); // id of a view contained in the included file
+        backbutton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //Intent back = new Intent(LiveChat.this, .class);
+                //start the activity
+                //startActivity(back);
+                finish();
+            }
+        });
+        //Log out button at the tool bar to take the user to main page
+        View myLayout2 = findViewById(R.id.signOut); // root View id from that link
+        Button signOut = (Button) myLayout2.findViewById(R.id.signOutbtn); // id of a view contained in the included file
+        signOut.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FirebaseAuth.getInstance().signOut();
+                Intent back = new Intent(LiveChat.this, MainActivity.class);
+                //start the activity
+                startActivity(back);
             }
         });
 
