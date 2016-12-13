@@ -119,7 +119,9 @@ public class TrainerCreateClass extends AppCompatActivity{
             public void onClick(View v) {
 
                 String uid = auth.getCurrentUser().getUid();
-                try {
+                if (!isEmpty(className) && !isEmpty(weekDate) && !isEmpty(timeFrom) && !isEmpty(timeTo) && !isEmpty(ageRange)
+                    && !isEmpty(price) && !isEmpty(capacity) && !imageURL.equalsIgnoreCase("")&& !placeNameBack.equalsIgnoreCase("")
+                        && !dateFrom.equalsIgnoreCase("") && !dateTo.equalsIgnoreCase("")) {
                     mRef = FirebaseDatabase.getInstance()
                             .getReferenceFromUrl("https://togetherfit-148901.firebaseio.com/CreatedClass");
                     //DatabaseReference mRefChild = mRef.child(className.getText().toString().trim());
@@ -155,11 +157,10 @@ public class TrainerCreateClass extends AppCompatActivity{
                     DatabaseReference mRefChildEmail12 = mRefChild.child("To Date");
                     mRefChildEmail12.setValue(dateTo);
                     startActivity(new Intent(TrainerCreateClass.this, TrainerDashboard.class));
-
-
-                }catch (Exception e)
+                }
+            else
                 {
-                    Toast.makeText(TrainerCreateClass.this, "Failed to create a class", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(),"Make sure there is no empty field!",Toast.LENGTH_SHORT).show();
                 }
 
             }
@@ -210,6 +211,9 @@ public class TrainerCreateClass extends AppCompatActivity{
     DatePickerDialog.OnDateSetListener d = new DatePickerDialog.OnDateSetListener() {
         @Override
         public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+            dateTime.set(Calendar.YEAR, 2016);
+            dateTime.set(Calendar.MONTH, 12);
+            dateTime.set(Calendar.DAY_OF_MONTH, 16);
             dateTime.set(Calendar.YEAR, year);
             dateTime.set(Calendar.MONTH, monthOfYear);
             dateTime.set(Calendar.DAY_OF_MONTH, dayOfMonth);
@@ -221,6 +225,9 @@ public class TrainerCreateClass extends AppCompatActivity{
     DatePickerDialog.OnDateSetListener d2 = new DatePickerDialog.OnDateSetListener() {
         @Override
         public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+            dateTime2.set(Calendar.YEAR, 2016);
+            dateTime2.set(Calendar.MONTH, 12);
+            dateTime2.set(Calendar.DAY_OF_MONTH, 16);
             dateTime2.set(Calendar.YEAR, year);
             dateTime2.set(Calendar.MONTH, monthOfYear);
             dateTime2.set(Calendar.DAY_OF_MONTH, dayOfMonth);
@@ -252,15 +259,32 @@ public class TrainerCreateClass extends AppCompatActivity{
                 @Override
                 public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                     mProgress.dismiss();
-                    Uri downloadUri = taskSnapshot.getDownloadUrl();
-                    Picasso.with(TrainerCreateClass.this).load(downloadUri).fit().into(imageView);
-                    imageURL = downloadUri.toString().trim();
+
+                    Uri downloadUri;
+                    downloadUri = taskSnapshot.getDownloadUrl();
+                    if (!(downloadUri == null && downloadUri.equals("") && downloadUri.equals(null)) ) {
+                        Picasso.with(TrainerCreateClass.this).load(downloadUri).error(R.drawable.personalcircle).fit().into(imageView);
+                        imageURL = downloadUri.toString().trim();
+                    }
+                    else
+                    {
+                        Toast.makeText(TrainerCreateClass.this, "Error with Image, ", Toast.LENGTH_LONG).show();
+                    }
                     Toast.makeText(TrainerCreateClass.this, "upload done, ", Toast.LENGTH_LONG).show();
                 }
             });
 
         }
 
+
+
+    }
+    /*
+     * Method to check if edit text is empty
+     */
+    private boolean isEmpty(EditText etText)
+    {
+        return etText.getText().toString().trim().length() == 0;
     }
 
 }

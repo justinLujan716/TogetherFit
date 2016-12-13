@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RatingBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -70,39 +71,45 @@ public class WriteReview extends AppCompatActivity {
                 user.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot snapshot) {
-                        for (DataSnapshot ds: snapshot.getChildren())
-                        {
+                        for (DataSnapshot ds : snapshot.getChildren()) {
                             String localEmail = ds.child("Email").getValue().toString();
-                            if (localEmail.equalsIgnoreCase(email))
-                            {
+                            if (localEmail.equalsIgnoreCase(email)) {
                                 //If you find the user give his id
                                 id = ds.getKey();
                                 //Once find the user
                                 break;
                             }
                         }
+                        if (!isEmptyBar(rate) && !isEmpty(comment)) {
 
-                        review = FirebaseDatabase.getInstance().getReference().child("Review").child(id).child(currentUserId); //add ore create to the database
-                        String message = comment.getText().toString();
-                        review.child("Comment").setValue(message); //Add the message under the user name under this trainer
-                        float rateNum = rate.getRating();
-                        String convertRateNum = Float.toString(rateNum);
-                        review.child("Rating").setValue(convertRateNum); //Add the rating under the table
-                        review.child("Date").setValue(currentDate); //Add the rating under the table
+                            review = FirebaseDatabase.getInstance().getReference().child("Review").child(id).child(currentUserId); //add ore create to the database
+
+                            String message = comment.getText().toString();
+                            review.child("Comment").setValue(message); //Add the message under the user name under this trainer
+                            float rateNum = rate.getRating();
+                            String convertRateNum = Float.toString(rateNum);
+                            review.child("Rating").setValue(convertRateNum); //Add the rating under the table
+                            review.child("Date").setValue(currentDate); //Add the rating under the table
 
 
-                        //Show loading dialog
-                        progressDialog = ProgressDialog.show(WriteReview.this, "Submitting Review",
-                                "Wait until storing your review", true);
+                            //Show loading dialog
+                            progressDialog = ProgressDialog.show(WriteReview.this, "Submitting Review",
+                                    "Wait until storing your review", true);
 
-                        Handler handler = new Handler();
-                        handler.postDelayed(new Runnable() {
-                            public void run() {
-                                // Actions to do after seconds
-                                progressDialog.dismiss();
-                                onBackPressed(); //Go back once it submitted
-                            }
-                        }, 5000);
+                            Handler handler = new Handler();
+                            handler.postDelayed(new Runnable() {
+                                public void run() {
+                                    // Actions to do after seconds
+                                    progressDialog.dismiss();
+                                    onBackPressed(); //Go back once it submitted
+                                }
+                            }, 5000);
+                        }
+                        else
+                        {
+                            Toast.makeText(getApplicationContext(),"Make sure there is no empty field!",Toast.LENGTH_SHORT).show();
+
+                        }
                     }
                     @Override
                     public void onCancelled(DatabaseError databaseError) {
@@ -120,5 +127,21 @@ public class WriteReview extends AppCompatActivity {
             }
         });
 
+    }
+
+    /*
+     * Method to check if edit text is empty
+     */
+    private boolean isEmpty(EditText etText)
+    {
+        return etText.getText().toString().trim().length() == 0;
+    }
+
+    /*
+     * Method to check if rating empty
+     */
+    private boolean isEmptyBar (RatingBar bar)
+    {
+        return bar == null;
     }
 }

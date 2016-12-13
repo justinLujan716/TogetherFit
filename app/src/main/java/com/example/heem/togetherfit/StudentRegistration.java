@@ -57,9 +57,18 @@ public class StudentRegistration extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(), "Password too short, enter minimum 6 characters!", Toast.LENGTH_SHORT).show();
                     return;
                 }
-
+                if ((!email.equalsIgnoreCase(""))&&(!password.equalsIgnoreCase(""))){
+                    Intent intent = new Intent(getApplicationContext(),StudentRegistrationAdd.class);
+                    intent.putExtra("email", email);
+                    intent.putExtra("password", password);
+                    startActivity(intent);
+                }
+                else {
+                    Toast.makeText(getApplicationContext(),
+                            "Don't leave it blank", Toast.LENGTH_SHORT).show();
+                }
                 //create user
-                auth.createUserWithEmailAndPassword(email, password)
+                /*auth.createUserWithEmailAndPassword(email, password)
                         .addOnCompleteListener(StudentRegistration.this, new OnCompleteListener<AuthResult>() {
                             @Override
                             public void onComplete(@NonNull Task<AuthResult> task) {
@@ -85,9 +94,7 @@ public class StudentRegistration extends AppCompatActivity {
                                     finish();
                                 }
                             }
-                        });
-
-
+                        });*/
             }
         });
     }

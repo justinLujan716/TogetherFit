@@ -10,6 +10,7 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -64,34 +65,18 @@ public class TrainerRegistration extends AppCompatActivity {
                 }
 
                 //create user
-                auth.createUserWithEmailAndPassword(email, password)
-                        .addOnCompleteListener(TrainerRegistration.this, new OnCompleteListener<AuthResult>() {
-                            @Override
-                            public void onComplete(@NonNull Task<AuthResult> task) {
-                                Toast.makeText(TrainerRegistration.this, "createUserWithEmail:onComplete:" + task.isSuccessful(), Toast.LENGTH_SHORT).show();
-                                // If sign in fails, display a message to the user. If sign in succeeds
-                                // the auth state listener will be notified and logic to handle the
-                                // signed in user can be handled in the listener.
-                                if (!task.isSuccessful()) {
-                                    Toast.makeText(TrainerRegistration.this, "Authentication failed." + task.getException(),
-                                            Toast.LENGTH_SHORT).show();
-                                } else {
-                                    //create another database table into User, a personal file table
-                                    String uid = auth.getCurrentUser().getUid();
-                                    String uemail = auth.getCurrentUser().getEmail();
-                                    mRef = FirebaseDatabase.getInstance()
-                                            .getReferenceFromUrl("https://togetherfit-148901.firebaseio.com/User");
-                                    DatabaseReference mRefChild = mRef.child(uid);
-                                    DatabaseReference mRefChildEmail = mRefChild.child("Type");
-                                    mRefChildEmail.setValue("trainer");
-                                    DatabaseReference mRefChildEmail1 = mRefChild.child("Email");
-                                    mRefChildEmail1.setValue(uemail);
-                                    //link to Dashboard with authentication
-                                    startActivity(new Intent(TrainerRegistration.this, TrainerRegistrationAdd.class));
-                                    finish();
-                                }
-                            }
-                        });
+                if ((!email.equalsIgnoreCase(""))&&(!password.equalsIgnoreCase(""))){
+                    Intent intent = new Intent(getApplicationContext(),TrainerRegistrationAdd.class);
+                    intent.putExtra("email", email);
+                    intent.putExtra("password", password);
+                    startActivity(intent);
+                }
+                else {
+                    Toast.makeText(getApplicationContext(),
+                            "Don't leave it blank", Toast.LENGTH_SHORT).show();
+                }
+
+
 
             }
         });
