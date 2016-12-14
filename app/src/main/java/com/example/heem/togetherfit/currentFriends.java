@@ -18,7 +18,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
-public class currentFriends extends AppCompatActivity {
+public class  currentFriends extends AppCompatActivity {
 
     //Database
     DatabaseReference getInfo;

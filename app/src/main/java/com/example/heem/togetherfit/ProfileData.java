@@ -44,7 +44,7 @@ public class ProfileData extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+        super.onCreate(savedInstanceState);//;
         setContentView(R.layout.activity_profile_data);
 
         mStorage = FirebaseStorage.getInstance().getReference();
